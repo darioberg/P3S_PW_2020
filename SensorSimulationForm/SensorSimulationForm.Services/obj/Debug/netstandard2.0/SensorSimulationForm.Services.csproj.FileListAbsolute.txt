@@ -1,0 +1,4 @@
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm.Services\obj\Debug\netstandard2.0\SensorSimulationForm.Services.csprojAssemblyReference.cache
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm.Services\obj\Debug\netstandard2.0\SensorSimulationForm.Services.csproj.CoreCompileInputs.cache
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm.Services\obj\Debug\netstandard2.0\SensorSimulationForm.Services.AssemblyInfoInputs.cache
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm.Services\obj\Debug\netstandard2.0\SensorSimulationForm.Services.AssemblyInfo.cs
