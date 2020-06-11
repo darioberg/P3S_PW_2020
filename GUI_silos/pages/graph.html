@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/styleAdmin.css">
+    <link rel="stylesheet" href="../css/styleAdminData.css">
+</head>
+
+<body>
+    <canvas id="myChart"></canvas>
+    <!-- 
+    <script src="../js/dashboardAdminGraph.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+
+    <!--
+        SILOS MAX CAP = 160.000
+
+    -->
+    <script>
+/*         function generateLabels() {
+            var labels = [7];
+            var data = "";
+            var time = new Date();
+            var hours = 4;
+            time.setHours(00);
+            time.setMinutes(00);
+            time.setSeconds(00);
+            for (let i = 0; i < 7; i++) {
+                data = time.getHours() + ":0" + time.getMinutes();
+                labels[i] = time.toLocaleTimeString();
+                time.setHours(hours);
+                hours = hours + 4;
+            }
+            return labels;
+        } */
+        var ctx = document.getElementById('myChart');
+        var result = [{x:0,y:0},{ x: "18:30", y: "10000" }, { x: "19:00", y: "20000" }, { x: "20:00", y: "15000" }];
+
+        // parse labels and data
+        var labels = result.map(e => moment(e.x, 'HH:mm'));
+        var data = result.map(e => +e.y);
+
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'LiquidSilo',
+                    data: data,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        type: 'time',
+                        time: {
+                            unit: 'hour',
+                            displayFormats: {
+                                hour: 'HH:mm'
+                            }
+                        }
+                    }]
+                },
+            }
+        });
+       /*  var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: generateLabels(),
+                datasets: [
+                    {
+                        data: [{ x: Date.now, y: 10000 }, { x: Date.now, y: 20000 }],
+                        label: 'Left dataset',
+                        // This binds the dataset to the left y axis
+                        yAxisID: 'left-y-axis'
+                    }]
+            },
+            options: {
+                display: true,
+                scales: {
+                    xAxes: [{
+                        type: 'time',
+                        time: {
+                            unit: 'hour',
+                            displayFormats: {
+                                hour: 'HH:mm'
+                            }
+                        }
+                        /*                     yAxes: [{
+                                                id: 'left-y-axis',
+                                                type: 'linear',
+                                                position: 'left'
+                    }]
+                }
+            }
+        }); */
+    </script>
+</body>
+
+</html>

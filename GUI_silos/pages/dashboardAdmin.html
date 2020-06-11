@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/styleAdmin.css">
+    <link rel="stylesheet" href="../css/styleAdminData.css">
+    <link rel="stylesheet" href="../fontaweson/css/all.css">
+    <title>Dashboard Admin</title>
+</head>
+
+<body>
+    <!--     <div class="container-fluid bg-page"> -->
+    <div class="wrapper bg-page h-100">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Dashboard Admin</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <p>SiLeveL</p>
+                <li class="active" id="li_home">
+                    <a href="#Home" id="HomeBtn" onclick="changeDivContent(this.id);">Home</a>
+                </li>
+                <li id="li_user">
+                    <a href="#UserManager" id="UserBtnManager" onclick="changeDivContent(this.id);">Manage
+                        User</a>
+                </li>
+                <li id="li_data">
+                    <a href="#DataManager" id="DataBtnManager" onclick="changeDivContent(this.id);">Show
+                        Data</a>
+                </li>
+                <li id="li_log">
+                    <a href="#LogManager" id="LogBtnManager" onclick="changeDivContent(this.id);">Show
+                        Log</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- ======================================= CONTENT ALL BOX ====================================================-->
+        <div id="content" class="container-fluid h-100 bg-page">
+            <!-- ======================================= NAVBAR ==================================================== -->
+            <nav id="navbar-color" class="navbar navbar-expand-lg navbar-light">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col">
+                            <button type="button" id="sidebarCollapse" class="btn btn-dark">
+                                <i class="fas fa-bars fa-3x"></i>
+                            </button>
+                        </div>
+                        <div class="col">
+                            <span>
+                                <h1 id="txt-h1-format">Menù</h1>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- ======================================= HOME PAGE ==================================================== -->
+            <div id="Home" class="h-100 container-fluid" style="display: none;">
+                <div class="row">
+                    <div class="col mt-2 border-bottom bg-secondary">
+                        <h1 class="text-center text-white"><strong>Descrizione del progetto SiLeveL</strong></h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 mt-5">
+                        <div class="row">
+                            <div class="offset-1"></div>
+                            <div class="col mt-2">
+                                <article class="text-white text-justify">
+                                    <p>
+                                        <h3><u>Descrizione del progetto SiLeveL</u></h3>
+                                    </p>
+                                    <p class="text-white">
+                                        Portata del prodotto / Product Scope Il nostro prodotto è realizzato principalmente per aziende di stoccaggio liquidi all’interno di silos.
+                                    </p>
+                                    <p class="text-white">
+                                        Questo prodotto è composto da una parte hardware e da una parte software.
+                                    </p>
+                                    <p class="text-white">
+                                        La parte hardware installata sul silos è composta da sensori di livello liquido e da un misuratore di livello a turbina. Durante la fase di riempimento e/o svuotamento del silo, la turbina installata misurerà la quantità di liquido presente, inoltre saranno
+                                        posizionati 8 sensori ad un metro di distanza l’uno dall’altro,con il compito di calibrare la turbina (quando il liquido raggiunge un sensore aggiorna il suo stato continuando a contare dal livello del sensore).
+                                    </p>
+                                    <p class="text-white">
+                                        La parte software invece si occupa del trasferimento dati dal micro-PC al server remoto. Oltre ad occuparsi della trasmissione dati client/server server/client, è presente un'interfaccia web per il monitoraggio dei dati prelevati e quindi per monitorare
+                                        il corretto funzionamento del sistema informativo. In questo software sarà presente una parte di autenticazione per diversificare gli accessi in base ai permessi che l’azienda acquirente ha deciso di attribuire.
+                                    </p>
+                                </article>
+                            </div>
+                            <div class="offset-1"></div>
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <div class="vertical-line"></div>
+                    </div>
+                    <div class="col-5 mt-5">
+                        <img id="img-schema" src="../img/schema_generale.png" alt="Schema generale di collegamento del progetto">
+                        <br>
+                        <p class="text-white text-justify">Questa immagine descrive in modo generale come verrà realizzato il progetto, in questo schema si visualizza principalmente la parte hardware del progetto, composta da:
+                        </p>
+                        <ul class="text-white">
+                            <li>Silo</li>
+                            <li>Sensori elettro ottici</li>
+                            <li>Misuratore di livello a turbina</li>
+                            <li>Micro-controllore</li>
+                            <li>Cloud database</li>
+                            <li>Pagina web gestionale</li>
+                        </ul>
+                        <div id="content-box-button" class="row">
+                            <div class="offset-10"></div>
+                            <div id="content-box-href" class="col text-center">
+                                <a id="href-details" class="" href="../documents/Specifiche Sensori.pdf" target="_blank"> More details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--======================================= USER MANAGER ==================================================== -->
+            <div id="UserManager" class="h-100 container-fluid" style="display: none;">
+                <div class="row">
+                    <div class="col mt-2 border-bottom bg-secondary">
+                        <h1 class="text-center text-white"><strong>Gestione utente</strong></h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 container">
+                        <div class="row">
+                            <!-- ==================================================== GESTIONE UTENTE ==================================================== -->
+                            <div class="col container">
+                                <div class="row">
+                                    <div class="col container h-25 mt-2 dimens-title">
+                                        <h2 class="text-center text-white" style="font-size:2.5vw;">Gestione utente (elimina utente, aggiorna dati utente)
+                                        </h2>
+                                    </div>
+                                </div>
+                                <div class="row" id="div_delete">
+                                    <div class="col container">
+                                        <h5 class="text-left text-white border-bottom">Elimina utente</h5>
+                                        <div id="" class="border bg-light container">
+                                            <div class="row container">
+                                                <div class="offset-2"></div>
+                                                <div id="vr-line-label" class="col-3 mt-2">
+                                                    <label id="label-box" for="select-users" class="text-dark pt-3">Inserisci
+                                                        nome e
+                                                        cognome</label>
+                                                </div>
+                                                <div id="vr-line-select" class="col-5 mt-2">
+                                                    <div class="pt-3 container">
+                                                        <select class="custom-select mdb-select md-form pt-1" name="users" id="select-users" data-live-search="true" data-live-search-placeholder="Cerca opzioni">
+                                                            <option value="">seleziona utente</option>
+                                                            <option value="Value 2">Opzione 2</option>
+                                                            <option value="Value 3">Opzione 3</option>
+                                                            <option value="Value 4">Opzione 4</option>
+                                                            <option value="Value 5">Opzione 5</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="offset-2"></div>
+                                            </div>
+                                            <div class="row container">
+                                                <div class="offset-2"></div>
+                                                <div class="col-8">
+                                                    <hr>
+                                                    <p>
+                                                        Per completare la cancellazione dell'utente scelto bisogna selezionare la richiesta aggiuntiva prima di cliccare il buttone di eliminazione
+                                                    </p>
+                                                    <hr>
+                                                </div>
+                                                <div class="offset-2"></div>
+                                            </div>
+                                            <div class="row  mt-3 mb-5 container">
+                                                <div class="offset-4"></div>
+                                                <div class="col-4 mt-2 w-100">
+                                                    <div class="pt-2 text-right mt-1 mb-2">
+                                                        <button class="btn btn-outline-dark button-dimens">Delete
+                                                            User</button>
+                                                    </div>
+                                                </div>
+                                                <div class="offset-4"></div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--=======================================AGGIORNAMENTO UTENTE===================================================-->
+                        <div id="div_update" class="row mt-4">
+                            <div class="col">
+                                <h5 class="text-left text-white border-bottom">Aggiorna utente</h5>
+                                <div id="" class="border bg-light container">
+                                    <div class="row pb-4">
+                                        <div class="offset-2"></div>
+                                        <div id="vr-line-label" class="col-3 mt-2">
+                                            <label id="label-box" for="select-users-2" class="text-dark pt-3">Inserisci
+                                                nome e
+                                                cognome</label>
+                                        </div>
+                                        <div id="vr-line-select" class="col-5 mt-2 container">
+                                            <div class="pt-3 container">
+                                                <select class="custom-select mdb-select md-form pt-1" onchange="showBoxUpdate();" name="users" id="select-users-2" data-live-search="true" data-live-search-placeholder="Cerca opzioni">
+                                                    <!-- Le option saranno riempite dinamicamente tramite js -->
+                                                    <option value="">seleziona utente</option>
+                                                    <option value="Value 2">Opzione 2</option>
+                                                    <option value="Value 3">Opzione 3</option>
+                                                    <option value="Value 4">Opzione 4</option>
+                                                    <option value="Value 5">Opzione 5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="offset-2"></div>
+                                    </div>
+
+                                    <div class="row d-none " id="container-text-update">
+                                        <div class="offset-2"></div>
+                                        <div class="col-8">
+                                            <hr>
+                                            <p>
+                                                Per confermare l'utente da modificare premere la freccia
+                                            </p>
+                                            <hr>
+                                        </div>
+                                        <div class="offset-2"></div>
+                                    </div>
+                                    <div class="row d-none " id="container-input-update">
+                                        <!--========= In questo blocco verranno riempiti i dati dinamicamente=========-->
+                                        <div class="offset-2 mt-3"></div>
+                                        <div class="col-8 mt-3">
+                                            <!--=========NOME=========-->
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="offset-4"></div>
+                                                        <div class="col">
+                                                            <p>Nome</p>
+                                                        </div>
+                                                        <div class="offset-4"></div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="input-group mb-3 col">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text space-span" id="inputNameUpdate">Nome</span>
+                                                            </div>
+                                                            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputNameUpdate">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--=========COGNOME=========-->
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="offset-4"></div>
+                                                        <div class="col">
+                                                            <p>Cognome</p>
+                                                        </div>
+                                                        <div class="offset-4"></div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="input-group col mb-3">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text space-span" id="inputSurnameUpdate">Cognome</span>
+                                                            </div>
+                                                            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputSurnameUpdate">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--=========EMAIL=========-->
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="offset-4"></div>
+                                                        <div class="col">
+                                                            <p>Email</p>
+                                                        </div>
+                                                        <div class="offset-4"></div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="input-group col mb-3">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text space-span" id="inputEmailUpdate">Email</span>
+                                                            </div>
+                                                            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputEmailUpdate">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <!--=========Password=========-->
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="offset-4"></div>
+                                                        <div class="col">
+                                                            <p>Password</p>
+                                                        </div>
+                                                        <div class="offset-4"></div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="input-group col mb-3">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text space-span" id="inputPasswordUpdate">Password</span>
+                                                            </div>
+                                                            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputPasswordUpdate">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!--=========Permesso=========-->
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="offset-4"></div>
+                                                        <div class="col">
+                                                            <p>Permesso</p>
+                                                        </div>
+                                                        <div class="offset-4"></div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="input-group col mb-3">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id="inputPermit">Permesso</span>
+                                                            </div>
+                                                            <select name="select-permit-box" id="select-permit" class="custom-select mdb-select md-form">
+                                                                <option value="">Selezione un opzione</option>
+                                                                <option value="1">Amministratore</option>
+                                                                <option value="2">Impiegato</option>
+                                                                <option value="3">Manutentore</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="offset-2"></div>
+                                    </div>
+                                    <div class="row mt-3 mb-4 d-none " id="container-lines-update">
+                                        <div class="col-2"></div>
+                                        <div class="col-8">
+                                            <hr>
+                                        </div>
+                                        <div class="col-2"></div>
+                                    </div>
+                                    <div class="row mt-3 mb-5 d-none " id="container-confirm-update">
+                                        <div class="offset-4"></div>
+                                        <div class="col-4 mt-2 ">
+                                            <div class="pt-2 text-right mt-1 mb-2">
+                                                <button class="btn btn-outline-dark button-dimens" id="btn_update">Update
+                                                    User</button>
+                                            </div>
+                                        </div>
+                                        <div class="offset-4"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--=================================INSERIMENTO UTENTE====================================================-->
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col container mt-2 dimens-title h-25">
+                                <h2 class="text-center text-white" style="font-size:2.5vw;">Inserimento nuovo utente
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="text-left text-white border-bottom">Inserisci utente</h5>
+                                <div id="" class="border bg-light">
+                                    <div class="row container">
+                                        <div class="offset-2"></div>
+                                        <!-- In questo blocco verranno riempiti i dati dinamicamente-->
+                                        <div class="col mt-3">
+                                            <!--NOME-->
+                                            <div class="row">
+                                                <div class="input-group col mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text space-span" id="inputName">Nome</span>
+                                                    </div>
+                                                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputName">
+                                                </div>
+                                            </div>
+                                            <!--COGNOME-->
+                                            <div class="row">
+                                                <div class="input-group col mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text space-span" id="inputSurname">Cognome</span>
+                                                    </div>
+                                                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputSurname">
+                                                </div>
+                                            </div>
+                                            <!--EMAIL-->
+                                            <div class="row">
+                                                <div class="input-group col mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text space-span" id="inputEmail">Email</span>
+                                                    </div>
+                                                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputEmail">
+                                                </div>
+                                            </div>
+
+                                            <!--Password-->
+                                            <div class="row form-group container">
+                                                <div class="offset-1"></div>
+                                                <div class="form-check form-check-inline col-5">
+                                                    <input class="" type="submit" value="Genera password" id="in_generate_psw" onclick="showDivGenPsw();">
+                                                </div>
+                                                <div class="form-check form-check-inline col-5">
+                                                    <input class="" type="submit" value="Inserisci password" id="in_insert_psw" onclick="showDivManPsw();">
+                                                </div>
+                                            </div>
+                                            <div class="row" id="space-to-psw" style="display: none;">
+                                                <div class="input-group col mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text space-span" id="inputGenPsw">Password</span>
+                                                    </div>
+                                                    <input readonly type="text" id="tx_passw" class="form-control" aria-label="Default" aria-describedby="inputGenPsw" value="76Xr%2LmS4bd">
+                                                </div>
+                                            </div>
+                                            <!--
+                                            <div class="row" id="space-to-psw2" style="display: none;">
+                                                <div class="input-group col mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text space-span" id="inputManPsw">Password</span>
+                                                    </div>
+                                                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputManPsw">
+                                                </div>
+                                            </div>
+                                            -->
+                                            <div class="row">
+                                                <div class="col">
+                                                    <hr>
+                                                    <p>
+                                                        In questo punto si ha la possibilità di scegliere se:
+                                                    </p>
+                                                    <ul id="list-psw">
+                                                        <li>Generare la password automaticamente sfruttando un servizione del sistema informatico</li>
+                                                        <li>Inserire manualmente la password rispettando i requisiti minimi di sicurezza richiesti dal sistema informativo</li>
+                                                    </ul>
+                                                    <hr>
+                                                </div>
+                                            </div>
+
+                                            <!--Permesso-->
+                                            <div class="row">
+                                                <div class="input-group col mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text space-span" id="inputPermit">Permesso</span>
+                                                    </div>
+                                                    <select name="select-permit-box" id="select-permit" class="custom-select mdb-select md-form">
+                                                        <option value="">Selezione un opzione</option>
+                                                        <option value="1">Amministratore</option>
+                                                        <option value="2">Impiegato</option>
+                                                        <option value="3">Manutentore</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="offset-3"></div>
+                                                <div class="col mb-3">
+                                                    <div class="pt-2 text-right mt-1 mb-2 w-100">
+                                                        <button class="btn btn-outline-dark button-dimens" id="btn_register">Register
+                                                            User</button>
+                                                    </div>
+                                                </div>
+                                                <div class="offset-3"></div>
+                                            </div>
+                                        </div>
+                                        <div class="offset-2"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- Id Sensore ,stato sensore, livello liquido silos, id silo-->
+            <!--===================================DATA MANAGER ===========================================================-->
+            <div id="DataManager" class="h-100 container-fluid" style="display: block;">
+                <div class="row">
+                    <div class="col-12 mt-2 border-bottom bg-secondary">
+                        <h1 class="text-center text-white"><strong>Visualizzazione dati</strong></h1>
+                    </div>
+                </div>
+                <!-- ======================================== SELETTORI ==================================================-->
+                <div class="row mb-5">
+                    <div class="offset-1"></div>
+                    <div class="col-5">
+                        <!--=============================== SELEZIONE SILOS ===============================================-->
+                        <div class="row mt-5">
+                            <div class="col mt-2 border-bottom mb-3">
+                                <h3 class="text-right text-white">Seleziona il silos da monitorare</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-group col mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text space-span" id="inputPermit">Silos</span>
+                                </div>
+                                <select name="select-permit-box" id="select-permit" class="custom-select mdb-select md-form" onchange="">
+                                    <option value="">Selezione un silos</option>
+                                    <option value="1">Silos 1</option>
+                                    <option value="2">Silos 2</option>
+                                    <option value="3">Silos 3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <p>Finire di fare le select dinamiche </p>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <!-- ============================== SELEZIONA GIORNO ============================================-->
+                        <div class="row mt-5">
+                            <div class="col mt-2 border-bottom mb-3">
+                                <h3 class="text-right text-white">Seleziona un giorno da monitorare</h3>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="input-group col mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text space-span" id="inputPermit">Giorno</span>
+                                </div>
+                                <select id="selectDay" name="select-permit-box" id="select-permit" class="custom-select mdb-select md-form" onchange="changeDayChart();">
+                                    <option value="">Seleziona un giorno </option>
+                                    <option value="1">Lunedì 16/06/2019</option>
+                                    <option value="2">Martedì 17/06/2019</option>
+                                    <option value="3">Mercoledì 18/06/2019</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="offset-1"></div>
+                </div>
+                <!-- ======================================== GRAFICO ===============================================-->
+                <div class="row">
+                    <div class="offset-1"></div>
+                    <div class="col-10">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                    <div class="offset-1"></div>
+                </div>
+
+            </div>
+            <!--===================================LOG MANAGER==================================================================-->
+            <!-- Id log, Id Sensore, Cambio di Stato, Data ora -->
+            <div id="LogManager" class="h-100 w-100 container-fluid" style="display: none;">
+                <div class="row">
+                    <div class="col-12 mt-2 border-bottom bg-secondary">
+                        <h1 class="text-center text-white"><strong>Tabella dati</strong></h1>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="offset-1"></div>
+                    <div class="col-10">
+                        <!-- ================================= TABELLA VISUALIZZAZIONE DATI===========================================-->
+                        <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
+                            <table class="table table-borderless table-striped table-hover table-light">
+                                <thead>
+                                    <tr class="bg-dark text-white">
+                                        <th scope="col">#</th>
+                                        <th scope="col">ID Silos</th>
+                                        <th scope="col">ID Sensore</th>
+                                        <th scope="col">Liquido sensore</th>
+                                        <th scope="col">Data e ora</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Silos 1</td>
+                                        <td>Sensore 1</td>
+                                        <td>10000</td>
+                                        <td>oggi</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Silos 2</td>
+                                        <td>Sensore 2</td>
+                                        <td>20000</td>
+                                        <td>ieri</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="offset-1"></div>
+                </div>
+            </div>
+            <div class="h-25">
+                <br>
+            </div>
+        </div>
+
+    </div>
+    <!--Footer-->
+    <footer class="page-footer text-center text-md-left pt-4 ">
+        <div class="container">
+
+        </div>
+        <!--Copyright-->
+        <div class="footer-copyright py-3 text-center">
+            <div class="container-fluid">
+                &copy; Copyright 2020, P3S Corporation
+            </div>
+        </div>
+        <!--/.Copyright-->
+
+    </footer>
+
+
+    <!--     </div> -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/dashboardAdmin.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+    <script src="../js/dashboardAdminGraph.js"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            $('#sidebarCollapse').on('click', function() {
+                $('#sidebar').toggleClass('active');
+            });
+
+        });
+    </script>
+</body>
+
+</html>

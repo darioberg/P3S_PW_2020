@@ -1,0 +1,35 @@
+.btn_signIn {
+    background: #D01E7F;
+    background-image: -webkit-linear-gradient(top, #D01E7F, #3D94F6);
+    background-image: -moz-linear-gradient(top, #D01E7F, #3D94F6);
+    background-image: -ms-linear-gradient(top, #D01E7F, #3D94F6);
+    background-image: -o-linear-gradient(top, #D01E7F, #3D94F6);
+    background-image: linear-gradient(to bottom, #D01E7F, #3D94F6);
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    color: #000000;
+    font-family: Open Sans;
+    font-size: 80px;
+    font-weight: 100;
+    padding: 50px;
+    border: groove #000000 3px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn_signIn:hover {
+    border: groove #000000 3px;
+    background: #1E62D0;
+    background-image: -webkit-linear-gradient(top, #1E62D0, #D01E7F);
+    background-image: -moz-linear-gradient(top, #1E62D0, #D01E7F);
+    background-image: -ms-linear-gradient(top, #1E62D0, #D01E7F);
+    background-image: -o-linear-gradient(top, #1E62D0, #D01E7F);
+    background-image: linear-gradient(to bottom, #1E62D0, #D01E7F);
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    text-decoration: none;
+}
