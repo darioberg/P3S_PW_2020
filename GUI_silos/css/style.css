@@ -1,18 +1,23 @@
-html,body{
+html,
+body {
     height: 100%;
 }
-.bg-page{
-    background: rgb(0,0,0);
-    background: radial-gradient(circle, rgba(0,0,0,0.9360119047619048) 30%, rgba(0,159,132,1) 100%);
+
+.bg-page {
+    background: rgb(0, 0, 0);
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.9360119047619048) 30%, rgba(0, 159, 132, 1) 100%);
 }
+
 .space-box {
     width: 100%;
-	height: 75px;
+    height: 75px;
 }
-.space-bottom{
+
+.space-bottom {
     margin-top: 10%;
 }
-.content-box{
+
+.content-box {
     background-color: #009F84;
     padding-top: 1%;
     padding-bottom: 1%;
@@ -21,23 +26,27 @@ html,body{
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
     border-bottom-left-radius: 25px;
-	border-bottom-right-radius: 25px; 
+    border-bottom-right-radius: 25px;
     height: 100%;
-
 }
+
+
 /* .content-box:hover{
     background: rgb(194,205,205);
     background: linear-gradient(90deg, rgba(245,239,240,1) 0%, rgba(0,0,0,0.9360119047619048)100%);
 } */
-.header-login{
+
+.header-login {
     height: 20%;
     border-top-left-radius: 40px;
     border-top-right-radius: 40px;
     width: 100%;
 }
-.img-box-rounded{
-    border-radius: 50%;   
+
+.img-box-rounded {
+    border-radius: 50%;
 }
+
 .body-login {
     padding-top: 5%;
     padding-bottom: 5%;
@@ -46,41 +55,50 @@ html,body{
     width: 100%;
     height: 70%;
 }
-.link-box{
+
+.link-box {
     color: black;
 }
-.link-box:hover{
+
+.link-box:hover {
     color: #009F84;
 }
-.footer-login{
+
+.footer-login {
     height: 20%;
     width: 100%;
     padding-top: 5%;
     border-bottom-left-radius: 40px;
-    border-bottom-right-radius: 40px; 
+    border-bottom-right-radius: 40px;
 }
+
 #copyright {
     padding-right: 3.5%;
     padding-bottom: 3%;
 }
-.text-copyright{
+
+.text-copyright {
     color: white;
 }
-.button-box{
+
+.button-box {
     margin-top: 10%;
     float: right;
     width: 35%;
 }
-.button-dimens{
+
+.button-dimens {
     width: 100%;
     border-radius: 50px;
 }
-.button-dimens:hover{
-    background-color:#009F84;
+
+.button-dimens:hover {
+    background-color: #009F84;
     color: white;
 }
-.input-box{
-}
-.input-box:hover{
+
+.input-box {}
+
+.input-box:hover {
     box-shadow: inset 0 0 0 25px #009F84;
 }
