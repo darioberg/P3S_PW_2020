@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "yzmxMrewIo0EhlTqhc8+tNMy/+eu1HK0jaCNy4Y5wvo2lp4DS1QOvC8B/pKe6ji46MyTR501nsX0yLI7Obckjw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Dario\\Documents\\Project Work\\SensorSimulationForm\\SensorSimulationForm.Services\\SensorSimulationForm.Services.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Dario\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Dario\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\Dario\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
