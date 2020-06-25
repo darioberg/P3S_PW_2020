@@ -1,19 +1,23 @@
-.bg-page{
-    background: rgb(0,0,0);
-    background: linear-gradient(180deg, rgba(0,0,0,0.9360119047619048) 10%, rgba(0,159,132,1) 100%);
+.bg-page {
+    background: rgb(0, 0, 0);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.9360119047619048) 10%, rgba(0, 159, 132, 1) 100%);
 }
+
 .wrapper {
     display: flex;
     align-items: stretch;
 }
+
 #sidebar {
     min-width: 250px;
     max-width: 250px;
     min-height: 100vh;
 }
+
 #sidebar.active {
     margin-left: -250px;
 }
+
 a[data-toggle="collapse"] {
     position: relative;
 }
@@ -25,6 +29,7 @@ a[data-toggle="collapse"] {
     right: 20px;
     transform: translateY(-50%);
 }
+
 @media (max-width: 768px) {
     #sidebar {
         margin-left: -250px;
@@ -32,13 +37,12 @@ a[data-toggle="collapse"] {
     #sidebar.active {
         margin-left: 0;
     }
-    #UserManager{
+    #UserManager {
         width: auto;
     }
 }
+
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-
-
 body {
     font-family: 'Poppins', sans-serif;
     background: #fafafa;
@@ -52,7 +56,9 @@ p {
     color: #999;
 }
 
-a, a:hover, a:focus {
+a,
+a:hover,
+a:focus {
     color: inherit;
     text-decoration: none;
     transition: all 0.3s;
@@ -60,22 +66,21 @@ a, a:hover, a:focus {
 
 #sidebar {
     /* don't forget to add all the previously mentioned styles here too */
-    background: rgb(0,0,0);
-    background: linear-gradient(180deg, rgba(0,0,0,0.9360119047619048) 10%, rgba(0,159,132,1) 100%);
-
+    background: rgb(0, 0, 0);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.9360119047619048) 10%, rgba(0, 159, 132, 1) 100%);
     color: #fff;
     transition: all 0.3s;
 }
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: rgb(0,0,0);
+    background: rgb(0, 0, 0);
 }
 
 #sidebar ul.components {
     padding: 20px 0;
-    background: rgb(0,0,0);
-    background: linear-gradient(180deg, rgba(0,0,0,0.9360119047619048) 30%, rgba(0,159,132,1) 100%);
+    background: rgb(0, 0, 0);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.9360119047619048) 30%, rgba(0, 159, 132, 1) 100%);
 }
 
 #sidebar ul p {
@@ -88,36 +93,42 @@ a, a:hover, a:focus {
     font-size: 1.1em;
     display: block;
 }
+
 #sidebar ul li a:hover {
     color: #7386D5;
     background: #fff;
 }
 
-#sidebar ul li.active > a, a[aria-expanded="true"] {
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
     color: #fff;
-    background:#009F84;
-
+    background: #009F84;
 }
+
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
     background: #6d7fcc;
 }
-#txt-h1-format{
+
+#txt-h1-format {
     text-align: center;
     color: white;
     margin-top: 6%;
 }
-#navbar-color{
+
+#navbar-color {
     background-color: #009F84;
 }
-.vertical-line{
-    border-left: 4px double white; 
-    height: 100%; 
+
+.vertical-line {
+    border-left: 4px double white;
+    height: 90%;
     position: absolute;
-    left: 56%; 
+    left: 56%;
     top: 10%
 }
+
 #img-schema {
     max-width: 100%;
     height: auto;
@@ -130,72 +141,88 @@ ul ul a {
     margin-left: auto;
     margin-right: auto;
 }
-.text-copyright{
+
+.text-copyright {
     padding-right: 3.5%;
     padding-bottom: 3%;
-
 }
+
 #href-details {
     text-decoration: underline;
 }
-#href-details:hover{
-    text-decoration: underline;
 
+#href-details:hover {
+    text-decoration: underline;
     color: black;
 }
-#href-details:link{
+
+#href-details:link {
     text-decoration: underline;
-    color: red; 
+    color: red;
 }
-#content-box-href{
+
+#content-box-href {
     border: 1px solid black;
     border-radius: 20px;
 }
-#footer-bottom{
-    position:sticky;
+
+#footer-bottom {
+    position: sticky;
     left: 0;
     bottom: 0;
     width: 100%;
 }
-#label-box:hover{
+
+#label-box:hover {
     text-decoration: underline;
 }
-.button-box{
+
+.button-box {
     width: auto;
 }
-.button-box:hover{
-    background-color:#009F84;
+
+.button-box:hover {
+    background-color: #009F84;
     color: white;
 }
-.button-dimens{
+
+.button-dimens {
     width: auto;
     border-radius: 50px;
 }
-.button-dimens, #btn_register{
+
+.button-dimens,
+#btn_register {
     width: 130%;
 }
 
-.button-dimens:hover{
-    background-color:#009F84;
+.button-dimens:hover {
+    background-color: #009F84;
     color: white;
 }
-.space-span{
+
+.space-span {
     min-width: 40%;
 }
-#list-psw{
+
+#list-psw {
     color: #999;
 }
-.page-footer{
+
+.page-footer {
     background-color: #009F84;
 }
-.dimens-title{
+
+.dimens-title {
     height: 100px;
 }
+
 .my-custom-scrollbar {
     position: relative;
     height: 100%;
     overflow: auto;
-    }
+}
+
 .table-wrapper-scroll-y {
-display: block;
+    display: block;
 }

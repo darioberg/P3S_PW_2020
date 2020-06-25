@@ -1,3 +1,7 @@
+var ruolo = localStorage.getItem("ruolo");
+
+var url = "http://silevel.ddnsking.com:3000";
+
 var tx_pass = document.getElementById("tx_passw");
 
 //{DIV} Blocchi principali della pagina home,manage user, show data, show log
@@ -17,7 +21,7 @@ var liHome = document.getElementById("li_home");
 var liUser = document.getElementById("li_user");
 var liData = document.getElementById("li_data");
 var liLog = document.getElementById("li_log");
-
+changePrivilege(ruolo);
 
 // Radio button password
 var manualPsw = document.getElementById("in_insert_psw");
@@ -126,5 +130,27 @@ function showBoxUpdate() {
         divTextUpdate.classList.add("d-none");
         divLinesUpdate.classList.add("d-none");
         divInputUpdate.classList.add("d-none");
+    }
+}
+
+function changePrivilege(ruolo) {
+    var titDash = document.getElementById("titDash");
+    switch (ruolo) {
+        case "1":
+            titDash.innerText = "Dashboard Admin";
+            break;
+        case "2":
+            titDash.innerText = "Dashboard Manutentore";
+            liUser.style.display = "none";
+            break;
+        case "3":
+            titDash.innerText = "Dashboard Utente";
+            liUser.style.display = "none";
+            liLog.style.display = "none";
+            break;
+        default:
+            window.location.href = "../login.html";
+            alert("Si è verificato un errore. Riprova!");
+            break;
     }
 }
