@@ -1,8 +1,10 @@
+var url = "http://silevel.ddnsking.com:3000";
+
 function checkLogin() {
     var username = document.getElementById("Username").value;
     var password = document.getElementById("Password").value;
     console.log("Username: " + username + " Pssword: " + password);
-    fetch('http://silevel.ddnsking.com:3000/checkLogin', {
+    fetch(url + '/checkLogin', {
         method: 'post',
         headers: {
             'Accept': 'application/json',

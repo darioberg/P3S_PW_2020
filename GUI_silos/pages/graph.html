@@ -18,10 +18,10 @@
         <!-- Sidebar -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3 id="titDash">Dashboard Admin</h3>
+                <h3>Dashboard Admin</h3>
             </div>
 
-            <ul class="list-unstyled components" id="li_scelta">
+            <ul class="list-unstyled components">
                 <p>SiLeveL</p>
                 <li class="active" id="li_home">
                     <a href="#Home" id="HomeBtn" onclick="changeDivContent(this.id);">Home</a>
@@ -60,7 +60,7 @@
                 </div>
             </nav>
             <!-- ======================================= HOME PAGE ==================================================== -->
-            <div id="Home" class="h-100 container-fluid" style="display: block;">
+            <div id="Home" class="h-100 container-fluid" style="display: none;">
                 <div class="row">
                     <div class="col mt-2 border-bottom bg-secondary">
                         <h1 class="text-center text-white"><strong>Descrizione del progetto SiLeveL</strong></h1>
@@ -128,8 +128,8 @@
                 </div>
                 <div class="row">
                     <div class="col-6 container">
-                        <!-- ==================================================== GESTIONE UTENTE ==================================================== -->
                         <div class="row">
+                            <!-- ==================================================== GESTIONE UTENTE ==================================================== -->
                             <div class="col container">
                                 <div class="row">
                                     <div class="col container h-25 mt-2 dimens-title">
@@ -152,6 +152,10 @@
                                                     <div class="pt-3 container">
                                                         <select class="custom-select mdb-select md-form pt-1" name="users" id="select-users" data-live-search="true" data-live-search-placeholder="Cerca opzioni">
                                                             <option value="">seleziona utente</option>
+                                                            <option value="Value 2">Opzione 2</option>
+                                                            <option value="Value 3">Opzione 3</option>
+                                                            <option value="Value 4">Opzione 4</option>
+                                                            <option value="Value 5">Opzione 5</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -172,7 +176,7 @@
                                                 <div class="offset-4"></div>
                                                 <div class="col-4 mt-2 w-100">
                                                     <div class="pt-2 text-right mt-1 mb-2">
-                                                        <button id="btn-delete-user" class="btn btn-outline-dark button-dimens" onclick="deleteUser();">Delete
+                                                        <button class="btn btn-outline-dark button-dimens">Delete
                                                             User</button>
                                                     </div>
                                                 </div>
@@ -190,7 +194,7 @@
                                 <h5 class="text-left text-white border-bottom">Aggiorna utente</h5>
                                 <div id="" class="border bg-light container">
                                     <div class="row pb-4">
-                                        <div class="offset-1"></div>
+                                        <div class="offset-2"></div>
                                         <div id="vr-line-label" class="col-3 mt-2">
                                             <label id="label-box" for="select-users-2" class="text-dark pt-3">Inserisci
                                                 nome e
@@ -198,16 +202,20 @@
                                         </div>
                                         <div id="vr-line-select" class="col-5 mt-2 container">
                                             <div class="pt-3 container">
-                                                <select class="custom-select mdb-select md-form pt-1" name="users" id="select-users-2" data-live-search="true" data-live-search-placeholder="Cerca opzioni">
+                                                <select class="custom-select mdb-select md-form pt-1" onchange="showBoxUpdate();" name="users" id="select-users-2" data-live-search="true" data-live-search-placeholder="Cerca opzioni">
                                                     <!-- Le option saranno riempite dinamicamente tramite js -->
                                                     <option value="">seleziona utente</option>
+                                                    <option value="Value 2">Opzione 2</option>
+                                                    <option value="Value 3">Opzione 3</option>
+                                                    <option value="Value 4">Opzione 4</option>
+                                                    <option value="Value 5">Opzione 5</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="offset-1"></div>
+                                        <div class="offset-2"></div>
                                     </div>
 
-                                    <div class="row " id="container-text-update">
+                                    <div class="row d-none " id="container-text-update">
                                         <div class="offset-2"></div>
                                         <div class="col-8">
                                             <hr>
@@ -218,7 +226,7 @@
                                         </div>
                                         <div class="offset-2"></div>
                                     </div>
-                                    <div class="row " id="container-input-update">
+                                    <div class="row d-none " id="container-input-update">
                                         <!--========= In questo blocco verranno riempiti i dati dinamicamente=========-->
                                         <div class="offset-2 mt-3"></div>
                                         <div class="col-8 mt-3">
@@ -228,7 +236,7 @@
                                                     <div class="row">
                                                         <div class="offset-4"></div>
                                                         <div class="col">
-                                                            <p id="p-nome">Nome</p>
+                                                            <p>Nome</p>
                                                         </div>
                                                         <div class="offset-4"></div>
                                                     </div>
@@ -237,7 +245,7 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text space-span" id="inputNameUpdate">Nome</span>
                                                             </div>
-                                                            <input id="txt-update-nome" type="text" class="form-control" aria-label="Default" aria-describedby="inputNameUpdate">
+                                                            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputNameUpdate">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -248,7 +256,7 @@
                                                     <div class="row">
                                                         <div class="offset-4"></div>
                                                         <div class="col">
-                                                            <p id="p-cognome">Cognome</p>
+                                                            <p>Cognome</p>
                                                         </div>
                                                         <div class="offset-4"></div>
                                                     </div>
@@ -257,7 +265,7 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text space-span" id="inputSurnameUpdate">Cognome</span>
                                                             </div>
-                                                            <input id="txt-update-cognome" type="text" class="form-control" aria-label="Default" aria-describedby="inputSurnameUpdate">
+                                                            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputSurnameUpdate">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -268,7 +276,7 @@
                                                     <div class="row">
                                                         <div class="offset-4"></div>
                                                         <div class="col">
-                                                            <p id="p-email">Email</p>
+                                                            <p>Email</p>
                                                         </div>
                                                         <div class="offset-4"></div>
                                                     </div>
@@ -278,7 +286,7 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text space-span" id="inputEmailUpdate">Email</span>
                                                             </div>
-                                                            <input id="txt-update-email" type="text" class="form-control" aria-label="Default" aria-describedby="inputEmailUpdate">
+                                                            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputEmailUpdate">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -291,7 +299,7 @@
                                                     <div class="row">
                                                         <div class="offset-4"></div>
                                                         <div class="col">
-                                                            <p id="p-password">Password</p>
+                                                            <p>Password</p>
                                                         </div>
                                                         <div class="offset-4"></div>
                                                     </div>
@@ -300,18 +308,19 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text space-span" id="inputPasswordUpdate">Password</span>
                                                             </div>
-                                                            <input id="txt-update-password" type="text" class="form-control" aria-label="Default" aria-describedby="inputPasswordUpdate">
+                                                            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputPasswordUpdate">
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <!--=========Permesso=========-->
                                             <div class="row">
                                                 <div class="col">
                                                     <div class="row">
                                                         <div class="offset-4"></div>
                                                         <div class="col">
-                                                            <p id="p-permesso">Permesso</p>
+                                                            <p>Permesso</p>
                                                         </div>
                                                         <div class="offset-4"></div>
                                                     </div>
@@ -332,31 +341,32 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="offset-2"></div>
                                     </div>
-                                    <div class="offset-2"></div>
-                                    <div class="row mt-3 mb-4 " id="container-lines-update">
+                                    <div class="row mt-3 mb-4 d-none " id="container-lines-update">
                                         <div class="col-2"></div>
                                         <div class="col-8">
                                             <hr>
                                         </div>
                                         <div class="col-2"></div>
                                     </div>
-                                    <div class="row mt-3 mb-5 " id="container-confirm-update">
+                                    <div class="row mt-3 mb-5 d-none " id="container-confirm-update">
                                         <div class="offset-4"></div>
                                         <div class="col-4 mt-2 ">
                                             <div class="pt-2 text-right mt-1 mb-2">
-                                                <button class="btn btn-outline-dark button-dimens" id="btn-update-user">Update
+                                                <button class="btn btn-outline-dark button-dimens" id="btn_update">Update
                                                     User</button>
                                             </div>
                                         </div>
                                         <div class="offset-4"></div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
+                    <!--=================================INSERIMENTO UTENTE====================================================-->
                     <div class="col-6">
-                        <!--=================================INSERIMENTO UTENTE====================================================-->
                         <div class="row">
                             <div class="col container mt-2 dimens-title h-25">
                                 <h2 class="text-center text-white" style="font-size:2.5vw;">Inserimento nuovo utente
@@ -398,6 +408,7 @@
                                                     <input type="text" class="form-control" aria-label="Default" aria-describedby="inputEmail">
                                                 </div>
                                             </div>
+
                                             <!--Password-->
                                             <div class="row form-group container">
                                                 <div class="offset-1"></div>
@@ -416,6 +427,16 @@
                                                     <input readonly type="text" id="tx_passw" class="form-control" aria-label="Default" aria-describedby="inputGenPsw" value="76Xr%2LmS4bd">
                                                 </div>
                                             </div>
+                                            <!--
+                                            <div class="row" id="space-to-psw2" style="display: none;">
+                                                <div class="input-group col mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text space-span" id="inputManPsw">Password</span>
+                                                    </div>
+                                                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputManPsw">
+                                                </div>
+                                            </div>
+                                            -->
                                             <div class="row">
                                                 <div class="col">
                                                     <hr>
@@ -429,6 +450,7 @@
                                                     <hr>
                                                 </div>
                                             </div>
+
                                             <!--Permesso-->
                                             <div class="row">
                                                 <div class="input-group col mb-3">
@@ -437,6 +459,9 @@
                                                     </div>
                                                     <select name="select-permit-box" id="select-permit" class="custom-select mdb-select md-form">
                                                         <option value="">Selezione un opzione</option>
+                                                        <option value="1">Amministratore</option>
+                                                        <option value="2">Impiegato</option>
+                                                        <option value="3">Manutentore</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -457,11 +482,12 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
+
             </div>
-            <!--==================================DATA MANAGER ===========================================================-->
-            <div id="DataManager" class="h-100 container-fluid" style="display: none;">
+            <!-- Id Sensore ,stato sensore, livello liquido silos, id silo-->
+            <!--===================================DATA MANAGER ===========================================================-->
+            <div id="DataManager" class="h-100 container-fluid" style="display: block;">
                 <div class="row">
                     <div class="col-12 mt-2 border-bottom bg-secondary">
                         <h1 class="text-center text-white"><strong>Visualizzazione dati</strong></h1>
@@ -549,7 +575,133 @@
                                         <th scope="col">Data e ora</th>
                                     </tr>
                                 </thead>
-                                <tbody id="tBody">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Silos 1</td>
+                                        <td>Sensore 1</td>
+                                        <td>10000</td>
+                                        <td>oggi</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Silos 2</td>
+                                        <td>Sensore 2</td>
+                                        <td>20000</td>
+                                        <td>ieri</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Silos 3</td>
+                                        <td>Sensore 3</td>
+                                        <td>30000</td>
+                                        <td>domani</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -560,8 +712,6 @@
             <div class="h-25">
                 <br>
             </div>
-
-
         </div>
     </div>
     <!--Footer-->
@@ -580,20 +730,16 @@
     </footer>
 
 
-
-
+    <!--     </div> -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/dashboardAdmin.js"></script>
-    <script src="../js/manageUserApi.js"></script>
-    <script src="../js/manageLogsApi.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
     <script src="../js/dashboardAdminGraph.js"></script>
-
 
     <script>
         $(document).ready(function() {
