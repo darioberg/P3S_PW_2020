@@ -29,7 +29,7 @@ app.register(swagger, {
             url: 'https://swagger.io',
             description: 'Find more info here'
         },
-        host: 'localhost:3000',
+        host: 'silevel.ddnsking.com:3000',
         schemes: ['http'],
         consumes: ['application/json'],
         produces: ['application/json']
@@ -208,6 +208,25 @@ app.post("/insertNewSilos", { schema: { body: newSilosJsonSchema } },(request, r
     });
 });
 
+//===========VISUALIZZAZIONE DEI DATI DI UN SILOS==================
+app.get("/getSilosById/:id", {
+    schema: {
+        params: {
+            ID_Silos: { type: 'number' }
+        }
+    }
+}, (request, reply) => {
+    let silos = request.params.id;
+    connection.query("SELECT * FROM silos WHERE ID_Silos = ?", silos, (error, results, fields) => {
+        //app.log.info(results);
+        if (error) {
+            reply.status(500).send({ error: error.message });
+            return;
+        }
+        reply.send(results[0]);
+    });
+});
+
 //===========VISUALIZZAZIONE DI TUTTI I SILOS==================
 app.get("/getAllSilos", (request, reply) => {
     connection.query("SELECT * FROM silos", (error, results, fields) => {
@@ -223,10 +242,10 @@ app.get("/getAllSilos", (request, reply) => {
 //=============AGGIORAMENTO DEL SILOS============
 const updateSilosJsonSchema = {
     type: 'object',
-    required: ['ID_Silos', 'LivelloLiquido'],
+    required: ['idSilos', 'livelloLiquido'],
     properties: {
-        ID_Silos: { type: 'number' },
-        LivelloLiquido: { type: 'number' },
+        idSilos: { type: 'number' },
+        livelloLiquido: { type: 'number' },
         sensori: {
             type: 'array',
             items: {
@@ -339,16 +358,16 @@ function updateLog(idSilos, livelloLiquido, sensori, oldSensors) {
         for (var x = 0; x < sensoriCambiati.length; x++) {
             var boolVec;
             if(sensoriCambiati[x].bool == true)
-                boolVec = false;
+                boolVec = "ATTIVATO";
             else
-                boolVec = true;
-            var description = "SENSORE '" + sensoriCambiati[x].id + "' E' PASSATO DA " + boolVec.toString().toUpperCase() + " A " + sensoriCambiati[x].bool.toString().toUpperCase() + ". LIVELLO LIQUIDO AGGIORNATO A: '" + livelloLiquido + "'";
+                boolVec = "DISATTIVATO";
+            var description = "IL SENSORE " + sensoriCambiati[x].id + " SI E' " + boolVec;
             var today = new Date();
             var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
             var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
             var dataOra = date+' '+time;
             app.log.info("DATA: " + dataOra + " DESCRIZIONE: " + description);
-            connection.query("INSERT INTO log(ID_Sensore,Descrizione,Data_Ora) VALUES (?,?,?)", [sensoriCambiati[x].id, description, dataOra], (error, results, fields) => {
+            connection.query("INSERT INTO log(ID_Sensore,Descrizione,LivelloLiquido,Data_Ora,ID_Silos) VALUES (?,?,?,?,?)", [sensoriCambiati[x].id, description, livelloLiquido, dataOra, idSilos], (error, results, fields) => {
                 // app.log.info(results);
                 if (error) {
                     //reply.status(500).send({ error: error.message });
@@ -361,8 +380,7 @@ function updateLog(idSilos, livelloLiquido, sensori, oldSensors) {
 }
 
 app.get("/getLog", (request, reply) => {
-    let idSilos = request.params.id;
-    connection.query("SELECT * FROM log", [idSilos], (error, results, fields) => {
+    connection.query("SELECT * FROM log",(error, results, fields) => {
         //app.log.info(results);
         if (error) {
             reply.status(500).send({ error: error.message });
