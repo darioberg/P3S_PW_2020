@@ -1,17 +1,36 @@
+//bottoni di conferma delle azione scelte
 var btnDeleteUser = document.getElementById("btn-delete-user");
 var btnUpdateUser = document.getElementById("btn-update-user");
+var btnInsertUser = document.getElementById("btn-insert-user");
+var btnGeneratePsw = document.getElementById("in_generate_psw");
+var btnManualPsw = document.getElementById("in_insert_psw");
+
+
+//select di scelta degli utenti
 var selectDelete = document.getElementById("select-users");
 var selectUpdate = document.getElementById("select-users-2");
+var selectUpdatePermesso = document.getElementById("select-permit");
+var selectInsert = document.getElementById("select-permit-insert");
+
+//paragrafi che contengono i dati dell'utente che viene aggiornato
 var pNome = document.getElementById("p-nome");
 var pCognome = document.getElementById("p-cognome");
 var pEmail = document.getElementById("p-email");
 var pPassword = document.getElementById("p-password");
 var pPermesso = document.getElementById("p-permesso");
+
+//campi di testo che contengono i dati che verranno aggiornati all'interno del db
 var txtNome = document.getElementById("txt-update-nome");
 var txtCognome = document.getElementById("txt-update-cognome");
 var txtEmail = document.getElementById("txt-update-email");
 var txtPassword = document.getElementById("txt-update-password");
-var txtPermesso = document.getElementById("select-permit");
+
+//campi di testo che contengono i dati per l'inserimento di un nuovo utente
+var txtNomeInsert = document.getElementById("txt-insert-nome");
+var txtCognomeInsert = document.getElementById("txt-insert-nome");
+var txtEmailInsert = document.getElementById("txt-insert-nome");
+var txtNomeInsert = document.getElementById("txt-insert-nome");
+var txtPasswordInsert = document.getElementById("tx_passw");
 
 var resultUpdateCall;
 var selectUserUpdate;
@@ -55,7 +74,7 @@ var deleteUser = function(e) {
     // funzione che riempie la select di scelta dell'utente nella fase di aggiornamento 
 var fillSelectUpdate = function(e) {
     clearSelectTxt();
-    const url = "http://silevel.ddnsking.com:3000/getAll ";
+    const url = "http://silevel.ddnsking.com:3000/getAll";
     const options = {
         method: 'GET'
     }
@@ -90,7 +109,13 @@ var updateUser = function() {
             pCognome.innerHTML = resultUpdateCall[index].Cognome;
             pEmail.innerHTML = resultUpdateCall[index].Email;
             pPassword.innerHTML = resultUpdateCall[index].Password;
-            pPermesso.innerHTML = resultUpdateCall[index].ID_Ruolo;
+            if (resultUpdateCall[index].ID_Ruolo == 1) {
+                pPermesso.innerHTML = "Amministratore";
+            } else if (resultUpdateCall[index].ID_Ruolo == 2) {
+                pPermesso.innerHTML = "Manutentore";
+            } else if (resultUpdateCall[index].ID_Ruolo == 3) {
+                pPermesso.innerHTML = "Utente";
+            }
         }
     }
 }
@@ -116,10 +141,10 @@ var callUpdateApi = function(e) {
 
         nome = txtNome.value;
     }
-    if (txtPermesso.value == "") {
+    if (selectUpdatePermesso.value == "") {
         permesso = selectUserUpdate.ID_Ruolo;
     } else {
-        permesso = txtPermesso.value;
+        permesso = selectUpdatePermesso.value;
     }
 
     var user = {
@@ -148,7 +173,7 @@ var clearSelectTxt = function(e) {
     txtNome.value = "";
     txtCognome.value = "";
     txtEmail.value = "";
-    txtPermesso.value = "";
+    selectUpdatePermesso.value = "";
     txtPassword.value = "";
     pCognome.innerHTML = "Cognome";
     pNome.innerHTML = "Nome";
@@ -164,9 +189,33 @@ var clearSelectTxt = function(e) {
     }
 }
 
+
+var insertUser = function(e) {
+    var user = {
+        "Email": txtEmailInsert.value,
+        "Password": txtPasswordInsert.value,
+        "Nome": txtNomeInsert.value,
+        "Cognome": txtCognomeInsert.value,
+        "ID_Ruolo": selectInsert.value
+    }
+    const url = "http://silevel.ddnsking.com:3000/insertUser";
+    const options = {
+        method: 'POST',
+        body: JSON.stringify(user),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    fetch(url, options).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+        console.log(data);
+    });
+
+}
 document.addEventListener('DOMContentLoaded', fillSelectDelete);
 document.addEventListener('DOMContentLoaded', fillSelectUpdate);
 selectUpdate.addEventListener("change", updateUser);
 btnUpdateUser.addEventListener("click", callUpdateApi);
 btnUpdateUser.addEventListener('click', clearSelectTxt);
-selectUpdate.addEventListener('click', fillSelectUpdate);
+//selectUpdate.addEventListener('click', fillSelectUpdate);

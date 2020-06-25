@@ -39,7 +39,13 @@ var divLinesUpdate = document.getElementById("container-lines-update");
 var divConfirmUpdate = document.getElementById("container-input-update");
 var divInputUpdate = document.getElementById("container-confirm-update");
 
-
+//funzione di logout
+function logout() {
+    (function(myCallbackGoesHereAsVariable) {
+        Parse.User.logOut();
+    });
+    window.location.href = "../login.html";
+}
 
 //funzione di scambio pagine tra la sidebar
 function changeDivContent(click) {
@@ -105,14 +111,20 @@ function changeActiveClass(idLi, classActive) {
 }
 
 function showDivGenPsw() {
-    divPsw.style.display = "block";
-    tx_pass.value = "xxxxx";
-    tx_pass.readOnly = true;
+    fetch(url + "/getRandomPsw").then(function(response) {
+        return response.json();
+    }).then(function(data) {
+        divPsw.style.display = "block";
+        tx_pass.value = data.RandomPsw;
+        tx_pass.readOnly = true;
+        console.log(data);
+    });
 }
 
 function showDivManPsw() {
     tx_pass.value = "";
     tx_pass.readOnly = false;
+    divPsw.style.display = "block";
 }
 
 function showBoxUpdate() {

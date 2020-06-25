@@ -38,6 +38,9 @@
                     <a href="#LogManager" id="LogBtnManager" onclick="changeDivContent(this.id);">Show
                         Log</a>
                 </li>
+                <li id="li_log">
+                    <a href="#LogManager" id="LogBtnManager" onclick="logout();">Logout</a>
+                </li>
             </ul>
         </nav>
         <!-- ======================================= CONTENT ALL BOX ====================================================-->
@@ -324,7 +327,7 @@
                                                             <select name="select-permit-box" id="select-permit" class="custom-select mdb-select md-form">
                                                                 <option value="">Selezione un opzione</option>
                                                                 <option value="1">Amministratore</option>
-                                                                <option value="2">Impiegato</option>
+                                                                <option value="2">Utente</option>
                                                                 <option value="3">Manutentore</option>
                                                             </select>
                                                         </div>
@@ -377,7 +380,7 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text space-span" id="inputName">Nome</span>
                                                     </div>
-                                                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputName">
+                                                    <input id="txt-insert-nome" type="text" class="form-control" aria-label="Default" aria-describedby="inputName">
                                                 </div>
                                             </div>
                                             <!--COGNOME-->
@@ -386,7 +389,7 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text space-span" id="inputSurname">Cognome</span>
                                                     </div>
-                                                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputSurname">
+                                                    <input id="txt-insert-cognome" type="text" class="form-control" aria-label="Default" aria-describedby="inputSurname">
                                                 </div>
                                             </div>
                                             <!--EMAIL-->
@@ -395,7 +398,7 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text space-span" id="inputEmail">Email</span>
                                                     </div>
-                                                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputEmail">
+                                                    <input id="txt-insert-email" type="text" class="form-control" aria-label="Default" aria-describedby="inputEmail">
                                                 </div>
                                             </div>
                                             <!--Password-->
@@ -435,7 +438,7 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text space-span" id="inputPermit">Permesso</span>
                                                     </div>
-                                                    <select name="select-permit-box" id="select-permit" class="custom-select mdb-select md-form">
+                                                    <select name="select-permit-box" id="select-permit-insert" class="custom-select mdb-select md-form">
                                                         <option value="">Selezione un opzione</option>
                                                     </select>
                                                 </div>
@@ -444,7 +447,7 @@
                                                 <div class="offset-3"></div>
                                                 <div class="col mb-3">
                                                     <div class="pt-2 text-right mt-1 mb-2 w-100">
-                                                        <button class="btn btn-outline-dark button-dimens" id="btn_register">Register
+                                                        <button class="btn btn-outline-dark button-dimens" id="btn-insert-user">Register
                                                             User</button>
                                                     </div>
                                                 </div>

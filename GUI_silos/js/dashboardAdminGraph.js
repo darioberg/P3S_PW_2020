@@ -1,21 +1,11 @@
 var selectDay = document.getElementById("selectDay");
 var ctx = document.getElementById("myChart").getContext('2d');
 var myChart;
-//var result = [{ x: 0, y: 0 }, { x: "18:30", y: "10000" }, { x: "19:00", y: "20000" }, { x: "20:00", y: "15000" }, { x: "24:00", y: "17000" }, { x: "25:00", y: "15000" }];
-
-
-// spazio che contiene il grafico
-
-
-var ctx = document.getElementById("myChart").getContext('2d');
-//variabile che contiene i dati da disegnare all'interno del grafico
 
 // parse labels and data
 var labels = [];
 var data = [];
 createChart(labels, data);
-//labels = (result.map(e => moment(e.x, 'HH:mm')));
-//data = (result.map(e => +e.y));
 
 // funzione che al variare del giorno varia il grafico
 function changeDayChart() {
@@ -34,14 +24,6 @@ function changeDayChart() {
         myChart.destroy();
         createChart(data, labels);
     }
-}
-
-function addData(label, data) {
-    myChart.data.labels.push(label);
-    myChart.data.datasets.forEach((dataset) => {
-        dataset.data.push(data);
-    });
-    myChart.update();
 }
 
 function createChart(data, labels) {
