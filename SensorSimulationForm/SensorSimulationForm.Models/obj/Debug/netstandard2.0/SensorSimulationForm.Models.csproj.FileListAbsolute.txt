@@ -1,0 +1,9 @@
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm.Models\bin\Debug\netstandard2.0\SensorSimulationForm.Models.deps.json
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm.Models\bin\Debug\netstandard2.0\SensorSimulationForm.Models.dll
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm.Models\bin\Debug\netstandard2.0\SensorSimulationForm.Models.pdb
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm.Models\obj\Debug\netstandard2.0\SensorSimulationForm.Models.csprojAssemblyReference.cache
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm.Models\obj\Debug\netstandard2.0\SensorSimulationForm.Models.AssemblyInfoInputs.cache
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm.Models\obj\Debug\netstandard2.0\SensorSimulationForm.Models.AssemblyInfo.cs
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm.Models\obj\Debug\netstandard2.0\SensorSimulationForm.Models.csproj.CoreCompileInputs.cache
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm.Models\obj\Debug\netstandard2.0\SensorSimulationForm.Models.dll
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm.Models\obj\Debug\netstandard2.0\SensorSimulationForm.Models.pdb

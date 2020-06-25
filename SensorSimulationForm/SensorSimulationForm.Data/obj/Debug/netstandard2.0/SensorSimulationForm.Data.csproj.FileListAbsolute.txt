@@ -1,0 +1,12 @@
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm.Data\bin\Debug\netstandard2.0\SensorSimulationForm.Data.deps.json
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm.Data\bin\Debug\netstandard2.0\SensorSimulationForm.Data.dll
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm.Data\bin\Debug\netstandard2.0\SensorSimulationForm.Data.pdb
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm.Data\bin\Debug\netstandard2.0\SensorSimulationForm.Models.dll
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm.Data\bin\Debug\netstandard2.0\SensorSimulationForm.Models.pdb
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm.Data\obj\Debug\netstandard2.0\SensorSimulationForm.Data.csprojAssemblyReference.cache
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm.Data\obj\Debug\netstandard2.0\SensorSimulationForm.Data.AssemblyInfoInputs.cache
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm.Data\obj\Debug\netstandard2.0\SensorSimulationForm.Data.AssemblyInfo.cs
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm.Data\obj\Debug\netstandard2.0\SensorSimulationForm.Data.csproj.CoreCompileInputs.cache
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm.Data\obj\Debug\netstandard2.0\SensorSimulationForm.Data.csproj.CopyComplete
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm.Data\obj\Debug\netstandard2.0\SensorSimulationForm.Data.dll
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm.Data\obj\Debug\netstandard2.0\SensorSimulationForm.Data.pdb

@@ -1,0 +1,17 @@
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm\bin\Debug\SensorSimulationForm.exe.config
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm\bin\Debug\SensorSimulationForm.exe
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm\bin\Debug\SensorSimulationForm.pdb
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm\bin\Debug\SensorSimulationForm.Data.dll
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm\bin\Debug\SensorSimulationForm.Models.dll
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm\bin\Debug\SensorSimulationForm.Data.pdb
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm\bin\Debug\SensorSimulationForm.Models.pdb
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm\obj\Debug\SensorSimulationForm.csprojAssemblyReference.cache
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm\obj\Debug\SensorSimulationForm.Form1.resources
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm\obj\Debug\SensorSimulationForm.Properties.Resources.resources
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm\obj\Debug\SensorSimulationForm.csproj.GenerateResource.cache
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm\obj\Debug\SensorSimulationForm.csproj.CoreCompileInputs.cache
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm\obj\Debug\SensorSimulationForm.csproj.CopyComplete
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm\obj\Debug\SensorSimulationForm.exe
+C:\Users\Dario\Documents\Project Work\SensorSimulationForm\SensorSimulationForm\obj\Debug\SensorSimulationForm.pdb
