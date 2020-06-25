@@ -10,7 +10,7 @@ namespace SensorSimulationForm.Data
         void Fill(int qty);
         void Empty(int qty);
         void Malfunction(int qty);
-        void Insert();
+        string Insert();
         bool CheckNumber(int number, int[] vet);
     }
 }

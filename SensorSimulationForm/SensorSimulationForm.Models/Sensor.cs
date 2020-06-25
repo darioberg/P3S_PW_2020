@@ -14,9 +14,9 @@ namespace SensorSimulationForm.Models
 
 
         [JsonProperty("id")]
-        public int NumberID { get; set; }
+        public int NumberID { get; }
 
-        public int ActivationLevel { get; set; }
+        public int ActivationLevel { get; }
 
         [JsonProperty("bool")]
         public bool Status { get; set; }

@@ -17,10 +17,9 @@ namespace SensorSimulationForm.Models
 
         public Liquid()
         {
-            MaxLevel = 1600;
+            MaxLevel = 160000;
             MinLevel = 0;
-            Level = 0;
-            IdSilos = 0;
+            IdSilos = 1;
         }
 
 
