@@ -23,11 +23,11 @@ app.register(swagger, {
         info: {
             title: 'Documentazione api',
             description: 'Documentazione api server SiLevel',
-            version: '0.1.0'
+            version: '1.0.0'
         },
         externalDocs: {
-            url: 'https://swagger.io',
-            description: 'Find more info here'
+            url: 'https://github.com/darioberg/P3S_PW_2020',
+            description: '[Codice sorgente progetto]'
         },
         host: 'silevel.ddnsking.com:3000',
         schemes: ['http'],
@@ -141,27 +141,27 @@ app.put("/updateUser", { schema: { body: updateUserJsonSchema } }, (request, rep
 
 //==============ELIMINAZIONE DELL'UTENTE===============
 app.delete("/deleteUser/:id", {
-        schema: {
-            params: {
-                Email: { type: 'string', minLength: 3 }
-            }
+    schema: {
+        params: {
+            Email: { type: 'string', minLength: 3 }
         }
-    },(request, reply) => {
-        let email = request.params.id;
-        connection.query("DELETE FROM utente WHERE Email = ?", [email], (error, results, fields) => {
-            //app.log.info(results);
-            if (error) {
-                reply.status(500).send({ error: error.message });
-                return;
-            }
-            reply.status(200).send({ "msg": "Record eliminato" });
+    }
+}, (request, reply) => {
+    let email = request.params.id;
+    connection.query("DELETE FROM utente WHERE Email = ?", [email], (error, results, fields) => {
+        //app.log.info(results);
+        if (error) {
+            reply.status(500).send({ error: error.message });
+            return;
+        }
+        reply.status(200).send({ "msg": "Record eliminato" });
     });
 });
 
 //=========CONTROLLO DELLE INFORMAZIONI DI LOGIN========
 const checkUserJsonSchema = {
     type: 'object',
-    required: ['Email','Password'],
+    required: ['Email', 'Password'],
     properties: {
         Email: { type: 'string', minLength: 2 },
         Password: { type: 'string' }
@@ -196,7 +196,7 @@ const newSilosJsonSchema = {
     }
 };
 
-app.post("/insertNewSilos", { schema: { body: newSilosJsonSchema } },(request, reply) => {
+app.post("/insertNewSilos", { schema: { body: newSilosJsonSchema } }, (request, reply) => {
     let silos = request.body;
     connection.query("insert into silos set ?", silos, (error, results, fields) => {
         //app.log.info(results);
@@ -224,6 +224,33 @@ app.get("/getSilosById/:id", {
             return;
         }
         reply.send(results[0]);
+    });
+});
+
+//===========VISUALIZZAZIONE DEI DATI DI UN SILOS DATI DATA E IDSILOS==================
+
+const getChartJsonSchema = {
+    type: 'object',
+    required: ['idSilos'],
+    properties: {
+        dataOra: { type: 'string', format: 'date' },
+        idSilos: { type: 'number' }
+    }
+};
+
+app.post("/getDataChart", { schema: { body: getChartJsonSchema } }, (request, reply) => {
+    let data = request.body;
+    var dataOra = data.dataOra + "%";
+
+    app.log.info("DATA ORA INSERITI " + dataOra);
+
+    connection.query("SELECT * FROM log WHERE ID_Silos = ? AND Data_Ora LIKE ?", [data.idSilos, dataOra], (error, results, fields) => {
+        //app.log.info(results);
+        if (error) {
+            reply.status(500).send({ error: error.message });
+            return;
+        }
+        reply.send(results);
     });
 });
 
@@ -271,7 +298,7 @@ app.put("/updateSilos", { schema: { body: updateSilosJsonSchema } }, (request, r
     var sensori = silos.sensori;
 
     var oldSensors;
-    
+
     getPreviousSensor(idSilos, (data) => {
         oldSensors = data;
         for (let i = 0; i < sensori.length; i++) {
@@ -293,8 +320,8 @@ app.put("/updateSilos", { schema: { body: updateSilosJsonSchema } }, (request, r
             reply.status(200).send({ "msg": "Silos aggiornato" });
         });
     }, (error) => {
-       console.log("Error");
-       reply.status(500).send(error);
+        console.log("Error");
+        reply.status(500).send(error);
     });
 });
 
@@ -302,10 +329,10 @@ app.put("/updateSilos", { schema: { body: updateSilosJsonSchema } }, (request, r
 app.delete("/deleteSilos/:id", {
     schema: {
         params: {
-            ID_Silos: { type: 'number'}
+            ID_Silos: { type: 'number' }
         }
     }
-},(request, reply) => {
+}, (request, reply) => {
     let ID_Silos = request.params.ID_Silos;
     connection.query("DELETE FROM silos WHERE ID_Silos = ?", [ID_Silos], (error, results, fields) => {
         // app.log.info(results);
@@ -340,13 +367,13 @@ app.get("/getAllSensorBySilos/:id", {
 
 //==============ACCESSO AI DATI LOG===============
 function updateLog(idSilos, livelloLiquido, sensori, oldSensors) {
-   var stato;
+    var stato;
     var sensoriCambiati = [];
     if (sensori.length != 0) {
         for (var i = 0; i < sensori.length; i++) {
-            if(oldSensors[i].StatoSensore == 0){
+            if (oldSensors[i].StatoSensore == 0) {
                 stato = false;
-            }else{
+            } else {
                 stato = true;
             }
             if (sensori[i].bool != stato) {
@@ -357,15 +384,15 @@ function updateLog(idSilos, livelloLiquido, sensori, oldSensors) {
         app.log.info("ARRAY: " + sensoriCambiati[0]);
         for (var x = 0; x < sensoriCambiati.length; x++) {
             var boolVec;
-            if(sensoriCambiati[x].bool == true)
+            if (sensoriCambiati[x].bool == true)
                 boolVec = "ATTIVATO";
             else
                 boolVec = "DISATTIVATO";
             var description = "IL SENSORE " + sensoriCambiati[x].id + " SI E' " + boolVec;
             var today = new Date();
-            var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+            var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
             var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-            var dataOra = date+' '+time;
+            var dataOra = date + ' ' + time;
             app.log.info("DATA: " + dataOra + " DESCRIZIONE: " + description);
             connection.query("INSERT INTO log(ID_Sensore,Descrizione,LivelloLiquido,Data_Ora,ID_Silos) VALUES (?,?,?,?,?)", [sensoriCambiati[x].id, description, livelloLiquido, dataOra, idSilos], (error, results, fields) => {
                 // app.log.info(results);
@@ -380,13 +407,58 @@ function updateLog(idSilos, livelloLiquido, sensori, oldSensors) {
 }
 
 app.get("/getLog", (request, reply) => {
-    connection.query("SELECT * FROM log",(error, results, fields) => {
+    connection.query("SELECT * FROM log", (error, results, fields) => {
         //app.log.info(results);
         if (error) {
             reply.status(500).send({ error: error.message });
             return;
         }
         reply.send(results);
+    });
+});
+
+//================================================================GESTIONE MALFUNZIONAMENTI=======================================================
+
+app.get("/getMalfunctions", (request, reply) => {
+    connection.query("SELECT * FROM malfunzionamenti", (error, results, fields) => {
+        if (error) {
+            reply.status(500).send({ error: error.message });
+            return;
+        }
+        reply.send(results);
+    });
+});
+
+//========================INSERIMENTO MALFUNZIONAMENTO==========================
+
+const newMalfunctionJsonSchema = {
+    type: 'object',
+    required: ['ID_Sensore', 'ID_Silos'],
+    properties: {
+        ID_Sensore: { type: 'number' },
+        ID_Silos: { type: 'number' },
+        Descrizione: { type: 'string' }
+    },
+    example:
+    {
+        ID_Sensore: 1,
+        ID_Silos: 1,
+        Descrizione: "Il sensore 1 ha smesso di funzionare"
+    }
+};
+
+app.post("/insertMalfunction", { schema: { body: newMalfunctionJsonSchema } }, (request, reply) => {
+    let malfunction = request.body;
+
+    app.log.info("DATA ORA INSERITI " + dataOra);
+
+    connection.query("INSERT INTO malfunzionamenti SET ?", [malfunction], (error, results, fields) => {
+        //app.log.info(results);
+        if (error) {
+            reply.status(500).send({ error: error.message });
+            return;
+        }
+        reply.send("Malfunzionamento inserito");
     });
 });
 
@@ -408,13 +480,13 @@ app.get("/getRandomPsw", (request, reply) => {
 function getPreviousSensor(idSilos, successCallback, errorCallback) {
     console.log("SONO DENTRO");
     connection.query("SELECT * FROM sensore WHERE ID_Silos = 1", (error, results, fields) => {
-       // app.log.info(results);
+        // app.log.info(results);
         if (error) {
-            errorCallback (error.message);
+            errorCallback(error.message);
             return;
         }
         console.log(results);
-        successCallback (results);
+        successCallback(results);
     });
 }
 
@@ -431,7 +503,7 @@ function generateP() {
     }
 
     return pass;
-} 
+}
 
 //=======================================================================CONFIGURAZIONE============================================================
 
