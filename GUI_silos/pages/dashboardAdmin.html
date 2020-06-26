@@ -481,19 +481,19 @@
                     <div class="offset-4"></div>
                     <div class="col-2">
                         <div class=" form-check form-check-inline">
-                            <input name="gruppo2" type="radio" id="radioData" checked>
-                            <label class="radioButtonColor" for="radioData">Visualizzazione dati giornaliero</label>
+                            <input name="choice" type="radio" id="radioData" checked>
+                            <label class="radioButtonColor" for="radioData">Visualizzazione dati giornalieri</label>
                         </div>
                     </div>
                     <div class="col-2">
                         <div class="form-check form-check-inline radioButtonColor">
-                            <input name="gruppo2" type="radio" id="radioLiquid">
+                            <input name="choice" type="radio" id="radioLiquid">
                             <label class="radioButtonColor" for="radioLiquid">Visualizzazione livello liquido attuale</label>
                         </div>
                     </div>
                     <div class="offset-4"></div>
                 </div>
-                <div>
+                <div id="content-chart-data" class="d-block">
                     <!-- ======================================== SELETTORI ==================================================-->
                     <div class="row">
                         <div class="offset-1"></div>
@@ -510,7 +510,6 @@
                                         <span class="input-group-text space-span" id="inputPermit">Silos</span>
                                     </div>
                                     <select name="select-permit-box" id="selectSilos" class="custom-select mdb-select md-form" onchange="">
-                                        <option value="">Selezione un silos</option>
                                     </select>
                                 </div>
                             </div>
@@ -529,7 +528,7 @@
                                     </div> -->
                                     <div class="it-datepicker-wrapper dimens-calendar ml-5">
                                         <div class="input-group">
-                                            <input readonly style="height: auto;" class="input-group it-date-datepicker" id="input-calendar" type="text" placeholder="Seleziona la data in formato aaaa/mm/dd">
+                                            <input readonly style="height: auto;" class="input-group it-date-datepicker" id="input-calendar" type="text" placeholder="Seleziona la data in formato aaaa/mm/dd" onchange="showButtonConfirm();">
                                             <label for="input-calendar"></label>
                                         </div>
                                     </div>
@@ -561,7 +560,7 @@
                     <div class="row mb-4">
                         <div class="offset-5"></div>
                         <div class="col-2 text-center">
-                            <button class="btn btn-outline-dark btn-confirm-chart" onclick="getDataChart();">Conferma</button>
+                            <button id="btn-confirm-value" disabled class="btn btn-outline-dark btn-confirm-chart" onclick="getDataChart();">Conferma</button>
                         </div>
                         <div class="offset-5"></div>
                     </div>
@@ -572,6 +571,52 @@
                             <canvas id="myChart"></canvas>
                         </div>
                         <div class="offset-1"></div>
+                    </div>
+                </div>
+                <div id="content-level-silos" class="d-none">
+                    <!--=============================== SELEZIONE SILOS ===============================================-->
+                    <div class="row">
+                        <div class="offset-3"></div>
+                        <div class="col-6">
+                            <div class="row mt-5">
+                                <div class="col mt-2 border-bottom mb-3">
+                                    <h3 class="text-right text-white">Seleziona il silos da monitorare</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-group col mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text space-span" id="inputPermit">Silos</span>
+                                    </div>
+                                    <select name="select-permit-box" id="selectSilos2" class="custom-select mdb-select md-form" onchange="">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="offset-3"></div>
+                    </div>
+                    <!--===========================PROGRESS BAR=====================================-->
+                    <div class="row">
+                        <div class="offset-2"></div>
+                        <div class="col-8">
+                            <div class="row">
+                                <div class="offset-2"></div>
+                                <div class="col-6">
+                                    <img src="../img/Silo.png" alt="Silos" width="100%" height="100%">
+                                </div>
+                                <div class="col-2">
+                                    <div class="progress progress-bar-vertical">
+                                        <div id="progressBar" class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                                            <span class="sr-only"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="offset-2"></div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <h4 class="mt-5 text-light text-center" id="descriptionLevel"></h4>
+                        </div>
                     </div>
                 </div>
 

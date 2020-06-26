@@ -1,7 +1,11 @@
 //variabile 
 var resultRequestChart;
 var selectSilos = document.getElementById("selectSilos");
+var selectSilos2 = document.getElementById("selectSilos2");
+var progressBar = document.getElementById("progressBar");
 var calendar = document.getElementById("input-calendar");
+var description = document.getElementById("descriptionLevel");
+var btnConfirmChart = document.getElementById("btn-confirm-value");
 var ctx = document.getElementById("myChart").getContext('2d');
 var myChart;
 var url = "http://silevel.ddnsking.com:3000";
@@ -96,6 +100,10 @@ function getAllSilos() {
             opt.value = data[i].ID_Silos;
             opt.innerHTML = "Silos " + data[i].ID_Silos;
             selectSilos.appendChild(opt);
+            var opt2 = document.createElement("option");
+            opt2.value = data[i].ID_Silos;
+            opt2.innerHTML = "Silos " + data[i].ID_Silos;
+            selectSilos2.appendChild(opt2);
         }
     });
 }
@@ -139,4 +147,27 @@ function splitDate(data) {
     var time = split2[0] + ":" + split2[1];
     return time;
 }
+
+function getSilosById() {
+    var idSilos = selectSilos2.value;
+    fetch(url + "/getSilosById/" + idSilos).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+        console.log(data);
+        var liquid = data.LivelloLiquido;
+        var percetual = parseInt((liquid * 100) / 160000);
+        console.log(percetual);
+        progressBar.setAttribute("aria-valuenow", percetual);
+        progressBar.style.height = percetual + "%";
+        description.innerHTML = "Livello attuale<br><br> " + "<strong>" + liquid + " L</strong>"
+    });
+}
+
+function showButtonConfirm() {
+    if (calendar.value != "") {
+        btnConfirmChart.removeAttribute("disabled");
+    }
+}
+//calendar.addEventListener('click', showButtonConfirm);
 document.addEventListener('DOMContentLoaded', getAllSilos);
+selectSilos2.addEventListener("click", getSilosById);

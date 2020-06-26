@@ -1,5 +1,5 @@
 var ruolo = localStorage.getItem("ruolo");
-
+var flagDivSilos = false;
 var url = "http://silevel.ddnsking.com:3000";
 
 var tx_pass = document.getElementById("tx_passw");
@@ -9,6 +9,10 @@ var UserManager = document.getElementById("UserManager");
 var LogManager = document.getElementById("LogManager");
 var DataManager = document.getElementById("DataManager");
 var Home = document.getElementById("Home");
+var chartData = document.getElementById("content-chart-data");
+var levelSilosDiv = document.getElementById("content-level-silos");
+
+
 
 //{HREF} Pulsanti principali della sidebar
 var UserBtnManager = document.getElementById("UserBtnManager");
@@ -23,10 +27,9 @@ var liData = document.getElementById("li_data");
 var liLog = document.getElementById("li_log");
 changePrivilege(ruolo);
 
-// Radio button password
-var manualPsw = document.getElementById("in_insert_psw");
-var generatePsw = document.getElementById("in_generate_psw");
-var radios = document.getElementsByName("inlineRadioOptions");
+// Radio button silos
+var radioButtonSilos = document.getElementsByName("choice");
+
 
 //txt psw
 var divPsw = document.getElementById("space-to-psw");
@@ -39,6 +42,37 @@ var divLinesUpdate = document.getElementById("container-lines-update");
 var divConfirmUpdate = document.getElementById("container-input-update");
 var divInputUpdate = document.getElementById("container-confirm-update");
 
+
+var rad = document.getElementsByName("choice");
+var prev = null;
+for (var i = 0; i < rad.length; i++) {
+    rad[i].addEventListener('change', function() {
+        if (flagDivSilos) {
+            chartData.classList.add("d-block");
+            chartData.classList.remove("d-none");
+            levelSilosDiv.classList.add("d-none");
+            levelSilosDiv.classList.remove("d-block");
+            flagDivSilos = false;
+        } else {
+            levelSilosDiv.classList.add("d-block");
+            levelSilosDiv.classList.remove("d-none");
+            chartData.classList.add("d-none");
+            chartData.classList.remove("d-block");
+            flagDivSilos = true;
+        }
+    });
+}
+// function changeDivSilos() {
+//     if (flagDivSilos) {
+//         chartData.classList.add("d-block");
+//         levelSilosDiv.classList.add("d-none");
+//         flagDivSilos = false;
+//     } else {
+//         levelSilosDiv.classList.add("d-block");
+//         chartData.classList.add("d-none");
+//         flagDivSilos = true;
+//     }
+// }
 //funzione di logout
 function logout() {
     (function(myCallbackGoesHereAsVariable) {
