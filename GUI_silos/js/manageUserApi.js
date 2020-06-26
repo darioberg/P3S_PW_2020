@@ -26,9 +26,8 @@ var txtEmail = document.getElementById("txt-update-email");
 var txtPassword = document.getElementById("txt-update-password");
 
 //campi di testo che contengono i dati per l'inserimento di un nuovo utente
-var txtNomeInsert = document.getElementById("txt-insert-nome");
-var txtCognomeInsert = document.getElementById("txt-insert-nome");
-var txtEmailInsert = document.getElementById("txt-insert-nome");
+var txtCognomeInsert = document.getElementById("txt-insert-cognome");
+var txtEmailInsert = document.getElementById("txt-insert-email");
 var txtNomeInsert = document.getElementById("txt-insert-nome");
 var txtPasswordInsert = document.getElementById("tx_passw");
 
@@ -69,6 +68,13 @@ var deleteUser = function(e) {
             return response.json();
         }).then(function(data) {
             console.log(data);
+            if (data.msg == "Record eliminato") {
+                var msg = "Hai eliminato correttamente l'utente: " + optselect;
+                createModal("Eliminazione utente", msg, true);
+            } else {
+                var msg = "Qualcosa è andato storto. Riprova!";
+                createModal("Eliminazione utente", msg, false);
+            }
         });
     }
     // funzione che riempie la select di scelta dell'utente nella fase di aggiornamento 
@@ -188,6 +194,15 @@ var clearSelectTxt = function(e) {
         }
     }
 }
+var clearSelectDelete = function(e) {
+    var length = selectDelete.options.length;
+    for (let index = length - 1; index >= 1; index--) {
+        if (selectDelete.length >= 0) {
+            selectDelete.options[index] = null;
+        }
+    }
+    fillSelectDelete();
+}
 
 
 var insertUser = function(e) {
@@ -198,7 +213,7 @@ var insertUser = function(e) {
         "Cognome": txtCognomeInsert.value,
         "ID_Ruolo": selectInsert.value
     }
-    const url = "http://silevel.ddnsking.com:3000/insertUser";
+    const url = "http://silevel.ddnsking.com:3000/insertNewUser";
     const options = {
         method: 'POST',
         body: JSON.stringify(user),
@@ -213,9 +228,81 @@ var insertUser = function(e) {
     });
 
 }
+
+function createModal(title, txt, bool) {
+    var modal = document.getElementById("modal");
+    var divFade = document.createElement("div");
+    var divDialog = document.createElement("div");
+    var divContent = document.createElement("div");
+    var divHeader = document.createElement("div");
+    var iconTrue = document.createElement("i");
+    var iconFalse = document.createElement("i");
+    var title = document.createElement("h5");
+    var buttonClose = document.createElement("button");
+    var span = document.createElement("span");
+    var divBody = document.createElement("div");
+    var divFooter = document.createElement("div");
+    var buttonRetry = document.createElement("button");
+    var pText = document.createElement("p");
+
+
+    divFade.classList.add("modal", "fade");
+    divFade.id = "modalBox";
+    divFade.setAttribute("data-backdrop", "static");
+    divFade.setAttribute("data-keyboard", "false");
+    divFade.setAttribute("tabindex", "-1");
+    divFade.setAttribute("role", "dialog");
+    divFade.setAttribute("aria-labelledby", "staticBackdropLabel");
+    divFade.setAttribute("aria-hidden", "true");
+
+    span.setAttribute("aria-hidden", "true")
+
+    divDialog.classList.add("modal-dialog");
+
+    divContent.classList.add("modal-content");
+
+    divHeader.classList.add("modal-header");
+
+    iconTrue.classList.add("fas", "fa-exclamation-circle", "fa-4x");
+    iconFalse.classList.add("fas", "fa-check-circle", "fa-4x");
+
+    title.classList.add("modal-title", "pt-3", "pl-3", "text-danger");
+    title.id = "title-modal";
+
+    buttonClose.classList.add("close");
+    buttonClose.setAttribute("data-dismiss", "modal");
+    buttonClose.setAttribute("aria-label", "Close");
+
+    //span.classList.add("");
+    divBody.classList.add("modal-body", "text-center");
+    divFooter.classList.add("modal-footer");
+    buttonRetry.classList.add("btn", "btn-secondary");
+
+    title.innerHTML = title;
+    pText.innerHTML = txt;
+
+    buttonClose.appendChild(span);
+    if (bool) {
+        divHeader.appendChild(iconTrue);
+    } else {
+        divHeader.appendChild(iconFalse);
+    }
+    divHeader.appendChild(title);
+    divHeader.appendChild(buttonClose);
+    divBody.appendChild(pText);
+    divFooter.appendChild(buttonRetry);
+    divContent.appendChild(divHeader);
+    divContent.appendChild(divBody);
+    divContent.appendChild(divFooter);
+    divDialog.appendChild(divContent);
+    divFade.appendChild(divDialog);
+    modal.appendChild(divFade);
+}
 document.addEventListener('DOMContentLoaded', fillSelectDelete);
 document.addEventListener('DOMContentLoaded', fillSelectUpdate);
+btnDeleteUser.addEventListener('click', deleteUser);
+btnDeleteUser.addEventListener('click', clearSelectDelete);
 selectUpdate.addEventListener("change", updateUser);
 btnUpdateUser.addEventListener("click", callUpdateApi);
 btnUpdateUser.addEventListener('click', clearSelectTxt);
-//selectUpdate.addEventListener('click', fillSelectUpdate);
+btnInsertUser.addEventListener('click', insertUser);

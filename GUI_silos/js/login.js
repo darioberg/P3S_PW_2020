@@ -1,6 +1,9 @@
-var url = "http://silevel.ddnsking.com:3000";
+var divContentModal = document.getElementById("container-modal");
+var btnLogin = document.getElementById("btn-login");
 
-function checkLogin() {
+var url = "http://silevel.ddnsking.com:3000";
+//funzione che controlla se i dati inseriti sono corretti
+var checkLogin = function(e) {
     var username = document.getElementById("Username").value;
     var password = document.getElementById("Password").value;
     console.log("Username: " + username + " Pssword: " + password);
@@ -19,7 +22,6 @@ function checkLogin() {
     }).then(function(data) {
         console.log(data);
         if (data[0]) {
-
             switch (data[0].ID_Ruolo) {
                 case 1:
                     console.log("Sono un amministratore");
@@ -39,6 +41,15 @@ function checkLogin() {
             window.location.href = "../pages/dashboardAdmin.html";
         } else {
             console.log("FALSE");
+            btnLogin.setAttribute("data-toggle", "modal");
+            btnLogin.setAttribute("data-target", "#staticBackdrop");
+            divContentModal.classList.remove("d-none");
         }
     });
+}
+var createModal = function(e) {
+
+}
+var forgotPassword = function(e) {
+
 }

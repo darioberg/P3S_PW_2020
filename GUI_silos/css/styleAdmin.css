@@ -201,6 +201,18 @@ ul ul a {
     color: white;
 }
 
+.btn-confirm-chart {
+    width: 100%;
+    border-radius: 50px;
+    background-color: white;
+    color: black;
+}
+
+.btn-confirm-chart:hover {
+    background-color: #009F84;
+    color: white;
+}
+
 .space-span {
     min-width: 40%;
 }
@@ -225,4 +237,23 @@ ul ul a {
 
 .table-wrapper-scroll-y {
     display: block;
+}
+
+.dimens-calendar {
+    width: 100%;
+    height: auto;
+    background-color: white;
+}
+
+.radioButtonColor {
+    color: white;
+}
+
+.colorRadio:before {
+    border: 2px solid #009F84;
+    background-color: transparent;
+}
+
+.colorRadio:before input[type=radio]:checked {
+    background: #009F84;
 }

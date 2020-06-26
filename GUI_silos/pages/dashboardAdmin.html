@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/bootstrap-italia.min.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/styleAdmin.css">
     <link rel="stylesheet" href="../css/styleAdminData.css">
@@ -13,6 +14,7 @@
 </head>
 
 <body>
+    <div id="modal"></div>
     <!--     <div class="container-fluid bg-page"> -->
     <div class="wrapper bg-page h-100">
         <!-- Sidebar -->
@@ -175,7 +177,7 @@
                                                 <div class="offset-4"></div>
                                                 <div class="col-4 mt-2 w-100">
                                                     <div class="pt-2 text-right mt-1 mb-2">
-                                                        <button id="btn-delete-user" class="btn btn-outline-dark button-dimens" onclick="deleteUser();">Delete
+                                                        <button id="btn-delete-user" class="btn btn-outline-dark button-dimens" data-toggle="modal" data-target="modalBox">Delete
                                                             User</button>
                                                     </div>
                                                 </div>
@@ -207,16 +209,15 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        <div class="col-2 mt-2 text-center">
+                                            <i class="fas fa-sync-alt fa-2x pt-4" onclick="fillSelectUpdate();"></i>
+                                        </div>
                                         <div class="offset-1"></div>
                                     </div>
 
                                     <div class="row " id="container-text-update">
                                         <div class="offset-2"></div>
                                         <div class="col-8">
-                                            <hr>
-                                            <p>
-                                                Per confermare l'utente da modificare premere la freccia
-                                            </p>
                                             <hr>
                                         </div>
                                         <div class="offset-2"></div>
@@ -405,10 +406,10 @@
                                             <div class="row form-group container">
                                                 <div class="offset-1"></div>
                                                 <div class="form-check form-check-inline col-5">
-                                                    <input class="" type="submit" value="Genera password" id="in_generate_psw" onclick="showDivGenPsw();">
+                                                    <input class="button-box" type="submit" value="Genera password" id="in_generate_psw" onclick="showDivGenPsw();">
                                                 </div>
                                                 <div class="form-check form-check-inline col-5">
-                                                    <input class="" type="submit" value="Inserisci password" id="in_insert_psw" onclick="showDivManPsw();">
+                                                    <input class="button-box" type="submit" value="Inserisci password" id="in_insert_psw" onclick="showDivManPsw();">
                                                 </div>
                                             </div>
                                             <div class="row" id="space-to-psw" style="display: none;">
@@ -440,6 +441,10 @@
                                                     </div>
                                                     <select name="select-permit-box" id="select-permit-insert" class="custom-select mdb-select md-form">
                                                         <option value="">Selezione un opzione</option>
+                                                        <option value="1">Amministratore</option>
+                                                        <option value="2">Manutentore</option>
+                                                        <option value="3">Utente</option>
+
                                                     </select>
                                                 </div>
                                             </div>
@@ -465,69 +470,111 @@
             </div>
             <!--==================================DATA MANAGER ===========================================================-->
             <div id="DataManager" class="h-100 container-fluid" style="display: none;">
+                <!-- =====================================TITOLO DELLA PAGINA ============================================-->
                 <div class="row">
                     <div class="col-12 mt-2 border-bottom bg-secondary">
                         <h1 class="text-center text-white"><strong>Visualizzazione dati</strong></h1>
                     </div>
                 </div>
-                <!-- ======================================== SELETTORI ==================================================-->
-                <div class="row mb-5">
-                    <div class="offset-1"></div>
-                    <div class="col-5">
-                        <!--=============================== SELEZIONE SILOS ===============================================-->
-                        <div class="row mt-5">
-                            <div class="col mt-2 border-bottom mb-3">
-                                <h3 class="text-right text-white">Seleziona il silos da monitorare</h3>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-group col mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text space-span" id="inputPermit">Silos</span>
-                                </div>
-                                <select name="select-permit-box" id="select-permit" class="custom-select mdb-select md-form" onchange="">
-                                    <option value="">Selezione un silos</option>
-                                    <option value="1">Silos 1</option>
-                                    <option value="2">Silos 2</option>
-                                    <option value="3">Silos 3</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <p>Finire di fare le select dinamiche </p>
+                <!--===============================SPACE RADIO BUTTON=============================================-->
+                <div class="row" id="spaceRadioButton">
+                    <div class="offset-4"></div>
+                    <div class="col-2">
+                        <div class=" form-check form-check-inline">
+                            <input name="gruppo2" type="radio" id="radioData" checked>
+                            <label class="radioButtonColor" for="radioData">Visualizzazione dati giornaliero</label>
                         </div>
                     </div>
-                    <div class="col-5">
-                        <!-- ============================== SELEZIONA GIORNO ============================================-->
-                        <div class="row mt-5">
-                            <div class="col mt-2 border-bottom mb-3">
-                                <h3 class="text-right text-white">Seleziona un giorno da monitorare</h3>
-                            </div>
-                        </div>
-                        <div class="row ">
-                            <div class="input-group col mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text space-span" id="inputPermit">Giorno</span>
-                                </div>
-                                <select id="selectDay" name="select-permit-box" id="select-permit" class="custom-select mdb-select md-form" onchange="changeDayChart();">
-                                    <option value="">Seleziona un giorno </option>
-                                    <option value="1">Lunedì 16/06/2019</option>
-                                    <option value="2">Martedì 17/06/2019</option>
-                                    <option value="3">Mercoledì 18/06/2019</option>
-                                </select>
-                            </div>
+                    <div class="col-2">
+                        <div class="form-check form-check-inline radioButtonColor">
+                            <input name="gruppo2" type="radio" id="radioLiquid">
+                            <label class="radioButtonColor" for="radioLiquid">Visualizzazione livello liquido attuale</label>
                         </div>
                     </div>
-                    <div class="offset-1"></div>
+                    <div class="offset-4"></div>
                 </div>
-                <!-- ======================================== GRAFICO ===============================================-->
-                <div class="row">
-                    <div class="offset-1"></div>
-                    <div class="col-10">
-                        <canvas id="myChart"></canvas>
+                <div>
+                    <!-- ======================================== SELETTORI ==================================================-->
+                    <div class="row">
+                        <div class="offset-1"></div>
+                        <div class="col-5">
+                            <!--=============================== SELEZIONE SILOS ===============================================-->
+                            <div class="row mt-5">
+                                <div class="col mt-2 border-bottom mb-3">
+                                    <h3 class="text-right text-white">Seleziona il silos da monitorare</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-group col mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text space-span" id="inputPermit">Silos</span>
+                                    </div>
+                                    <select name="select-permit-box" id="selectSilos" class="custom-select mdb-select md-form" onchange="">
+                                        <option value="">Selezione un silos</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <!-- ============================== SELEZIONA GIORNO ============================================-->
+                            <div class="row mt-5">
+                                <div class="col mt-2 border-bottom mb-3">
+                                    <h3 class="text-right text-white">Seleziona un giorno da monitorare</h3>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="input-group col mb-3">
+                                    <!--                                 <div class="input-group-prepend">
+                                        <span class="input-group-text space-span" id="inputPermit">Giorno</span>
+                                    </div> -->
+                                    <div class="it-datepicker-wrapper dimens-calendar ml-5">
+                                        <div class="input-group">
+                                            <input readonly style="height: auto;" class="input-group it-date-datepicker" id="input-calendar" type="text" placeholder="Seleziona la data in formato aaaa/mm/dd">
+                                            <label for="input-calendar"></label>
+                                        </div>
+                                    </div>
+                                    <!--                  <select id="selectDay" name="select-permit-box" id="select-permit" class="custom-select mdb-select md-form" onchange="changeDayChart();">
+                                        <option value="">Seleziona un giorno </option>
+                                        <option value="1">Lunedì 16/06/2019</option>
+                                        <option value="2">Martedì 17/06/2019</option>
+                                        <option value="3">Mercoledì 18/06/2019</option>
+                                    </select> -->
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--                     <div class="col-2">
+                            <div class="row mt-5">
+                                <div class="col mt-2 border-bottom mb-3">
+                                    <h3 class="text-right text-white">Premere il pulsante conferma</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <button>Conferma</button>
+                            </div>
+                        </div> -->
+                        <div class="offset-1"></div>
                     </div>
-                    <div class="offset-1"></div>
+                    <div class="row">
+                        <hr>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="offset-5"></div>
+                        <div class="col-2 text-center">
+                            <button class="btn btn-outline-dark btn-confirm-chart" onclick="getDataChart();">Conferma</button>
+                        </div>
+                        <div class="offset-5"></div>
+                    </div>
+                    <!-- ======================================== GRAFICO ===============================================-->
+                    <div class="row">
+                        <div class="offset-1"></div>
+                        <div class="col-10">
+                            <canvas id="myChart"></canvas>
+                        </div>
+                        <div class="offset-1"></div>
+                    </div>
                 </div>
+
             </div>
             <!--===================================LOG MANAGER==================================================================-->
             <!-- Id log, Id Sensore, Cambio di Stato, Data ora -->
@@ -545,11 +592,12 @@
                             <table class="table table-borderless table-striped table-hover table-light">
                                 <thead>
                                     <tr class="bg-dark text-white">
-                                        <th scope="col">#</th>
+
                                         <th scope="col">ID Silos</th>
                                         <th scope="col">ID Sensore</th>
                                         <th scope="col">Liquido sensore</th>
                                         <th scope="col">Data e ora</th>
+                                        <th scope="col">Descrizione</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tBody">
@@ -563,8 +611,6 @@
             <div class="h-25">
                 <br>
             </div>
-
-
         </div>
     </div>
     <!--Footer-->
@@ -593,10 +639,11 @@
     <script src="../js/manageUserApi.js"></script>
     <script src="../js/manageLogsApi.js"></script>
 
+    <script src="https://unpkg.com/js-datepicker"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
     <script src="../js/dashboardAdminGraph.js"></script>
-
+    <script src="../js/bootstrap-italia.bundle.min.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -604,7 +651,10 @@
             $('#sidebarCollapse').on('click', function() {
                 $('#sidebar').toggleClass('active');
             });
-
+            $('.it-date-datepicker').datepicker({
+                inputFormat: ["yyyy-MM-dd"],
+                outputFormat: 'yyyy-MM-dd',
+            });
         });
     </script>
 </body>
