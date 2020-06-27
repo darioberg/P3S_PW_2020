@@ -10,6 +10,13 @@ var btnManualPsw = document.getElementById("in_insert_psw");
 var loadUpdate = document.getElementById("loadUpdate");
 var loadDelete = document.getElementById("loadDelete");
 
+// {I}
+var iconTrue = document.getElementById("iconTrue");
+var iconFalse = document.getElementById("iconFalse");
+
+var titleModal = document.getElementById("titleModal");
+var bodyModal = document.getElementById("modalBody");
+
 
 
 //select di scelta degli utenti
@@ -73,16 +80,31 @@ var deleteUser = function(e) {
         fetch(url, options).then(function(response) {
             return response.json();
         }).then(function(data) {
-            console.log(data);
             if (data.msg == "Record eliminato") {
                 var msg = "Hai eliminato correttamente l'utente: " + optselect;
-                createModal("Eliminazione utente", msg, true);
+                iconTrue.classList.remove("d-none");
+                iconTrue.classList.add("d-block");
+                iconFalse.classList.add("d-none");
+                iconFalse.classList.remove("d-block");
+                titleModal.innerHTML = "Eliminazione utente";
+                bodyModal.innerHTML = msg;
+                $("#modalResponce").modal("show");
+                /* 
+                                btnDeleteUser.setAttribute("data-toggle", "modal");
+                                btnDeleteUser.setAttribute("data-target", "#modalResponce"); */
             } else {
                 var msg = "Qualcosa è andato storto. Riprova!";
-                createModal("Eliminazione utente", msg, false);
+                iconFalse.classList.remove("d-none");
+                iconFalse.classList.add("d-block");
+                iconTrue.classList.add("d-none");
+                iconTrue.classList.remove("d-block");
+                titleModal.innerHTML = "Eliminazione utente";
+                bodyModal.innerHTML = msg;
+                $("#modalResponce").modal("show");
+                //btnDeleteUser.setAttribute("data-toggle", "modal");
+                //btnDeleteUser.setAttribute("data-target", "#modalResponce");
             }
             btnDeleteUser.disabled = true;
-
         });
     }
     // funzione che riempie la select di scelta dell'utente nella fase di aggiornamento 
@@ -96,7 +118,6 @@ var fillSelectUpdate = function(e) {
     }).then(function(data) {
         const element = data;
         resultUpdateCall = data;
-        console.log(data);
         for (let index = 0; index < element.length; index++) {
             var opt = document.createElement("option");
             var user = element[index].Nome + " " + element[index].Cognome;
@@ -181,7 +202,30 @@ var callUpdateApi = function(e) {
     fetch(url, options).then(function(response) {
         return response.json();
     }).then(function(data) {
-        console.log(data);
+        if (data.msg == "Utente aggiornato") {
+            var msg = "Hai aggiornato correttamente l'utente: " + email;
+            iconTrue.classList.remove("d-none");
+            iconTrue.classList.add("d-block");
+            iconFalse.classList.add("d-none");
+            iconFalse.classList.remove("d-block");
+            titleModal.innerHTML = "Aggiornamento utente";
+            bodyModal.innerHTML = msg;
+            $("#modalResponce").modal("show");
+            /* 
+                            btnDeleteUser.setAttribute("data-toggle", "modal");
+                            btnDeleteUser.setAttribute("data-target", "#modalResponce"); */
+        } else {
+            var msg = "Qualcosa è andato storto. Riprova!";
+            iconFalse.classList.remove("d-none");
+            iconFalse.classList.add("d-block");
+            iconTrue.classList.add("d-none");
+            iconTrue.classList.remove("d-block");
+            titleModal.innerHTML = "Aggiornamento utente";
+            bodyModal.innerHTML = msg;
+            $("#modalResponce").modal("show");
+            //btnDeleteUser.setAttribute("data-toggle", "modal");
+            //btnDeleteUser.setAttribute("data-target", "#modalResponce");
+        }
         btnUpdateUser.disabled = true;
     });
 }
@@ -224,7 +268,6 @@ function unblockDeleteButton() {
     } else {
         btnDeleteUser.setAttribute("disabled", "true");
     }
-
 }
 
 function unblockUpdateButton() {
@@ -264,78 +307,37 @@ var insertUser = function(e) {
         return response.json();
     }).then(function(data) {
         console.log(data);
+        if (data.msg == "Utente aggiunto") {
+            var msg = "Hai inserito correttamente l'utente: " + txtEmailInsert.value;
+            iconTrue.classList.remove("d-none");
+            iconTrue.classList.add("d-block");
+            iconFalse.classList.add("d-none");
+            iconFalse.classList.remove("d-block");
+            titleModal.innerHTML = "Inserimento utente";
+            bodyModal.innerHTML = msg;
+            $("#modalResponce").modal("show");
+            /* 
+                            btnDeleteUser.setAttribute("data-toggle", "modal");
+                            btnDeleteUser.setAttribute("data-target", "#modalResponce"); */
+        } else {
+            var msg = "Qualcosa è andato storto. Riprova!";
+            iconFalse.classList.remove("d-none");
+            iconFalse.classList.add("d-block");
+            iconTrue.classList.add("d-none");
+            iconTrue.classList.remove("d-block");
+            titleModal.innerHTML = "Inserimento utente";
+            bodyModal.innerHTML = msg;
+            $("#modalResponce").modal("show");
+            //btnDeleteUser.setAttribute("data-toggle", "modal");
+            //btnDeleteUser.setAttribute("data-target", "#modalResponce");
+        }
     });
 
 }
 
-function createModal(title, txt, bool) {
-    var modal = document.getElementById("modal");
-    var divFade = document.createElement("div");
-    var divDialog = document.createElement("div");
-    var divContent = document.createElement("div");
-    var divHeader = document.createElement("div");
-    var iconTrue = document.createElement("i");
-    var iconFalse = document.createElement("i");
-    var title = document.createElement("h5");
-    var buttonClose = document.createElement("button");
-    var span = document.createElement("span");
-    var divBody = document.createElement("div");
-    var divFooter = document.createElement("div");
-    var buttonRetry = document.createElement("button");
-    var pText = document.createElement("p");
-
-
-    divFade.classList.add("modal", "fade");
-    divFade.id = "modalBox";
-    divFade.setAttribute("data-backdrop", "static");
-    divFade.setAttribute("data-keyboard", "false");
-    divFade.setAttribute("tabindex", "-1");
-    divFade.setAttribute("role", "dialog");
-    divFade.setAttribute("aria-labelledby", "staticBackdropLabel");
-    divFade.setAttribute("aria-hidden", "true");
-
-    span.setAttribute("aria-hidden", "true")
-
-    divDialog.classList.add("modal-dialog");
-
-    divContent.classList.add("modal-content");
-
-    divHeader.classList.add("modal-header");
-
-    iconTrue.classList.add("fas", "fa-exclamation-circle", "fa-4x");
-    iconFalse.classList.add("fas", "fa-check-circle", "fa-4x");
-
-    title.classList.add("modal-title", "pt-3", "pl-3", "text-danger");
-    title.id = "title-modal";
-
-    buttonClose.classList.add("close");
-    buttonClose.setAttribute("data-dismiss", "modal");
-    buttonClose.setAttribute("aria-label", "Close");
-
-    //span.classList.add("");
-    divBody.classList.add("modal-body", "text-center");
-    divFooter.classList.add("modal-footer");
-    buttonRetry.classList.add("btn", "btn-secondary");
-
-    title.innerHTML = title;
-    pText.innerHTML = txt;
-
-    buttonClose.appendChild(span);
-    if (bool) {
-        divHeader.appendChild(iconTrue);
-    } else {
-        divHeader.appendChild(iconFalse);
-    }
-    divHeader.appendChild(title);
-    divHeader.appendChild(buttonClose);
-    divBody.appendChild(pText);
-    divFooter.appendChild(buttonRetry);
-    divContent.appendChild(divHeader);
-    divContent.appendChild(divBody);
-    divContent.appendChild(divFooter);
-    divDialog.appendChild(divContent);
-    divFade.appendChild(divDialog);
-    modal.appendChild(divFade);
+function updateAllSelect() {
+    clearSelectDelete();
+    clearSelectTxt();
 }
 
 document.addEventListener('DOMContentLoaded', fillSelectDelete);

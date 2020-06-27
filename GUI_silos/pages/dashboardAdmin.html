@@ -178,7 +178,7 @@
                                                 <div class="offset-4"></div>
                                                 <div class="col-4 mt-2 w-100">
                                                     <div class="pt-2 text-right mt-1 mb-2">
-                                                        <button disabled id="btn-delete-user" class="btn btn-outline-dark button-dimens" data-toggle="modal" data-target="modalBox">Elimina
+                                                        <button disabled id="btn-delete-user" class="btn btn-outline-dark button-dimens">Elimina
                                                             Utente</button>
                                                     </div>
                                                 </div>
@@ -209,7 +209,7 @@
                                             </div>
                                         </div>
                                         <div id="loadUpdate" class="col-2 mt-2 text-center">
-                                            <i class="fas fa-sync-alt fa-2x pt-4 btn_reload" onclick="fillSelectUpdate();"></i>
+                                            <i class="fas fa-sync-alt fa-2x pt-4 btn_reload" onclick="clearSelectTxt();"></i>
                                         </div>
                                         <div id="spinner-space-2" class="col-2 mt-2 text-center d-none">
                                             <div class="spinner-border" role="status">
@@ -229,6 +229,28 @@
                                         <!--========= In questo blocco verranno riempiti i dati dinamicamente=========-->
                                         <div class="offset-2 mt-3"></div>
                                         <div class="col-8 mt-3">
+                                            <!--=========EMAIL=========-->
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="offset-4"></div>
+                                                        <div class="col">
+                                                            <p id="p-email">Email</p>
+                                                        </div>
+                                                        <div class="offset-4"></div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="input-group col mb-3">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text space-span" id="inputEmailUpdate">Email</span>
+                                                            </div>
+                                                            <input id="txt-update-email" type="text" class="form-control" aria-label="Default" aria-describedby="inputEmailUpdate">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
                                             <!--=========NOME=========-->
                                             <div class="row">
                                                 <div class="col">
@@ -268,28 +290,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <!--=========EMAIL=========-->
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="row">
-                                                        <div class="offset-4"></div>
-                                                        <div class="col">
-                                                            <p id="p-email">Email</p>
-                                                        </div>
-                                                        <div class="offset-4"></div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="input-group col mb-3">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text space-span" id="inputEmailUpdate">Email</span>
-                                                            </div>
-                                                            <input id="txt-update-email" type="text" class="form-control" aria-label="Default" aria-describedby="inputEmailUpdate">
-                                                        </div>
-                                                    </div>
-                                                </div>
-
                                             </div>
 
                                             <!--=========Password=========-->
@@ -700,7 +700,26 @@
         <!--/.Copyright-->
 
     </footer>
-
+    <div class="modal fade" id="modalResponce" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="titleModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <i id="iconFalse" class="fas fa-exclamation-circle fa-4x d-none"></i>
+                    <i id="iconTrue" class="fas fa-check-circle fa-4x d-none"></i>
+                    <h5 class="modal-title pt-3 pl-3 text-danger" id="titleModal">
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="modalBody" class="modal-body text-center">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="updateAllSelect();">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -711,8 +730,6 @@
     <script src="../js/dashboardAdmin.js"></script>
     <script src="../js/manageUserApi.js"></script>
     <script src="../js/manageLogsApi.js"></script>
-
-    <script src="extensions/sticky-header/bootstrap-table-sticky-header.js"></script>
     <script src="https://unpkg.com/js-datepicker"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>

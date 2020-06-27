@@ -26,14 +26,23 @@ var checkLogin = function(e) {
                 case 1:
                     console.log("Sono un amministratore");
                     localStorage.setItem("ruolo", 1);
+
+                    btnLogin.removeAttribute("data-toggle", "modal");
+                    btnLogin.removeAttribute("data-target", "#staticBackdrop");
                     break;
                 case 2:
                     console.log("Sono un manutentore");
                     localStorage.setItem("ruolo", 2);
+
+                    btnLogin.removeAttribute("data-toggle", "modal");
+                    btnLogin.removeAttribute("data-target", "#staticBackdrop");
                     break;
                 case 3:
                     console.log("Sono un utente");
                     localStorage.setItem("ruolo", 3);
+
+                    btnLogin.removeAttribute("data-toggle", "modal");
+                    btnLogin.removeAttribute("data-target", "#staticBackdrop");
                     break;
                 default:
                     break;
@@ -43,7 +52,6 @@ var checkLogin = function(e) {
             console.log("FALSE");
             btnLogin.setAttribute("data-toggle", "modal");
             btnLogin.setAttribute("data-target", "#staticBackdrop");
-            divContentModal.classList.remove("d-none");
         }
     });
 }
