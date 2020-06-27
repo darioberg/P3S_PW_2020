@@ -4,29 +4,26 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using SensorSimulationForm.Models;
+using System.Linq;
 
 namespace SensorSimulationForm.Data
 {
     public class ApiCall
     {
-        
+        MalfunctionModel malfunctionModel = new MalfunctionModel();
 
         public GetSilosJsonResponse GetLiquidLevel()
         {
+            // RECUPERO LIVELLO LIQUIDO
+            using (WebClient wc = new WebClient())
+            {
+                var liquidLevel = wc.DownloadString("http://silevel.ddnsking.com:3000/getSilosById/1");
+
+                GetSilosJsonResponse list = JsonConvert.DeserializeObject<GetSilosJsonResponse>(liquidLevel);
 
 
-            var client = new WebClient();
-
-            var liquidLevel = client.DownloadString("http://silevel.ddnsking.com:3000/getSilosById/1");
-
-
-
-            GetSilosJsonResponse list = JsonConvert.DeserializeObject<GetSilosJsonResponse>(liquidLevel);
-
-
-
-
-            return list;
+                return list;
+            }  
         }
 
 
@@ -36,25 +33,32 @@ namespace SensorSimulationForm.Data
 
             var link = "http://silevel.ddnsking.com:3000/updateSilos";
             string stringToPost = PrimaryClass.Insert();
-
-
-
             
-
-
-
+            // POSTO JSON SENSORI + LIQUIDO
             using (WebClient wc = new WebClient())
             {
                 wc.Headers[HttpRequestHeader.ContentType] = "application/json";
                 wc.UploadString(link, WebRequestMethods.Http.Put, stringToPost);
             }
-
         }
 
 
-        public void PostMalfunction()
+        public void PostMalfunction(int sensorId, int? silosId, string malfunction)
         {
+            var link = "http://silevel.ddnsking.com:3000/insertMalfunction";
 
+            // POSTO MALFUNZIONAMENTI SENSORI
+            using (WebClient wc = new WebClient())
+            {
+                malfunctionModel.IdSensore = sensorId;
+                malfunctionModel.IdSilos = silosId;
+                malfunctionModel.MalfunctionText = malfunction;
+
+                var json = JsonConvert.SerializeObject(malfunctionModel);
+
+                wc.Headers[HttpRequestHeader.ContentType] = "application/json";
+                wc.UploadString(link, WebRequestMethods.Http.Post, json);
+            }
         }
 
     }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lk3kFChuAG3qPDrosc72J7QGhKflEJ/x316P7rNunIKikSlBfadWJPKHM38/3SBbJnHhlDLSWQh+bMNl8CLvUA==",
+  "dgSpecHash": "5bV9nn8GsZ7C+nnFn75c5khMPed9CJZC7DwZZeOKrTMy68OtjVB2TaKHWcEXI73Jn18DJe81nsSEdbwoWbQPtg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Dario\\Documents\\Project Work\\SensorSimulationForm\\SensorSimulationForm.Data\\SensorSimulationForm.Data.csproj",
+  "projectFilePath": "C:\\Users\\Dario\\Documents\\GitHub\\P3S_PW_2020\\SensorSimulationForm\\SensorSimulationForm.Data\\SensorSimulationForm.Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dario\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\Dario\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
