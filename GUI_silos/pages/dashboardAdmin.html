@@ -9,8 +9,9 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/styleAdmin.css">
     <link rel="stylesheet" href="../css/styleAdminData.css">
+    <link rel="icon" type="image/png" href="../img/logov2.png">
     <link rel="stylesheet" href="../fontaweson/css/all.css">
-    <title>Dashboard Admin</title>
+    <title>Dashboard</title>
 </head>
 
 <body>
@@ -135,23 +136,15 @@
                     <div class="col-6 container">
                         <!-- ==================================================== GESTIONE UTENTE ==================================================== -->
                         <div class="row">
-                            <div class="col container">
-                                <div class="row">
-                                    <div class="col container h-25 mt-2 dimens-title">
-                                        <h2 class="text-center text-white" style="font-size:2.5vw;">Gestione utente (elimina utente, aggiorna dati utente)
-                                        </h2>
-                                    </div>
-                                </div>
+                            <div class="col container  mt-5">
                                 <div class="row" id="div_delete">
                                     <div class="col container">
                                         <h5 class="text-left text-white border-bottom">Elimina utente</h5>
                                         <div id="" class="border bg-light container">
-                                            <div class="row container">
-                                                <div class="offset-2"></div>
+                                            <div class="row">
+                                                <div class="offset-1"></div>
                                                 <div id="vr-line-label" class="col-3 mt-2">
-                                                    <label id="label-box" for="select-users" class="text-dark pt-3">Inserisci
-                                                        nome e
-                                                        cognome</label>
+                                                    <label id="label-box" for="select-users" class="text-dark pt-3">Eliminazione:</label>
                                                 </div>
                                                 <div id="vr-line-select" class="col-5 mt-2">
                                                     <div class="pt-3 container">
@@ -160,31 +153,38 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="offset-2"></div>
+                                                <div id="loadDelete" class="col-2 mt-2 text-center">
+                                                    <i class="fas fa-sync-alt fa-2x pt-4 btn_reload" onclick="clearSelectDelete();"></i>
+                                                </div>
+                                                <div id="spinner-space" class="col-2 mt-2 text-center d-none">
+                                                    <div class="spinner-border" role="status">
+                                                        <span class="sr-only">Loading...</span>
+                                                    </div>
+                                                </div>
+                                                <div class="offset-1"></div>
                                             </div>
-                                            <div class="row container">
+                                            <div class="row">
                                                 <div class="offset-2"></div>
-                                                <div class="col-8">
+                                                <div class="col-8  text-center">
                                                     <hr>
                                                     <p>
-                                                        Per completare la cancellazione dell'utente scelto bisogna selezionare la richiesta aggiuntiva prima di cliccare il buttone di eliminazione
+                                                        Per l'eliminazione dell'utente selezionato premere il pulsante.
                                                     </p>
                                                     <hr>
                                                 </div>
                                                 <div class="offset-2"></div>
                                             </div>
-                                            <div class="row  mt-3 mb-5 container">
+                                            <div class="row  mt-3 mb-5">
                                                 <div class="offset-4"></div>
                                                 <div class="col-4 mt-2 w-100">
                                                     <div class="pt-2 text-right mt-1 mb-2">
-                                                        <button id="btn-delete-user" class="btn btn-outline-dark button-dimens" data-toggle="modal" data-target="modalBox">Delete
-                                                            User</button>
+                                                        <button disabled id="btn-delete-user" class="btn btn-outline-dark button-dimens" data-toggle="modal" data-target="modalBox">Elimina
+                                                            Utente</button>
                                                     </div>
                                                 </div>
                                                 <div class="offset-4"></div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -197,9 +197,8 @@
                                     <div class="row pb-4">
                                         <div class="offset-1"></div>
                                         <div id="vr-line-label" class="col-3 mt-2">
-                                            <label id="label-box" for="select-users-2" class="text-dark pt-3">Inserisci
-                                                nome e
-                                                cognome</label>
+                                            <label id="label-box" for="select-users-2" class="text-dark pt-3">Aggiornamento: 
+                                                </label>
                                         </div>
                                         <div id="vr-line-select" class="col-5 mt-2 container">
                                             <div class="pt-3 container">
@@ -209,12 +208,16 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-2 mt-2 text-center">
-                                            <i class="fas fa-sync-alt fa-2x pt-4" onclick="fillSelectUpdate();"></i>
+                                        <div id="loadUpdate" class="col-2 mt-2 text-center">
+                                            <i class="fas fa-sync-alt fa-2x pt-4 btn_reload" onclick="fillSelectUpdate();"></i>
+                                        </div>
+                                        <div id="spinner-space-2" class="col-2 mt-2 text-center d-none">
+                                            <div class="spinner-border" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
                                         </div>
                                         <div class="offset-1"></div>
                                     </div>
-
                                     <div class="row " id="container-text-update">
                                         <div class="offset-2"></div>
                                         <div class="col-8">
@@ -340,7 +343,11 @@
                                     <div class="offset-2"></div>
                                     <div class="row mt-3 mb-4 " id="container-lines-update">
                                         <div class="col-2"></div>
-                                        <div class="col-8">
+                                        <div class="col-8 text-center">
+                                            <hr>
+                                            <p>
+                                                Per l'aggiornamento dell'utente selezionato premere il pulsante.
+                                            </p>
                                             <hr>
                                         </div>
                                         <div class="col-2"></div>
@@ -349,8 +356,8 @@
                                         <div class="offset-4"></div>
                                         <div class="col-4 mt-2 ">
                                             <div class="pt-2 text-right mt-1 mb-2">
-                                                <button class="btn btn-outline-dark button-dimens" id="btn-update-user">Update
-                                                    User</button>
+                                                <button disabled class="btn btn-outline-dark button-dimens" id="btn-update-user">Aggiorna
+                                                    Utente</button>
                                             </div>
                                         </div>
                                         <div class="offset-4"></div>
@@ -362,13 +369,7 @@
                     <div class="col-6">
                         <!--=================================INSERIMENTO UTENTE====================================================-->
                         <div class="row">
-                            <div class="col container mt-2 dimens-title h-25">
-                                <h2 class="text-center text-white" style="font-size:2.5vw;">Inserimento nuovo utente
-                                </h2>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
+                            <div class="col mt-5">
                                 <h5 class="text-left text-white border-bottom">Inserisci utente</h5>
                                 <div id="" class="border bg-light">
                                     <div class="row container">
@@ -381,7 +382,7 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text space-span" id="inputName">Nome</span>
                                                     </div>
-                                                    <input id="txt-insert-nome" type="text" class="form-control" aria-label="Default" aria-describedby="inputName">
+                                                    <input required id="txt-insert-nome" type="text" class="form-control" aria-label="Default" aria-describedby="inputName">
                                                 </div>
                                             </div>
                                             <!--COGNOME-->
@@ -390,7 +391,7 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text space-span" id="inputSurname">Cognome</span>
                                                     </div>
-                                                    <input id="txt-insert-cognome" type="text" class="form-control" aria-label="Default" aria-describedby="inputSurname">
+                                                    <input required id="txt-insert-cognome" type="text" class="form-control" aria-label="Default" aria-describedby="inputSurname">
                                                 </div>
                                             </div>
                                             <!--EMAIL-->
@@ -399,7 +400,7 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text space-span" id="inputEmail">Email</span>
                                                     </div>
-                                                    <input id="txt-insert-email" type="text" class="form-control" aria-label="Default" aria-describedby="inputEmail">
+                                                    <input required id="txt-insert-email" type="text" class="form-control" aria-label="Default" aria-describedby="inputEmail">
                                                 </div>
                                             </div>
                                             <!--Password-->
@@ -417,7 +418,7 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text space-span" id="inputGenPsw">Password</span>
                                                     </div>
-                                                    <input readonly type="text" id="tx_passw" class="form-control" aria-label="Default" aria-describedby="inputGenPsw" value="76Xr%2LmS4bd">
+                                                    <input required readonly type="text" id="tx_passw" class="form-control" aria-label="Default" aria-describedby="inputGenPsw">
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -452,7 +453,7 @@
                                                 <div class="offset-3"></div>
                                                 <div class="col mb-3">
                                                     <div class="pt-2 text-right mt-1 mb-2 w-100">
-                                                        <button class="btn btn-outline-dark button-dimens" id="btn-insert-user">Register
+                                                        <button class="btn btn-outline-dark button-dimens" id="btn-insert-user" disabled>Register
                                                             User</button>
                                                     </div>
                                                 </div>
@@ -488,7 +489,8 @@
                     <div class="col-2">
                         <div class="form-check form-check-inline radioButtonColor">
                             <input name="choice" type="radio" id="radioLiquid">
-                            <label class="radioButtonColor" for="radioLiquid">Visualizzazione livello liquido attuale</label>
+                            <label class="radioButtonColor" for="radioLiquid">Visualizzazione livello liquido
+                                attuale</label>
                         </div>
                     </div>
                     <div class="offset-4"></div>
@@ -532,26 +534,10 @@
                                             <label for="input-calendar"></label>
                                         </div>
                                     </div>
-                                    <!--                  <select id="selectDay" name="select-permit-box" id="select-permit" class="custom-select mdb-select md-form" onchange="changeDayChart();">
-                                        <option value="">Seleziona un giorno </option>
-                                        <option value="1">Lunedì 16/06/2019</option>
-                                        <option value="2">Martedì 17/06/2019</option>
-                                        <option value="3">Mercoledì 18/06/2019</option>
-                                    </select> -->
 
                                 </div>
                             </div>
                         </div>
-                        <!--                     <div class="col-2">
-                            <div class="row mt-5">
-                                <div class="col mt-2 border-bottom mb-3">
-                                    <h3 class="text-right text-white">Premere il pulsante conferma</h3>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <button>Conferma</button>
-                            </div>
-                        </div> -->
                         <div class="offset-1"></div>
                     </div>
                     <div class="row">
@@ -626,32 +612,74 @@
             <div id="LogManager" class="h-100 w-100 container-fluid" style="display: none;">
                 <div class="row">
                     <div class="col-12 mt-2 border-bottom bg-secondary">
-                        <h1 class="text-center text-white"><strong>Tabella dati</strong></h1>
+                        <h1 class="text-center text-white"><strong>Visualizzazione dati</strong></h1>
                     </div>
                 </div>
-                <div class="row mt-5">
-                    <div class="offset-1"></div>
-                    <div class="col-10">
-                        <!-- ================================= TABELLA VISUALIZZAZIONE DATI===========================================-->
-                        <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
-                            <table class="table table-borderless table-striped table-hover table-light">
-                                <thead>
-                                    <tr class="bg-dark text-white">
-
-                                        <th scope="col">ID Silos</th>
-                                        <th scope="col">ID Sensore</th>
-                                        <th scope="col">Liquido sensore</th>
-                                        <th scope="col">Data e ora</th>
-                                        <th scope="col">Descrizione</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tBody">
-                                </tbody>
-                            </table>
+                <!--===============================SPACE RADIO BUTTON=============================================-->
+                <div class="row" id="spaceRadioButton">
+                    <div class="offset-4"></div>
+                    <div class="col-2">
+                        <div class=" form-check form-check-inline">
+                            <input name="choice-2" type="radio" id="radioData-2" checked>
+                            <label class="radioButtonColor" for="radioData-2">Tabella dati</label>
                         </div>
                     </div>
-                    <div class="offset-1"></div>
+                    <div class="col-2">
+                        <div class="form-check form-check-inline radioButtonColor">
+                            <input name="choice-2" type="radio" id="radioMalfunction">
+                            <label class="radioButtonColor" for="radioMalfunction">Tabella malfunzionamenti</label>
+                        </div>
+                    </div>
+                    <div class="offset-4"></div>
                 </div>
+                <div id="table-data" class="d-block">
+                    <div class="row mt-5 ">
+                        <div class="offset-1"></div>
+                        <div class="col-10">
+                            <!-- ================================= TABELLA VISUALIZZAZIONE DATI===========================================-->
+                            <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
+                                <table class="table table-striped table-dark">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="text-center">Data e ora</th>
+                                            <th scope="col" class="text-center">ID Silos</th>
+                                            <th scope="col" class="text-center">ID Sensore</th>
+                                            <th scope="col" class="text-center">Liquido sensore</th>
+                                            <th scope="col" class="text-center">Descrizione</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tBody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="offset-1"></div>
+                    </div>
+                </div>
+                <div id="table-error" class="d-none">
+                    <div class="row mt-5 ">
+                        <div class="offset-1"></div>
+                        <div class="col-10">
+                            <!-- ================================= TABELLA VISUALIZZAZIONE MALFUNZIONAMENTI===========================================-->
+                            <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar-2">
+                                <table class="table table-striped table-dark">
+                                    <thead>
+                                        <tr class="bg-dark text-white">
+                                            <th scope="col" class="text-center">Malfunzionamento</th>
+                                            <th scope="col" class="text-center">Sensore</th>
+                                            <th scope="col" class="text-center">Silos</th>
+                                            <th scope="col" class="text-center">Descrizione</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tBodyMalfunction">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="offset-1"></div>
+                    </div>
+                </div>
+
             </div>
             <div class="h-25">
                 <br>
@@ -684,6 +712,7 @@
     <script src="../js/manageUserApi.js"></script>
     <script src="../js/manageLogsApi.js"></script>
 
+    <script src="extensions/sticky-header/bootstrap-table-sticky-header.js"></script>
     <script src="https://unpkg.com/js-datepicker"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>

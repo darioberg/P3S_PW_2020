@@ -6,6 +6,12 @@ var btnGeneratePsw = document.getElementById("in_generate_psw");
 var btnManualPsw = document.getElementById("in_insert_psw");
 
 
+//div load spinner
+var loadUpdate = document.getElementById("loadUpdate");
+var loadDelete = document.getElementById("loadDelete");
+
+
+
 //select di scelta degli utenti
 var selectDelete = document.getElementById("select-users");
 var selectUpdate = document.getElementById("select-users-2");
@@ -75,11 +81,12 @@ var deleteUser = function(e) {
                 var msg = "Qualcosa è andato storto. Riprova!";
                 createModal("Eliminazione utente", msg, false);
             }
+            btnDeleteUser.disabled = true;
+
         });
     }
     // funzione che riempie la select di scelta dell'utente nella fase di aggiornamento 
 var fillSelectUpdate = function(e) {
-    clearSelectTxt();
     const url = "http://silevel.ddnsking.com:3000/getAll";
     const options = {
         method: 'GET'
@@ -102,6 +109,9 @@ var fillSelectUpdate = function(e) {
 
 var updateUser = function() {
     var optselect = selectUpdate.value;
+    if (optselect == "") {
+        clearSelectTxt();
+    }
     for (let index = 0; index < resultUpdateCall.length; index++) {
         if (resultUpdateCall[index].Email == optselect) {
             selectUserUpdate = resultUpdateCall[index];
@@ -172,6 +182,7 @@ var callUpdateApi = function(e) {
         return response.json();
     }).then(function(data) {
         console.log(data);
+        btnUpdateUser.disabled = true;
     });
 }
 
@@ -193,6 +204,8 @@ var clearSelectTxt = function(e) {
             selectUpdate.options[index] = null;
         }
     }
+    btnUpdateUser.disabled = true;
+    fillSelectUpdate();
 }
 var clearSelectDelete = function(e) {
     var length = selectDelete.options.length;
@@ -201,7 +214,33 @@ var clearSelectDelete = function(e) {
             selectDelete.options[index] = null;
         }
     }
+    btnDeleteUser.disabled = true;
     fillSelectDelete();
+}
+
+function unblockDeleteButton() {
+    if (selectDelete.value != "") {
+        btnDeleteUser.removeAttribute("disabled");
+    } else {
+        btnDeleteUser.setAttribute("disabled", "true");
+    }
+
+}
+
+function unblockUpdateButton() {
+    if (selectUpdate.value != "") {
+        btnUpdateUser.removeAttribute("disabled");
+    } else {
+        btnUpdateUser.setAttribute("disabled", "true");
+    }
+}
+
+function unblockInsertButton() {
+    if (txtNomeInsert.value != "" && txtCognomeInsert.value != "" && txtEmailInsert.value != "" && txtPasswordInsert.value != "" && selectInsert.value != "") {
+        btnInsertUser.removeAttribute("disabled");
+    } else {
+        btnInsertUser.setAttribute("disabled", "true");
+    }
 }
 
 
@@ -298,6 +337,7 @@ function createModal(title, txt, bool) {
     divFade.appendChild(divDialog);
     modal.appendChild(divFade);
 }
+
 document.addEventListener('DOMContentLoaded', fillSelectDelete);
 document.addEventListener('DOMContentLoaded', fillSelectUpdate);
 btnDeleteUser.addEventListener('click', deleteUser);
@@ -306,3 +346,12 @@ selectUpdate.addEventListener("change", updateUser);
 btnUpdateUser.addEventListener("click", callUpdateApi);
 btnUpdateUser.addEventListener('click', clearSelectTxt);
 btnInsertUser.addEventListener('click', insertUser);
+selectDelete.addEventListener('change', unblockDeleteButton);
+selectUpdate.addEventListener('change', unblockUpdateButton);
+txtNomeInsert.addEventListener('keyup', unblockInsertButton);
+txtCognomeInsert.addEventListener('keyup', unblockInsertButton);
+txtEmailInsert.addEventListener('keyup', unblockInsertButton);
+btnGeneratePsw.addEventListener('click', unblockInsertButton);
+btnManualPsw.addEventListener('click', unblockInsertButton);
+txtPasswordInsert.addEventListener('keyup', unblockInsertButton);
+selectInsert.addEventListener('change', unblockInsertButton);

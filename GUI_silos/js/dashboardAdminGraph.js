@@ -15,25 +15,6 @@ var data = [];
 createChart(labels, data);
 
 
-/* //funzione che al variare del giorno varia il grafico
-function changeDayChart() {
-    if (selectDay.value == 1) {
-        console.log("dentro if 1");
-        result = [{ x: 0, y: 0 }, { x: "18:30", y: "10000" }, { x: "19:00", y: "20000" }, { x: "20:00", y: "15000" }, { x: "24:00", y: "17000" }, { x: "25:00", y: "15000" }];
-        labels = result.map(e => moment(e.x, 'HH:mm'));
-        data = result.map(e => +e.y);
-        myChart.destroy();
-        createChart(data, labels);
-    } else if (selectDay.value == 2) {
-        console.log("dentro if 2");
-        result = [{ x: 0, y: 0 }, { x: "14:30", y: "20000" }, { x: "15:00", y: "40000" }, { x: "17:00", y: "15000" }, { x: "24:00", y: "17000" }, { x: "25:00", y: "15000" }];
-        labels = result.map(e => moment(e.x, 'HH:mm'));
-        data = result.map(e => +e.y);
-        myChart.destroy();
-        createChart(data, labels);
-    }
-} */
-
 function createChart(data, labels) {
     myChart = new Chart(ctx, {
         type: 'line',
@@ -127,7 +108,6 @@ function getDataChart() {
         console.log(data);
 
         var result = [{ x: 0, y: 0 }];
-        //result = [{ x: 0, y: 0 }, { x: "18:30", y: "10000" }, { x: "19:00", y: "20000" }, { x: "20:00", y: "15000" }, { x: "24:00", y: "17000" }, { x: "25:00", y: "15000" }];
         for (var i = 0; i < data.length; i++) {
             var time = data[i].Data_Ora;
             var liquid = data[i].LivelloLiquido;
@@ -153,10 +133,8 @@ function getSilosById() {
     fetch(url + "/getSilosById/" + idSilos).then(function(response) {
         return response.json();
     }).then(function(data) {
-        console.log(data);
         var liquid = data.LivelloLiquido;
         var percetual = parseInt((liquid * 100) / 160000);
-        console.log(percetual);
         progressBar.setAttribute("aria-valuenow", percetual);
         progressBar.style.height = percetual + "%";
         description.innerHTML = "Livello attuale<br><br> " + "<strong>" + liquid + " L</strong>"
