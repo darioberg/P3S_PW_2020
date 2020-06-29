@@ -437,20 +437,20 @@ const newMalfunctionJsonSchema = {
     properties: {
         ID_Sensore: { type: 'number' },
         ID_Silos: { type: 'number' },
-        Descrizione: { type: 'string' }
+        Descrizione: { type: 'string' },
+        Data_Ora: { type: 'string', format: 'date-time'}
     },
     example:
     {
         ID_Sensore: 1,
         ID_Silos: 1,
-        Descrizione: "Il sensore 1 ha smesso di funzionare"
+        Descrizione: "Il sensore 1 ha smesso di funzionare",
+        Data_Ora: "2020-06-29 10:02:11"
     }
 };
 
 app.post("/insertMalfunction", { schema: { body: newMalfunctionJsonSchema } }, (request, reply) => {
     let malfunction = request.body;
-
-    app.log.info("DATA ORA INSERITI " + dataOra);
 
     connection.query("INSERT INTO malfunzionamenti SET ?", [malfunction], (error, results, fields) => {
         //app.log.info(results);
