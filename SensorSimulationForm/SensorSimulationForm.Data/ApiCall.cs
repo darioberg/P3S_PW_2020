@@ -17,7 +17,7 @@ namespace SensorSimulationForm.Data
             // RECUPERO LIVELLO LIQUIDO
             using (WebClient wc = new WebClient())
             {
-                var liquidLevel = wc.DownloadString("http://silevel.ddnsking.com:3000/getSilosById/1");
+                var liquidLevel = wc.DownloadString("http://ec2-3-249-41-153.eu-west-1.compute.amazonaws.com:3000/getSilosById/1");
 
                 GetSilosJsonResponse list = JsonConvert.DeserializeObject<GetSilosJsonResponse>(liquidLevel);
 
@@ -31,7 +31,7 @@ namespace SensorSimulationForm.Data
         {
             LevelOperations PrimaryClass = new LevelOperations(level, s1, s2, s3, s4, s5, s6, s7, s8);
 
-            var link = "http://silevel.ddnsking.com:3000/updateSilos";
+            var link = "http://ec2-3-249-41-153.eu-west-1.compute.amazonaws.com:3000/updateSilos";
             string stringToPost = PrimaryClass.Insert();
             
             // POSTO JSON SENSORI + LIQUIDO
@@ -45,7 +45,7 @@ namespace SensorSimulationForm.Data
 
         public void PostMalfunction(int sensorId, int? silosId, string malfunction)
         {
-            var link = "http://silevel.ddnsking.com:3000/insertMalfunction";
+            var link = "http://ec2-3-249-41-153.eu-west-1.compute.amazonaws.com:3000/insertMalfunction";
 
             // POSTO MALFUNZIONAMENTI SENSORI
             using (WebClient wc = new WebClient())

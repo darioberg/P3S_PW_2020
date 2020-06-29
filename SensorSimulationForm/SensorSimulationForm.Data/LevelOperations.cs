@@ -585,6 +585,10 @@ namespace SensorSimulationForm.Data
             var randomNumberCicle = rand.Next(1, 9);
             int randomNumber;
             MalfunctionProperties[] errorMessage = new MalfunctionProperties[8];
+            for (int i = 0; i < errorMessage.Length; ++i)
+            {
+                errorMessage[i] = new MalfunctionProperties();
+            }
             int[] malfunctionSensors = new int[8];
             bool[] boolArray = new bool[8];
             boolArray[0] = false;
