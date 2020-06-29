@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="fontaweson/css/all.css">
     <link rel="stylesheet" href="css/buttonCss.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="img/logov2.png">
     <title>Login Silo</title>
 </head>
 
@@ -27,7 +28,7 @@
                             </div>
                             <div class="offset-4"></div>
                         </div>
-                        <h1 class="mt-2">SmartSilo</h1>
+                        <h1 class="mt-2">SiLeveL</h1>
                     </div>
                     <div class="body-login bg-light">
                         <div class="row">
@@ -52,14 +53,14 @@
                                     </div>
                                 </div>
                                 <div class="container">
-                                    <div class="text-right">
+                                    <!--                                     <div class="text-right">
                                         <div>
-                                            <!-- Forgot password -->
-                                            <a href="" class="link-box"><strong>Forgot password?</strong></a>
+                                            Forgot password
+                                            <a href="" class="link-box"><strong>Password dimenticata?</strong></a>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="button-box">
-                                        <button class="btn btn-outline-dark button-dimens" type="submit" onclick="checkLogin()">Login
+                                        <button id="btn-login" class="btn btn-outline-dark button-dimens" type="submit" onclick="checkLogin()">Login
                                         </button>
                                     </div>
                                 </div>
@@ -75,6 +76,26 @@
                     <small id ="copyright" class="text-copyright"><strong></strong>&copy; Copyright 2020, P3S Corporation</small>
                 </footer>
             </div>  -->
+        </div>
+        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <i class="fas fa-exclamation-circle fa-4x"></i>
+                        <h5 class="modal-title pt-3 pl-3 text-danger" id="staticBackdropLabel">Email o password errati!
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+                        Inserisci l'email e/o password corretta!
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Riprova</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.0.2/sha.js"></script>

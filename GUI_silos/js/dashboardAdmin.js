@@ -1,6 +1,8 @@
 var ruolo = localStorage.getItem("ruolo");
+var flagDivSilos = false;
+var flagDivTable = false;
 
-var url = "http://silevel.ddnsking.com:3000";
+var url = "http://ec2-3-249-41-153.eu-west-1.compute.amazonaws.com:3000";
 
 var tx_pass = document.getElementById("tx_passw");
 
@@ -9,6 +11,13 @@ var UserManager = document.getElementById("UserManager");
 var LogManager = document.getElementById("LogManager");
 var DataManager = document.getElementById("DataManager");
 var Home = document.getElementById("Home");
+var chartData = document.getElementById("content-chart-data");
+var levelSilosDiv = document.getElementById("content-level-silos");
+var tableData = document.getElementById("table-data");
+var tableError = document.getElementById("table-error");
+
+
+
 
 //{HREF} Pulsanti principali della sidebar
 var UserBtnManager = document.getElementById("UserBtnManager");
@@ -23,10 +32,11 @@ var liData = document.getElementById("li_data");
 var liLog = document.getElementById("li_log");
 changePrivilege(ruolo);
 
-// Radio button password
-var manualPsw = document.getElementById("in_insert_psw");
-var generatePsw = document.getElementById("in_generate_psw");
-var radios = document.getElementsByName("inlineRadioOptions");
+// Radio button silos
+var rad = document.getElementsByName("choice");
+var rad2 = document.getElementsByName("choice-2");
+
+
 
 //txt psw
 var divPsw = document.getElementById("space-to-psw");
@@ -40,6 +50,60 @@ var divConfirmUpdate = document.getElementById("container-input-update");
 var divInputUpdate = document.getElementById("container-confirm-update");
 
 
+
+var prev = null;
+for (var i = 0; i < rad.length; i++) {
+    rad[i].addEventListener('change', function() {
+        if (flagDivSilos) {
+            chartData.classList.add("d-block");
+            chartData.classList.remove("d-none");
+            levelSilosDiv.classList.add("d-none");
+            levelSilosDiv.classList.remove("d-block");
+            flagDivSilos = false;
+        } else {
+            levelSilosDiv.classList.add("d-block");
+            levelSilosDiv.classList.remove("d-none");
+            chartData.classList.add("d-none");
+            chartData.classList.remove("d-block");
+            flagDivSilos = true;
+        }
+    });
+}
+for (var i = 0; i < rad2.length; i++) {
+    rad2[i].addEventListener('change', function() {
+        if (flagDivTable) {
+            tableData.classList.add("d-block");
+            tableData.classList.remove("d-none");
+            tableError.classList.add("d-none");
+            tableError.classList.remove("d-block");
+            flagDivTable = false;
+        } else {
+            tableError.classList.add("d-block");
+            tableError.classList.remove("d-none");
+            tableData.classList.add("d-none");
+            tableData.classList.remove("d-block");
+            flagDivTable = true;
+        }
+    });
+}
+// function changeDivSilos() {
+//     if (flagDivSilos) {
+//         chartData.classList.add("d-block");
+//         levelSilosDiv.classList.add("d-none");
+//         flagDivSilos = false;
+//     } else {
+//         levelSilosDiv.classList.add("d-block");
+//         chartData.classList.add("d-none");
+//         flagDivSilos = true;
+//     }
+// }
+//funzione di logout
+function logout() {
+    (function(myCallbackGoesHereAsVariable) {
+        Parse.User.logOut();
+    });
+    window.location.href = "../login.html";
+}
 
 //funzione di scambio pagine tra la sidebar
 function changeDivContent(click) {
@@ -105,14 +169,20 @@ function changeActiveClass(idLi, classActive) {
 }
 
 function showDivGenPsw() {
-    divPsw.style.display = "block";
-    tx_pass.value = "xxxxx";
-    tx_pass.readOnly = true;
+    fetch(url + "/getRandomPsw").then(function(response) {
+        return response.json();
+    }).then(function(data) {
+        divPsw.style.display = "block";
+        tx_pass.value = data.RandomPsw;
+        tx_pass.readOnly = true;
+        console.log(data);
+    });
 }
 
 function showDivManPsw() {
     tx_pass.value = "";
     tx_pass.readOnly = false;
+    divPsw.style.display = "block";
 }
 
 function showBoxUpdate() {

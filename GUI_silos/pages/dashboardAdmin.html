@@ -5,14 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/bootstrap-italia.min.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/styleAdmin.css">
     <link rel="stylesheet" href="../css/styleAdminData.css">
+    <link rel="icon" type="image/png" href="../img/logov2.png">
     <link rel="stylesheet" href="../fontaweson/css/all.css">
-    <title>Dashboard Admin</title>
+    <title>Dashboard</title>
 </head>
 
 <body>
+    <div id="modal"></div>
     <!--     <div class="container-fluid bg-page"> -->
     <div class="wrapper bg-page h-100">
         <!-- Sidebar -->
@@ -27,16 +30,16 @@
                     <a href="#Home" id="HomeBtn" onclick="changeDivContent(this.id);">Home</a>
                 </li>
                 <li id="li_user">
-                    <a href="#UserManager" id="UserBtnManager" onclick="changeDivContent(this.id);">Manage
-                        User</a>
+                    <a href="#UserManager" id="UserBtnManager" onclick="changeDivContent(this.id);">Gestione utente</a>
                 </li>
                 <li id="li_data">
-                    <a href="#DataManager" id="DataBtnManager" onclick="changeDivContent(this.id);">Show
-                        Data</a>
+                    <a href="#DataManager" id="DataBtnManager" onclick="changeDivContent(this.id);">Monitoraggio dati</a>
                 </li>
                 <li id="li_log">
-                    <a href="#LogManager" id="LogBtnManager" onclick="changeDivContent(this.id);">Show
-                        Log</a>
+                    <a href="#LogManager" id="LogBtnManager" onclick="changeDivContent(this.id);">Log e malfunzionamenti</a>
+                </li>
+                <li id="li_log">
+                    <a href="#LogManager" id="LogBtnManager" onclick="logout();">Logout</a>
                 </li>
             </ul>
         </nav>
@@ -130,23 +133,15 @@
                     <div class="col-6 container">
                         <!-- ==================================================== GESTIONE UTENTE ==================================================== -->
                         <div class="row">
-                            <div class="col container">
-                                <div class="row">
-                                    <div class="col container h-25 mt-2 dimens-title">
-                                        <h2 class="text-center text-white" style="font-size:2.5vw;">Gestione utente (elimina utente, aggiorna dati utente)
-                                        </h2>
-                                    </div>
-                                </div>
+                            <div class="col container  mt-5">
                                 <div class="row" id="div_delete">
                                     <div class="col container">
                                         <h5 class="text-left text-white border-bottom">Elimina utente</h5>
                                         <div id="" class="border bg-light container">
-                                            <div class="row container">
-                                                <div class="offset-2"></div>
+                                            <div class="row">
+                                                <div class="offset-1"></div>
                                                 <div id="vr-line-label" class="col-3 mt-2">
-                                                    <label id="label-box" for="select-users" class="text-dark pt-3">Inserisci
-                                                        nome e
-                                                        cognome</label>
+                                                    <label id="label-box" for="select-users" class="text-dark pt-3">Eliminazione:</label>
                                                 </div>
                                                 <div id="vr-line-select" class="col-5 mt-2">
                                                     <div class="pt-3 container">
@@ -155,31 +150,38 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="offset-2"></div>
+                                                <div id="loadDelete" class="col-2 mt-2 text-center">
+                                                    <i class="fas fa-sync-alt fa-2x pt-4 btn_reload" onclick="clearSelectDelete();"></i>
+                                                </div>
+                                                <div id="spinner-space" class="col-2 mt-2 text-center d-none">
+                                                    <div class="spinner-border" role="status">
+                                                        <span class="sr-only">Loading...</span>
+                                                    </div>
+                                                </div>
+                                                <div class="offset-1"></div>
                                             </div>
-                                            <div class="row container">
+                                            <div class="row">
                                                 <div class="offset-2"></div>
-                                                <div class="col-8">
+                                                <div class="col-8  text-center">
                                                     <hr>
                                                     <p>
-                                                        Per completare la cancellazione dell'utente scelto bisogna selezionare la richiesta aggiuntiva prima di cliccare il buttone di eliminazione
+                                                        Per l'eliminazione dell'utente selezionato premere il pulsante.
                                                     </p>
                                                     <hr>
                                                 </div>
                                                 <div class="offset-2"></div>
                                             </div>
-                                            <div class="row  mt-3 mb-5 container">
+                                            <div class="row  mt-3 mb-5">
                                                 <div class="offset-4"></div>
                                                 <div class="col-4 mt-2 w-100">
                                                     <div class="pt-2 text-right mt-1 mb-2">
-                                                        <button id="btn-delete-user" class="btn btn-outline-dark button-dimens" onclick="deleteUser();">Delete
-                                                            User</button>
+                                                        <button disabled id="btn-delete-user" class="btn btn-outline-dark button-dimens">Elimina
+                                                            Utente</button>
                                                     </div>
                                                 </div>
                                                 <div class="offset-4"></div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -192,9 +194,8 @@
                                     <div class="row pb-4">
                                         <div class="offset-1"></div>
                                         <div id="vr-line-label" class="col-3 mt-2">
-                                            <label id="label-box" for="select-users-2" class="text-dark pt-3">Inserisci
-                                                nome e
-                                                cognome</label>
+                                            <label id="label-box" for="select-users-2" class="text-dark pt-3">Aggiornamento: 
+                                                </label>
                                         </div>
                                         <div id="vr-line-select" class="col-5 mt-2 container">
                                             <div class="pt-3 container">
@@ -204,16 +205,19 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        <div id="loadUpdate" class="col-2 mt-2 text-center">
+                                            <i class="fas fa-sync-alt fa-2x pt-4 btn_reload" onclick="clearSelectTxt();"></i>
+                                        </div>
+                                        <div id="spinner-space-2" class="col-2 mt-2 text-center d-none">
+                                            <div class="spinner-border" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </div>
                                         <div class="offset-1"></div>
                                     </div>
-
                                     <div class="row " id="container-text-update">
                                         <div class="offset-2"></div>
                                         <div class="col-8">
-                                            <hr>
-                                            <p>
-                                                Per confermare l'utente da modificare premere la freccia
-                                            </p>
                                             <hr>
                                         </div>
                                         <div class="offset-2"></div>
@@ -222,6 +226,28 @@
                                         <!--========= In questo blocco verranno riempiti i dati dinamicamente=========-->
                                         <div class="offset-2 mt-3"></div>
                                         <div class="col-8 mt-3">
+                                            <!--=========EMAIL=========-->
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="offset-4"></div>
+                                                        <div class="col">
+                                                            <p id="p-email">Email</p>
+                                                        </div>
+                                                        <div class="offset-4"></div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="input-group col mb-3">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text space-span" id="inputEmailUpdate">Email</span>
+                                                            </div>
+                                                            <input id="txt-update-email" type="text" class="form-control" aria-label="Default" aria-describedby="inputEmailUpdate">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
                                             <!--=========NOME=========-->
                                             <div class="row">
                                                 <div class="col">
@@ -261,28 +287,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <!--=========EMAIL=========-->
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="row">
-                                                        <div class="offset-4"></div>
-                                                        <div class="col">
-                                                            <p id="p-email">Email</p>
-                                                        </div>
-                                                        <div class="offset-4"></div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="input-group col mb-3">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text space-span" id="inputEmailUpdate">Email</span>
-                                                            </div>
-                                                            <input id="txt-update-email" type="text" class="form-control" aria-label="Default" aria-describedby="inputEmailUpdate">
-                                                        </div>
-                                                    </div>
-                                                </div>
-
                                             </div>
 
                                             <!--=========Password=========-->
@@ -324,7 +328,7 @@
                                                             <select name="select-permit-box" id="select-permit" class="custom-select mdb-select md-form">
                                                                 <option value="">Selezione un opzione</option>
                                                                 <option value="1">Amministratore</option>
-                                                                <option value="2">Impiegato</option>
+                                                                <option value="2">Utente</option>
                                                                 <option value="3">Manutentore</option>
                                                             </select>
                                                         </div>
@@ -336,7 +340,11 @@
                                     <div class="offset-2"></div>
                                     <div class="row mt-3 mb-4 " id="container-lines-update">
                                         <div class="col-2"></div>
-                                        <div class="col-8">
+                                        <div class="col-8 text-center">
+                                            <hr>
+                                            <p>
+                                                Per l'aggiornamento dell'utente selezionato premere il pulsante.
+                                            </p>
                                             <hr>
                                         </div>
                                         <div class="col-2"></div>
@@ -345,8 +353,8 @@
                                         <div class="offset-4"></div>
                                         <div class="col-4 mt-2 ">
                                             <div class="pt-2 text-right mt-1 mb-2">
-                                                <button class="btn btn-outline-dark button-dimens" id="btn-update-user">Update
-                                                    User</button>
+                                                <button disabled class="btn btn-outline-dark button-dimens" id="btn-update-user">Aggiorna
+                                                    Utente</button>
                                             </div>
                                         </div>
                                         <div class="offset-4"></div>
@@ -358,13 +366,7 @@
                     <div class="col-6">
                         <!--=================================INSERIMENTO UTENTE====================================================-->
                         <div class="row">
-                            <div class="col container mt-2 dimens-title h-25">
-                                <h2 class="text-center text-white" style="font-size:2.5vw;">Inserimento nuovo utente
-                                </h2>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
+                            <div class="col mt-5">
                                 <h5 class="text-left text-white border-bottom">Inserisci utente</h5>
                                 <div id="" class="border bg-light">
                                     <div class="row container">
@@ -377,7 +379,7 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text space-span" id="inputName">Nome</span>
                                                     </div>
-                                                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputName">
+                                                    <input required id="txt-insert-nome" type="text" class="form-control" aria-label="Default" aria-describedby="inputName">
                                                 </div>
                                             </div>
                                             <!--COGNOME-->
@@ -386,7 +388,7 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text space-span" id="inputSurname">Cognome</span>
                                                     </div>
-                                                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputSurname">
+                                                    <input required id="txt-insert-cognome" type="text" class="form-control" aria-label="Default" aria-describedby="inputSurname">
                                                 </div>
                                             </div>
                                             <!--EMAIL-->
@@ -395,17 +397,17 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text space-span" id="inputEmail">Email</span>
                                                     </div>
-                                                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputEmail">
+                                                    <input required id="txt-insert-email" type="text" class="form-control" aria-label="Default" aria-describedby="inputEmail">
                                                 </div>
                                             </div>
                                             <!--Password-->
                                             <div class="row form-group container">
                                                 <div class="offset-1"></div>
                                                 <div class="form-check form-check-inline col-5">
-                                                    <input class="" type="submit" value="Genera password" id="in_generate_psw" onclick="showDivGenPsw();">
+                                                    <input class="button-box" type="submit" value="Genera password" id="in_generate_psw" onclick="showDivGenPsw();">
                                                 </div>
                                                 <div class="form-check form-check-inline col-5">
-                                                    <input class="" type="submit" value="Inserisci password" id="in_insert_psw" onclick="showDivManPsw();">
+                                                    <input class="button-box" type="submit" value="Inserisci password" id="in_insert_psw" onclick="showDivManPsw();">
                                                 </div>
                                             </div>
                                             <div class="row" id="space-to-psw" style="display: none;">
@@ -413,7 +415,7 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text space-span" id="inputGenPsw">Password</span>
                                                     </div>
-                                                    <input readonly type="text" id="tx_passw" class="form-control" aria-label="Default" aria-describedby="inputGenPsw" value="76Xr%2LmS4bd">
+                                                    <input required readonly type="text" id="tx_passw" class="form-control" aria-label="Default" aria-describedby="inputGenPsw">
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -435,8 +437,12 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text space-span" id="inputPermit">Permesso</span>
                                                     </div>
-                                                    <select name="select-permit-box" id="select-permit" class="custom-select mdb-select md-form">
+                                                    <select name="select-permit-box" id="select-permit-insert" class="custom-select mdb-select md-form">
                                                         <option value="">Selezione un opzione</option>
+                                                        <option value="1">Amministratore</option>
+                                                        <option value="2">Manutentore</option>
+                                                        <option value="3">Utente</option>
+
                                                     </select>
                                                 </div>
                                             </div>
@@ -444,7 +450,7 @@
                                                 <div class="offset-3"></div>
                                                 <div class="col mb-3">
                                                     <div class="pt-2 text-right mt-1 mb-2 w-100">
-                                                        <button class="btn btn-outline-dark button-dimens" id="btn_register">Register
+                                                        <button class="btn btn-outline-dark button-dimens" id="btn-insert-user" disabled>Register
                                                             User</button>
                                                     </div>
                                                 </div>
@@ -462,106 +468,218 @@
             </div>
             <!--==================================DATA MANAGER ===========================================================-->
             <div id="DataManager" class="h-100 container-fluid" style="display: none;">
+                <!-- =====================================TITOLO DELLA PAGINA ============================================-->
                 <div class="row">
                     <div class="col-12 mt-2 border-bottom bg-secondary">
                         <h1 class="text-center text-white"><strong>Visualizzazione dati</strong></h1>
                     </div>
                 </div>
-                <!-- ======================================== SELETTORI ==================================================-->
-                <div class="row mb-5">
-                    <div class="offset-1"></div>
-                    <div class="col-5">
-                        <!--=============================== SELEZIONE SILOS ===============================================-->
-                        <div class="row mt-5">
-                            <div class="col mt-2 border-bottom mb-3">
-                                <h3 class="text-right text-white">Seleziona il silos da monitorare</h3>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-group col mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text space-span" id="inputPermit">Silos</span>
-                                </div>
-                                <select name="select-permit-box" id="select-permit" class="custom-select mdb-select md-form" onchange="">
-                                    <option value="">Selezione un silos</option>
-                                    <option value="1">Silos 1</option>
-                                    <option value="2">Silos 2</option>
-                                    <option value="3">Silos 3</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <p>Finire di fare le select dinamiche </p>
+                <!--===============================SPACE RADIO BUTTON=============================================-->
+                <div class="row" id="spaceRadioButton">
+                    <div class="offset-4"></div>
+                    <div class="col-2">
+                        <div class=" form-check form-check-inline">
+                            <input name="choice" type="radio" id="radioData" checked>
+                            <label class="radioButtonColor" for="radioData">Visualizzazione dati giornalieri</label>
                         </div>
                     </div>
-                    <div class="col-5">
-                        <!-- ============================== SELEZIONA GIORNO ============================================-->
-                        <div class="row mt-5">
-                            <div class="col mt-2 border-bottom mb-3">
-                                <h3 class="text-right text-white">Seleziona un giorno da monitorare</h3>
-                            </div>
-                        </div>
-                        <div class="row ">
-                            <div class="input-group col mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text space-span" id="inputPermit">Giorno</span>
-                                </div>
-                                <select id="selectDay" name="select-permit-box" id="select-permit" class="custom-select mdb-select md-form" onchange="changeDayChart();">
-                                    <option value="">Seleziona un giorno </option>
-                                    <option value="1">Lunedì 16/06/2019</option>
-                                    <option value="2">Martedì 17/06/2019</option>
-                                    <option value="3">Mercoledì 18/06/2019</option>
-                                </select>
-                            </div>
+                    <div class="col-2">
+                        <div class="form-check form-check-inline radioButtonColor">
+                            <input name="choice" type="radio" id="radioLiquid">
+                            <label class="radioButtonColor" for="radioLiquid">Visualizzazione livello liquido
+                                attuale</label>
                         </div>
                     </div>
-                    <div class="offset-1"></div>
+                    <div class="offset-4"></div>
                 </div>
-                <!-- ======================================== GRAFICO ===============================================-->
-                <div class="row">
-                    <div class="offset-1"></div>
-                    <div class="col-10">
-                        <canvas id="myChart"></canvas>
+                <div id="content-chart-data" class="d-block">
+                    <!-- ======================================== SELETTORI ==================================================-->
+                    <div class="row">
+                        <div class="offset-1"></div>
+                        <div class="col-5">
+                            <!--=============================== SELEZIONE SILOS ===============================================-->
+                            <div class="row mt-5">
+                                <div class="col mt-2 border-bottom mb-3">
+                                    <h3 class="text-right text-white">Seleziona il silos da monitorare</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-group col mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text space-span" id="inputPermit">Silos</span>
+                                    </div>
+                                    <select name="select-permit-box" id="selectSilos" class="custom-select mdb-select md-form" onchange="">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <!-- ============================== SELEZIONA GIORNO ============================================-->
+                            <div class="row mt-5">
+                                <div class="col mt-2 border-bottom mb-3">
+                                    <h3 class="text-right text-white">Seleziona un giorno da monitorare</h3>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="input-group col mb-3">
+                                    <!--                                 <div class="input-group-prepend">
+                                        <span class="input-group-text space-span" id="inputPermit">Giorno</span>
+                                    </div> -->
+                                    <div class="it-datepicker-wrapper dimens-calendar ml-5">
+                                        <div class="input-group">
+                                            <input readonly style="height: auto;" class="input-group it-date-datepicker" id="input-calendar" type="text" placeholder="Seleziona la data in formato aaaa/mm/dd" onchange="showButtonConfirm();">
+                                            <label for="input-calendar"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="offset-1"></div>
                     </div>
-                    <div class="offset-1"></div>
+                    <div class="row">
+                        <hr>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="offset-5"></div>
+                        <div class="col-2 text-center">
+                            <button id="btn-confirm-value" disabled class="btn btn-outline-dark btn-confirm-chart" onclick="getDataChart();">Conferma</button>
+                        </div>
+                        <div class="offset-5"></div>
+                    </div>
+                    <!-- ======================================== GRAFICO ===============================================-->
+                    <div class="row">
+                        <div class="offset-1"></div>
+                        <div class="col-10">
+                            <canvas id="myChart"></canvas>
+                        </div>
+                        <div class="offset-1"></div>
+                    </div>
                 </div>
+                <div id="content-level-silos" class="d-none">
+                    <!--=============================== SELEZIONE SILOS ===============================================-->
+                    <div class="row">
+                        <div class="offset-3"></div>
+                        <div class="col-6">
+                            <div class="row mt-5">
+                                <div class="col mt-2 border-bottom mb-3">
+                                    <h3 class="text-right text-white">Seleziona il silos da monitorare</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-group col mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text space-span" id="inputPermit">Silos</span>
+                                    </div>
+                                    <select name="select-permit-box" id="selectSilos2" class="custom-select mdb-select md-form" onchange="">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="offset-3"></div>
+                    </div>
+                    <!--===========================PROGRESS BAR=====================================-->
+                    <div class="row">
+                        <div class="offset-2"></div>
+                        <div class="col-8">
+                            <div class="row">
+                                <div class="offset-2"></div>
+                                <div class="col-6">
+                                    <img src="../img/Silo.png" alt="Silos" width="100%" height="100%">
+                                </div>
+                                <div class="col-2">
+                                    <div class="progress progress-bar-vertical">
+                                        <div id="progressBar" class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                                            <span class="sr-only"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="offset-2"></div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <h4 class="mt-5 text-light text-center" id="descriptionLevel"></h4>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <!--===================================LOG MANAGER==================================================================-->
             <!-- Id log, Id Sensore, Cambio di Stato, Data ora -->
             <div id="LogManager" class="h-100 w-100 container-fluid" style="display: none;">
                 <div class="row">
                     <div class="col-12 mt-2 border-bottom bg-secondary">
-                        <h1 class="text-center text-white"><strong>Tabella dati</strong></h1>
+                        <h1 class="text-center text-white"><strong>Visualizzazione dati</strong></h1>
                     </div>
                 </div>
-                <div class="row mt-5">
-                    <div class="offset-1"></div>
-                    <div class="col-10">
-                        <!-- ================================= TABELLA VISUALIZZAZIONE DATI===========================================-->
-                        <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
-                            <table class="table table-borderless table-striped table-hover table-light">
-                                <thead>
-                                    <tr class="bg-dark text-white">
-                                        <th scope="col">#</th>
-                                        <th scope="col">ID Silos</th>
-                                        <th scope="col">ID Sensore</th>
-                                        <th scope="col">Liquido sensore</th>
-                                        <th scope="col">Data e ora</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tBody">
-                                </tbody>
-                            </table>
+                <!--===============================SPACE RADIO BUTTON=============================================-->
+                <div class="row" id="spaceRadioButton">
+                    <div class="offset-4"></div>
+                    <div class="col-2">
+                        <div class=" form-check form-check-inline">
+                            <input name="choice-2" type="radio" id="radioData-2" checked>
+                            <label class="radioButtonColor" for="radioData-2">Tabella dati</label>
                         </div>
                     </div>
-                    <div class="offset-1"></div>
+                    <div class="col-2">
+                        <div class="form-check form-check-inline radioButtonColor">
+                            <input name="choice-2" type="radio" id="radioMalfunction">
+                            <label class="radioButtonColor" for="radioMalfunction">Tabella malfunzionamenti</label>
+                        </div>
+                    </div>
+                    <div class="offset-4"></div>
                 </div>
+                <div id="table-data" class="d-block">
+                    <div class="row mt-5 ">
+                        <div class="offset-1"></div>
+                        <div class="col-10">
+                            <!-- ================================= TABELLA VISUALIZZAZIONE DATI===========================================-->
+                            <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
+                                <table class="table table-striped table-dark">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="text-center">Data e ora</th>
+                                            <th scope="col" class="text-center">ID Silos</th>
+                                            <th scope="col" class="text-center">ID Sensore</th>
+                                            <th scope="col" class="text-center">Liquido sensore</th>
+                                            <th scope="col" class="text-center">Descrizione</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tBody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="offset-1"></div>
+                    </div>
+                </div>
+                <div id="table-error" class="d-none">
+                    <div class="row mt-5 ">
+                        <div class="offset-1"></div>
+                        <div class="col-10">
+                            <!-- ================================= TABELLA VISUALIZZAZIONE MALFUNZIONAMENTI===========================================-->
+                            <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar-2">
+                                <table class="table table-striped table-dark">
+                                    <thead>
+                                        <tr class="bg-dark text-white">
+                                            <th scope="col" class="text-center">Malfunzionamento</th>
+                                            <th scope="col" class="text-center">Sensore</th>
+                                            <th scope="col" class="text-center">Silos</th>
+                                            <th scope="col" class="text-center">Descrizione</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tBodyMalfunction">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="offset-1"></div>
+                    </div>
+                </div>
+
             </div>
             <div class="h-25">
                 <br>
             </div>
-
-
         </div>
     </div>
     <!--Footer-->
@@ -578,7 +696,26 @@
         <!--/.Copyright-->
 
     </footer>
-
+    <div class="modal fade" id="modalResponce" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="titleModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <i id="iconFalse" class="fas fa-exclamation-circle fa-4x d-none"></i>
+                    <i id="iconTrue" class="fas fa-check-circle fa-4x d-none"></i>
+                    <h5 class="modal-title pt-3 pl-3 text-danger" id="titleModal">
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="modalBody" class="modal-body text-center">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="updateAllSelect();">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -589,11 +726,11 @@
     <script src="../js/dashboardAdmin.js"></script>
     <script src="../js/manageUserApi.js"></script>
     <script src="../js/manageLogsApi.js"></script>
-
+    <script src="https://unpkg.com/js-datepicker"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
     <script src="../js/dashboardAdminGraph.js"></script>
-
+    <script src="../js/bootstrap-italia.bundle.min.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -601,7 +738,10 @@
             $('#sidebarCollapse').on('click', function() {
                 $('#sidebar').toggleClass('active');
             });
-
+            $('.it-date-datepicker').datepicker({
+                inputFormat: ["yyyy-MM-dd"],
+                outputFormat: 'yyyy-MM-dd',
+            });
         });
     </script>
 </body>

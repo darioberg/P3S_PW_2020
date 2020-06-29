@@ -1,48 +1,19 @@
-var selectDay = document.getElementById("selectDay");
+//variabile 
+var resultRequestChart;
+var selectSilos = document.getElementById("selectSilos");
+var selectSilos2 = document.getElementById("selectSilos2");
+var progressBar = document.getElementById("progressBar");
+var calendar = document.getElementById("input-calendar");
+var description = document.getElementById("descriptionLevel");
+var btnConfirmChart = document.getElementById("btn-confirm-value");
 var ctx = document.getElementById("myChart").getContext('2d');
 var myChart;
-//var result = [{ x: 0, y: 0 }, { x: "18:30", y: "10000" }, { x: "19:00", y: "20000" }, { x: "20:00", y: "15000" }, { x: "24:00", y: "17000" }, { x: "25:00", y: "15000" }];
-
-
-// spazio che contiene il grafico
-
-
-var ctx = document.getElementById("myChart").getContext('2d');
-//variabile che contiene i dati da disegnare all'interno del grafico
-
+var url = "http://ec2-3-249-41-153.eu-west-1.compute.amazonaws.com:3000";
 // parse labels and data
 var labels = [];
 var data = [];
 createChart(labels, data);
-//labels = (result.map(e => moment(e.x, 'HH:mm')));
-//data = (result.map(e => +e.y));
 
-// funzione che al variare del giorno varia il grafico
-function changeDayChart() {
-    if (selectDay.value == 1) {
-        console.log("dentro if 1");
-        result = [{ x: 0, y: 0 }, { x: "18:30", y: "10000" }, { x: "19:00", y: "20000" }, { x: "20:00", y: "15000" }, { x: "24:00", y: "17000" }, { x: "25:00", y: "15000" }];
-        labels = result.map(e => moment(e.x, 'HH:mm'));
-        data = result.map(e => +e.y);
-        myChart.destroy();
-        createChart(data, labels);
-    } else if (selectDay.value == 2) {
-        console.log("dentro if 2");
-        result = [{ x: 0, y: 0 }, { x: "14:30", y: "20000" }, { x: "15:00", y: "40000" }, { x: "17:00", y: "15000" }, { x: "24:00", y: "17000" }, { x: "25:00", y: "15000" }];
-        labels = result.map(e => moment(e.x, 'HH:mm'));
-        data = result.map(e => +e.y);
-        myChart.destroy();
-        createChart(data, labels);
-    }
-}
-
-function addData(label, data) {
-    myChart.data.labels.push(label);
-    myChart.data.datasets.forEach((dataset) => {
-        dataset.data.push(data);
-    });
-    myChart.update();
-}
 
 function createChart(data, labels) {
     myChart = new Chart(ctx, {
@@ -99,3 +70,82 @@ function createChart(data, labels) {
         }
     });
 }
+
+function getAllSilos() {
+    fetch(url + "/getAllSilos").then(function(response) {
+        return response.json();
+    }).then(function(data) {
+        console.log(data);
+        for (var i = 0; i < data.length; i++) {
+            var opt = document.createElement("option");
+            opt.value = data[i].ID_Silos;
+            opt.innerHTML = "Silos " + data[i].ID_Silos;
+            selectSilos.appendChild(opt);
+            var opt2 = document.createElement("option");
+            opt2.value = data[i].ID_Silos;
+            opt2.innerHTML = "Silos " + data[i].ID_Silos;
+            selectSilos2.appendChild(opt2);
+        }
+    });
+}
+
+function getDataChart() {
+    var data = calendar.value;
+    var idSilos = selectSilos.value;
+    fetch(url + '/getDataChart', {
+        method: 'post',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "dataOra": data,
+            "idSilos": idSilos
+        })
+    }).then(function(result) {
+        return result.json();
+    }).then(function(data) {
+        console.log(data);
+        var result = [{ x: 0, y: 0 }];
+        for (var i = 0; i < data.length; i++) {
+            var time = data[i].Data_Ora;
+            var liquid = data[i].LivelloLiquido;
+            var onlyTime = splitDate(time);
+            result.push({ "x": onlyTime, "y": liquid });
+        }
+        labels = result.map(e => moment(e.x, 'HH:mm'));
+        data = result.map(e => +e.y);
+        myChart.destroy();
+        createChart(data, labels);
+    });
+}
+
+function splitDate(data) {
+    var split = data.split("T");
+    var split2 = split[1].split(":");
+    var time = split2[0] + ":" + split2[1];
+    return time;
+}
+
+function getSilosById() {
+    var idSilos = selectSilos2.value;
+    fetch(url + "/getSilosById/" + idSilos).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+        var liquid = data.LivelloLiquido;
+        var percetual = parseInt((liquid * 100) / 160000);
+        progressBar.setAttribute("aria-valuenow", percetual);
+        progressBar.style.height = percetual + "%";
+        progressBar.innerHTML = percetual + "%";
+        description.innerHTML = "Livello attuale<br><br> " + "<strong>" + liquid + " L</strong>"
+    });
+}
+
+function showButtonConfirm() {
+    if (calendar.value != "") {
+        btnConfirmChart.removeAttribute("disabled");
+    }
+}
+//calendar.addEventListener('click', showButtonConfirm);
+document.addEventListener('DOMContentLoaded', getAllSilos);
+selectSilos2.addEventListener("click", getSilosById);
