@@ -452,7 +452,12 @@ const newMalfunctionJsonSchema = {
 app.post("/insertMalfunction", { schema: { body: newMalfunctionJsonSchema } }, (request, reply) => {
     let malfunction = request.body;
 
-    connection.query("INSERT INTO malfunzionamenti SET ?", [malfunction], (error, results, fields) => {
+    var today = new Date();
+    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dataOra = date + ' ' + time;
+
+    connection.query("INSERT INTO malfunzionamenti(ID_Sensore,ID_Silos,Descrizione,Data_Ora) VALUES (?,?,?,?)", [malfunction.ID_Sensore, malfunction.ID_Silos, malfunction.Descrizione, dataOra], (error, results, fields) => {
         //app.log.info(results);
         if (error) {
             reply.status(500).send({ error: error.message });
