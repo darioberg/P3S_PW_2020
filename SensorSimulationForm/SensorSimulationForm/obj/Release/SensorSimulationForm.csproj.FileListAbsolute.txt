@@ -1,0 +1,17 @@
+C:\Users\Dario\Documents\GitHub\P3S_PW_2020\SensorSimulationForm\SensorSimulationForm\bin\Release\SensorSimulationForm.exe.config
+C:\Users\Dario\Documents\GitHub\P3S_PW_2020\SensorSimulationForm\SensorSimulationForm\bin\Release\SensorSimulationForm.exe
+C:\Users\Dario\Documents\GitHub\P3S_PW_2020\SensorSimulationForm\SensorSimulationForm\bin\Release\SensorSimulationForm.pdb
+C:\Users\Dario\Documents\GitHub\P3S_PW_2020\SensorSimulationForm\SensorSimulationForm\bin\Release\Newtonsoft.Json.dll
+C:\Users\Dario\Documents\GitHub\P3S_PW_2020\SensorSimulationForm\SensorSimulationForm\bin\Release\SensorSimulationForm.Data.dll
+C:\Users\Dario\Documents\GitHub\P3S_PW_2020\SensorSimulationForm\SensorSimulationForm\bin\Release\SensorSimulationForm.Models.dll
+C:\Users\Dario\Documents\GitHub\P3S_PW_2020\SensorSimulationForm\SensorSimulationForm\bin\Release\SensorSimulationForm.Data.pdb
+C:\Users\Dario\Documents\GitHub\P3S_PW_2020\SensorSimulationForm\SensorSimulationForm\bin\Release\SensorSimulationForm.Models.pdb
+C:\Users\Dario\Documents\GitHub\P3S_PW_2020\SensorSimulationForm\SensorSimulationForm\bin\Release\Newtonsoft.Json.xml
+C:\Users\Dario\Documents\GitHub\P3S_PW_2020\SensorSimulationForm\SensorSimulationForm\obj\Release\SensorSimulationForm.csprojAssemblyReference.cache
+C:\Users\Dario\Documents\GitHub\P3S_PW_2020\SensorSimulationForm\SensorSimulationForm\obj\Release\SensorSimulationForm.Form1.resources
+C:\Users\Dario\Documents\GitHub\P3S_PW_2020\SensorSimulationForm\SensorSimulationForm\obj\Release\SensorSimulationForm.Properties.Resources.resources
+C:\Users\Dario\Documents\GitHub\P3S_PW_2020\SensorSimulationForm\SensorSimulationForm\obj\Release\SensorSimulationForm.csproj.GenerateResource.cache
+C:\Users\Dario\Documents\GitHub\P3S_PW_2020\SensorSimulationForm\SensorSimulationForm\obj\Release\SensorSimulationForm.csproj.CoreCompileInputs.cache
+C:\Users\Dario\Documents\GitHub\P3S_PW_2020\SensorSimulationForm\SensorSimulationForm\obj\Release\SensorSimulationForm.csproj.CopyComplete
+C:\Users\Dario\Documents\GitHub\P3S_PW_2020\SensorSimulationForm\SensorSimulationForm\obj\Release\SensorSimulationForm.exe
+C:\Users\Dario\Documents\GitHub\P3S_PW_2020\SensorSimulationForm\SensorSimulationForm\obj\Release\SensorSimulationForm.pdb

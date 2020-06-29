@@ -1,0 +1,9 @@
+C:\Users\Dario\Documents\GitHub\P3S_PW_2020\SensorSimulationForm\SensorSimulationForm.Models\bin\Release\netstandard2.0\SensorSimulationForm.Models.deps.json
+C:\Users\Dario\Documents\GitHub\P3S_PW_2020\SensorSimulationForm\SensorSimulationForm.Models\bin\Release\netstandard2.0\SensorSimulationForm.Models.dll
+C:\Users\Dario\Documents\GitHub\P3S_PW_2020\SensorSimulationForm\SensorSimulationForm.Models\bin\Release\netstandard2.0\SensorSimulationForm.Models.pdb
+C:\Users\Dario\Documents\GitHub\P3S_PW_2020\SensorSimulationForm\SensorSimulationForm.Models\obj\Release\netstandard2.0\SensorSimulationForm.Models.csprojAssemblyReference.cache
+C:\Users\Dario\Documents\GitHub\P3S_PW_2020\SensorSimulationForm\SensorSimulationForm.Models\obj\Release\netstandard2.0\SensorSimulationForm.Models.AssemblyInfoInputs.cache
+C:\Users\Dario\Documents\GitHub\P3S_PW_2020\SensorSimulationForm\SensorSimulationForm.Models\obj\Release\netstandard2.0\SensorSimulationForm.Models.AssemblyInfo.cs
+C:\Users\Dario\Documents\GitHub\P3S_PW_2020\SensorSimulationForm\SensorSimulationForm.Models\obj\Release\netstandard2.0\SensorSimulationForm.Models.csproj.CoreCompileInputs.cache
+C:\Users\Dario\Documents\GitHub\P3S_PW_2020\SensorSimulationForm\SensorSimulationForm.Models\obj\Release\netstandard2.0\SensorSimulationForm.Models.dll
+C:\Users\Dario\Documents\GitHub\P3S_PW_2020\SensorSimulationForm\SensorSimulationForm.Models\obj\Release\netstandard2.0\SensorSimulationForm.Models.pdb

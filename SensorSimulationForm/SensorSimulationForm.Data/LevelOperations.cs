@@ -16,7 +16,7 @@ namespace SensorSimulationForm.Data
         ApiCall api = new ApiCall();
 
         private readonly Liquid _level;
-
+        //private MalfunctionProperties [] errorMessage;
 
         private Sensor sensor1 = new Sensor(1, 20000, false);
         private Sensor sensor2 = new Sensor(2, 40000, false);
@@ -31,10 +31,9 @@ namespace SensorSimulationForm.Data
         public LevelOperations()
         {
             _level = new Liquid();
-
-
-
+            //errorMessage = new MalfunctionProperties[8];
         }
+
         public LevelOperations(int? level, Sensor s1, Sensor s2, Sensor s3, Sensor s4, Sensor s5, Sensor s6, Sensor s7, Sensor s8)
         {
             _level = new Liquid();
@@ -70,7 +69,6 @@ namespace SensorSimulationForm.Data
 
         public void Fill(int qty)
         {
-            int aux;
             int litersToAdd = 100;
             var getLiquidLevel = api.GetLiquidLevel();
 
@@ -155,8 +153,6 @@ namespace SensorSimulationForm.Data
         }
         public void Empty(int qty)
         {
-
-            int aux;
             int litersToRemove = 100;
             var getLiquidLevel = api.GetLiquidLevel();
 
@@ -227,7 +223,6 @@ namespace SensorSimulationForm.Data
 
         public void Malfunction(int qty)
         {
-            int aux;
             int litersToAdd = 100;
             var getLiquidLevel = api.GetLiquidLevel();
 
@@ -238,7 +233,11 @@ namespace SensorSimulationForm.Data
             Random rand = new Random();
             var randomNumberCicle = rand.Next(1, 9);
             int randomNumber = 0;
-            string[] errorMessage = new string[8];
+            MalfunctionProperties[] errorMessage = new MalfunctionProperties[8];
+            for (int i = 0; i < errorMessage.Length; ++i)
+            {
+                errorMessage[i] = new MalfunctionProperties();
+            }
             int[] malfunctionSensors = new int[8];
             bool[] boolArray = new bool[8];
             boolArray[0] = false;
@@ -399,7 +398,8 @@ namespace SensorSimulationForm.Data
 
                     if (_level.Level >= sensor2.ActivationLevel && sensor1.Status == false && boolArray[0] == true)
                     {
-                        errorMessage[0] = "Malfunzionamento sensore " + sensor1.NumberID;
+                        errorMessage[0].IdSensore = sensor1.NumberID;
+                        errorMessage[0].Description = "Malfunzionamento sensore " + sensor1.NumberID;
                     }
                 }
 
@@ -417,7 +417,8 @@ namespace SensorSimulationForm.Data
 
                     if (_level.Level >= sensor3.ActivationLevel && sensor2.Status == false && boolArray[1] == true)
                     {
-                        errorMessage[1] = "Malfunzionamento sensore " + sensor2.NumberID;
+                        errorMessage[1].IdSensore = sensor2.NumberID;
+                        errorMessage[1].Description = "Malfunzionamento sensore " + sensor2.NumberID;
                     }
                 }
 
@@ -435,7 +436,8 @@ namespace SensorSimulationForm.Data
 
                     if (_level.Level >= sensor4.ActivationLevel && sensor3.Status == false && boolArray[2] == true)
                     {
-                        errorMessage[2] = "Malfunzionamento sensore " + sensor3.NumberID;
+                        errorMessage[2].IdSensore = sensor3.NumberID;
+                        errorMessage[2].Description = "Malfunzionamento sensore " + sensor3.NumberID;
                     }
                 }
 
@@ -453,7 +455,8 @@ namespace SensorSimulationForm.Data
 
                     if (_level.Level >= sensor5.ActivationLevel && sensor4.Status == false && boolArray[3] == true)
                     {
-                        errorMessage[3] = "Malfunzionamento sensore " + sensor4.NumberID;
+                        errorMessage[3].IdSensore = sensor4.NumberID;
+                        errorMessage[3].Description = "Malfunzionamento sensore " + sensor4.NumberID;
                     }
                 }
 
@@ -471,7 +474,8 @@ namespace SensorSimulationForm.Data
 
                     if (_level.Level >= sensor6.ActivationLevel && sensor5.Status == false && boolArray[4] == true)
                     {
-                        errorMessage[4] = "Malfunzionamento sensore " + sensor5.NumberID;
+                        errorMessage[4].IdSensore = sensor5.NumberID;
+                        errorMessage[4].Description = "Malfunzionamento sensore " + sensor5.NumberID;
                     }
                 }
 
@@ -489,7 +493,8 @@ namespace SensorSimulationForm.Data
 
                     if (_level.Level >= sensor7.ActivationLevel && sensor6.Status == false && boolArray[5] == true)
                     {
-                        errorMessage[5] = "Malfunzionamento sensore " + sensor6.NumberID;
+                        errorMessage[5].IdSensore = sensor6.NumberID;
+                        errorMessage[5].Description = "Malfunzionamento sensore " + sensor6.NumberID;
                     }
                 }
 
@@ -506,7 +511,8 @@ namespace SensorSimulationForm.Data
 
                     if (_level.Level >= sensor8.ActivationLevel && sensor7.Status == false && boolArray[6] == true)
                     {
-                        errorMessage[6] = "Malfunzionamento sensore " + sensor7.NumberID;
+                        errorMessage[6].IdSensore = sensor7.NumberID;
+                        errorMessage[6].Description = "Malfunzionamento sensore " + sensor7.NumberID;
                     }
                 }
 
@@ -522,7 +528,8 @@ namespace SensorSimulationForm.Data
                     //}
                     if (boolArray[7] == true)
                     {
-                        errorMessage[7] = "Malfunzionamento sensore " + sensor8.NumberID;
+                        errorMessage[7].IdSensore = sensor8.NumberID;
+                        errorMessage[7].Description = "Malfunzionamento sensore " + sensor8.NumberID;
                     }
 
                 }
@@ -535,13 +542,32 @@ namespace SensorSimulationForm.Data
 
                 Debug.WriteLine(_level.Level);
 
-                //api.PostSensorData(_level.Level, sensor1, sensor2, sensor3, sensor4, sensor5, sensor6, sensor7, sensor8);
+                api.PostSensorData(_level.Level, sensor1, sensor2, sensor3, sensor4, sensor5, sensor6, sensor7, sensor8);
             }
 
 
             for (int i = 0; i < errorMessage.Length; i++)
             {
                 Debug.WriteLine(errorMessage[i]);
+
+                // chiamo la funzione di POST
+                try
+                {
+                    if (errorMessage[i] == null)
+                    {
+
+                    }
+                    else
+                    {
+                        api.PostMalfunction(errorMessage[i].IdSensore, _level.IdSilos, errorMessage[i].Description);
+                    }
+
+                }
+                catch (NullReferenceException ex)
+                {
+
+                    Debug.WriteLine("Sensore non ancora raggiunto");
+                }
             }
 
 
@@ -549,7 +575,6 @@ namespace SensorSimulationForm.Data
 
         public void EmptyMalfunction(int qty)
         {
-            int aux;
             int litersToRemove = 100;
             var getLiquidLevel = api.GetLiquidLevel();
 
@@ -559,7 +584,11 @@ namespace SensorSimulationForm.Data
             Random rand = new Random();
             var randomNumberCicle = rand.Next(1, 9);
             int randomNumber;
-            string[] errorMessage = new string[8];
+            MalfunctionProperties[] errorMessage = new MalfunctionProperties[8];
+            for (int i = 0; i < errorMessage.Length; ++i)
+            {
+                errorMessage[i] = new MalfunctionProperties();
+            }
             int[] malfunctionSensors = new int[8];
             bool[] boolArray = new bool[8];
             boolArray[0] = false;
@@ -709,7 +738,8 @@ namespace SensorSimulationForm.Data
 
                     if (sensor1.Status == false && boolArray[0] == true)
                     {
-                        errorMessage[0] = "Malfunzionamento sensore " + sensor1.NumberID;
+                        errorMessage[0].IdSensore = sensor1.NumberID;
+                        errorMessage[0].Description = "Malfunzionamento sensore " + sensor1.NumberID;
                     }
                 }
 
@@ -727,7 +757,8 @@ namespace SensorSimulationForm.Data
 
                     if (sensor2.Status == false && boolArray[1] == true)
                     {
-                        errorMessage[1] = "Malfunzionamento sensore " + sensor2.NumberID;
+                        errorMessage[1].IdSensore = sensor2.NumberID;
+                        errorMessage[1].Description = "Malfunzionamento sensore " + sensor2.NumberID;
                     }
                 }
 
@@ -745,7 +776,8 @@ namespace SensorSimulationForm.Data
 
                     if (sensor3.Status == false && boolArray[2] == true)
                     {
-                        errorMessage[2] = "Malfunzionamento sensore " + sensor3.NumberID;
+                        errorMessage[2].IdSensore = sensor3.NumberID;
+                        errorMessage[2].Description = "Malfunzionamento sensore " + sensor3.NumberID;
                     }
                 }
 
@@ -763,7 +795,8 @@ namespace SensorSimulationForm.Data
 
                     if (sensor4.Status == false && boolArray[3] == true)
                     {
-                        errorMessage[3] = "Malfunzionamento sensore " + sensor4.NumberID;
+                        errorMessage[3].IdSensore = sensor4.NumberID;
+                        errorMessage[3].Description = "Malfunzionamento sensore " + sensor4.NumberID;
                     }
                 }
 
@@ -781,7 +814,8 @@ namespace SensorSimulationForm.Data
 
                     if (sensor5.Status == false && boolArray[4] == true)
                     {
-                        errorMessage[4] = "Malfunzionamento sensore " + sensor5.NumberID;
+                        errorMessage[4].IdSensore = sensor5.NumberID;
+                        errorMessage[4].Description = "Malfunzionamento sensore " + sensor5.NumberID;
                     }
                 }
 
@@ -799,7 +833,8 @@ namespace SensorSimulationForm.Data
 
                     if (sensor6.Status == false && boolArray[5] == true)
                     {
-                        errorMessage[5] = "Malfunzionamento sensore " + sensor6.NumberID;
+                        errorMessage[5].IdSensore = sensor6.NumberID;
+                        errorMessage[5].Description = "Malfunzionamento sensore " + sensor6.NumberID;
                     }
                 }
 
@@ -816,7 +851,8 @@ namespace SensorSimulationForm.Data
 
                     if (sensor7.Status == false && boolArray[6] == true)
                     {
-                        errorMessage[6] = "Malfunzionamento sensore " + sensor7.NumberID;
+                        errorMessage[6].IdSensore = sensor7.NumberID;
+                        errorMessage[6].Description = "Malfunzionamento sensore " + sensor7.NumberID;
                     }
                 }
 
@@ -832,7 +868,8 @@ namespace SensorSimulationForm.Data
                     //}
                     if (boolArray[7] == true)
                     {
-                        errorMessage[7] = "Malfunzionamento sensore " + sensor8.NumberID;
+                        errorMessage[7].IdSensore = sensor8.NumberID;
+                        errorMessage[7].Description = "Malfunzionamento sensore " + sensor8.NumberID;
                     }
 
                 }
@@ -846,17 +883,17 @@ namespace SensorSimulationForm.Data
                 Debug.WriteLine(_level.Level);
 
 
-                //api.PostSensorData(_level.Level, sensor1, sensor2, sensor3, sensor4, sensor5, sensor6, sensor7, sensor8);
+                api.PostSensorData(_level.Level, sensor1, sensor2, sensor3, sensor4, sensor5, sensor6, sensor7, sensor8);
             }
 
 
             for (int i = 0; i < errorMessage.Length; i++)
             {
                 Debug.WriteLine(errorMessage[i]);
+
+                // chiamo la funzione di POST
+                api.PostMalfunction(errorMessage[i].IdSensore, _level.IdSilos, errorMessage[i].Description);
             }
-
-
-
         }
 
 

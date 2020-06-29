@@ -245,11 +245,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dario\\Documents\\Project Work\\SensorSimulationForm\\SensorSimulationForm.Data\\SensorSimulationForm.Data.csproj",
+      "projectUniqueName": "C:\\Users\\Dario\\Documents\\GitHub\\P3S_PW_2020\\SensorSimulationForm\\SensorSimulationForm.Data\\SensorSimulationForm.Data.csproj",
       "projectName": "SensorSimulationForm.Data",
-      "projectPath": "C:\\Users\\Dario\\Documents\\Project Work\\SensorSimulationForm\\SensorSimulationForm.Data\\SensorSimulationForm.Data.csproj",
+      "projectPath": "C:\\Users\\Dario\\Documents\\GitHub\\P3S_PW_2020\\SensorSimulationForm\\SensorSimulationForm.Data\\SensorSimulationForm.Data.csproj",
       "packagesPath": "C:\\Users\\Dario\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dario\\Documents\\Project Work\\SensorSimulationForm\\SensorSimulationForm.Data\\obj\\",
+      "outputPath": "C:\\Users\\Dario\\Documents\\GitHub\\P3S_PW_2020\\SensorSimulationForm\\SensorSimulationForm.Data\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Dario\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -265,8 +265,8 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "C:\\Users\\Dario\\Documents\\Project Work\\SensorSimulationForm\\SensorSimulationForm.Models\\SensorSimulationForm.Models.csproj": {
-              "projectPath": "C:\\Users\\Dario\\Documents\\Project Work\\SensorSimulationForm\\SensorSimulationForm.Models\\SensorSimulationForm.Models.csproj"
+            "C:\\Users\\Dario\\Documents\\GitHub\\P3S_PW_2020\\SensorSimulationForm\\SensorSimulationForm.Models\\SensorSimulationForm.Models.csproj": {
+              "projectPath": "C:\\Users\\Dario\\Documents\\GitHub\\P3S_PW_2020\\SensorSimulationForm\\SensorSimulationForm.Models\\SensorSimulationForm.Models.csproj"
             }
           }
         }
