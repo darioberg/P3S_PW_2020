@@ -5,7 +5,7 @@ function splitDateTable(data) {
     return time;
 }
 var callLogs = function(e) {
-    const url = "http://silevel.ddnsking.com:3000/getLog";
+    const url = "http://ec2-3-249-41-153.eu-west-1.compute.amazonaws.com:3000/getLog";
     const options = {
         method: 'GET'
     }
@@ -47,7 +47,7 @@ var callLogs = function(e) {
     });
 }
 var callErrors = function(e) {
-    const url = "http://silevel.ddnsking.com:3000/getMalfunctions";
+    const url = "http://ec2-3-249-41-153.eu-west-1.compute.amazonaws.com:3000/getMalfunctions";
     const options = {
         method: 'GET'
     }

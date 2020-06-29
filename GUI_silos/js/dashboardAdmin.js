@@ -2,7 +2,7 @@ var ruolo = localStorage.getItem("ruolo");
 var flagDivSilos = false;
 var flagDivTable = false;
 
-var url = "http://silevel.ddnsking.com:3000";
+var url = "http://ec2-3-249-41-153.eu-west-1.compute.amazonaws.com:3000";
 
 var tx_pass = document.getElementById("tx_passw");
 

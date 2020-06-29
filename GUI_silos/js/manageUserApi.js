@@ -49,7 +49,7 @@ var selectUserUpdate;
 
 //funzione che appena la pagina è stata caricata fa una richiesta al server è riempie tutti gli utenti che possono essere eliminati
 var fillSelectDelete = function(e) {
-        const url = "http://silevel.ddnsking.com:3000/getAll ";
+        const url = "http://ec2-3-249-41-153.eu-west-1.compute.amazonaws.com:3000/getAll";
         const options = {
             method: 'GET'
         }
@@ -70,7 +70,7 @@ var fillSelectDelete = function(e) {
     //funzione che al click del pulsante delete user richiama l'api che elimina l'utente
 var deleteUser = function(e) {
         var optselect = selectDelete.value;
-        const url = "http://silevel.ddnsking.com:3000/deleteUser/" + optselect;
+        const url = "http://ec2-3-249-41-153.eu-west-1.compute.amazonaws.com:3000/deleteUser/" + optselect;
         const options = {
             method: 'DELETE',
             headers: {
@@ -109,7 +109,7 @@ var deleteUser = function(e) {
     }
     // funzione che riempie la select di scelta dell'utente nella fase di aggiornamento 
 var fillSelectUpdate = function(e) {
-    const url = "http://silevel.ddnsking.com:3000/getAll";
+    const url = "http://ec2-3-249-41-153.eu-west-1.compute.amazonaws.com:3000/getAll";
     const options = {
         method: 'GET'
     }
@@ -191,7 +191,7 @@ var callUpdateApi = function(e) {
         "Cognome": cognome,
         "ID_Ruolo": permesso
     }
-    const url = "http://silevel.ddnsking.com:3000/updateUser";
+    const url = "http://ec2-3-249-41-153.eu-west-1.compute.amazonaws.com:3000/updateUser";
     const options = {
         method: 'PUT',
         body: JSON.stringify(user),
@@ -295,7 +295,7 @@ var insertUser = function(e) {
         "Cognome": txtCognomeInsert.value,
         "ID_Ruolo": selectInsert.value
     }
-    const url = "http://silevel.ddnsking.com:3000/insertNewUser";
+    const url = "http://ec2-3-249-41-153.eu-west-1.compute.amazonaws.com:3000/insertNewUser";
     const options = {
         method: 'POST',
         body: JSON.stringify(user),

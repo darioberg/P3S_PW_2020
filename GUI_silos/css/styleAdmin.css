@@ -302,3 +302,7 @@ ul ul a {
 .btn_reload:active {
     transform: translateY(4px);
 }
+
+.calendar-style {
+    border-radius: 20px;
+}
