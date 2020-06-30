@@ -107,7 +107,7 @@ function getDataChart() {
         return result.json();
     }).then(function(data) {
         console.log(data);
-        var result = [{ x: 0, y: 0 }];
+        var result = []; //= [{ x: 0, y: 0 }];
         for (var i = 0; i < data.length; i++) {
             var time = data[i].Data_Ora;
             var liquid = data[i].LivelloLiquido;
