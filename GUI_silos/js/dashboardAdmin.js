@@ -2,7 +2,7 @@ var ruolo = localStorage.getItem("ruolo");
 var flagDivSilos = false;
 var flagDivTable = false;
 
-var url = "http://ec2-3-249-41-153.eu-west-1.compute.amazonaws.com:3000";
+var url = "http://ec2-3-248-92-190.eu-west-1.compute.amazonaws.com:3000";
 
 var tx_pass = document.getElementById("tx_passw");
 
@@ -102,7 +102,7 @@ function logout() {
     (function(myCallbackGoesHereAsVariable) {
         Parse.User.logOut();
     });
-    window.location.href = "../login.html";
+    window.location.href = "../index.html";
 }
 
 //funzione di scambio pagine tra la sidebar

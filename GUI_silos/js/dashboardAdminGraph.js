@@ -1,3 +1,4 @@
+var url = "http://ec2-3-248-92-190.eu-west-1.compute.amazonaws.com:3000";
 //variabile 
 var resultRequestChart;
 var selectSilos = document.getElementById("selectSilos");
@@ -8,7 +9,7 @@ var description = document.getElementById("descriptionLevel");
 var btnConfirmChart = document.getElementById("btn-confirm-value");
 var ctx = document.getElementById("myChart").getContext('2d');
 var myChart;
-var url = "http://ec2-3-249-41-153.eu-west-1.compute.amazonaws.com:3000";
+
 // parse labels and data
 var labels = [];
 var data = [];

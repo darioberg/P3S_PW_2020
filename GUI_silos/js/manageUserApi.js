@@ -1,3 +1,4 @@
+var url = "http://ec2-3-248-92-190.eu-west-1.compute.amazonaws.com:3000";
 //bottoni di conferma delle azione scelte
 var btnDeleteUser = document.getElementById("btn-delete-user");
 var btnUpdateUser = document.getElementById("btn-update-user");
@@ -35,7 +36,6 @@ var pPermesso = document.getElementById("p-permesso");
 //campi di testo che contengono i dati che verranno aggiornati all'interno del db
 var txtNome = document.getElementById("txt-update-nome");
 var txtCognome = document.getElementById("txt-update-cognome");
-var txtEmail = document.getElementById("txt-update-email");
 var txtPassword = document.getElementById("txt-update-password");
 
 //campi di testo che contengono i dati per l'inserimento di un nuovo utente
@@ -49,11 +49,10 @@ var selectUserUpdate;
 
 //funzione che appena la pagina è stata caricata fa una richiesta al server è riempie tutti gli utenti che possono essere eliminati
 var fillSelectDelete = function(e) {
-        const url = "http://ec2-3-249-41-153.eu-west-1.compute.amazonaws.com:3000/getAll";
         const options = {
             method: 'GET'
         }
-        fetch(url, options).then(function(response) {
+        fetch(url + "/getAll", options).then(function(response) {
             return response.json();
         }).then(function(data) {
             const element = data;
@@ -70,14 +69,13 @@ var fillSelectDelete = function(e) {
     //funzione che al click del pulsante delete user richiama l'api che elimina l'utente
 var deleteUser = function(e) {
         var optselect = selectDelete.value;
-        const url = "http://ec2-3-249-41-153.eu-west-1.compute.amazonaws.com:3000/deleteUser/" + optselect;
         const options = {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
             }
         }
-        fetch(url, options).then(function(response) {
+        fetch(url + "/deleteUser/" + optselect, options).then(function(response) {
             return response.json();
         }).then(function(data) {
             if (data.msg == "Record eliminato") {
@@ -109,11 +107,10 @@ var deleteUser = function(e) {
     }
     // funzione che riempie la select di scelta dell'utente nella fase di aggiornamento 
 var fillSelectUpdate = function(e) {
-    const url = "http://ec2-3-249-41-153.eu-west-1.compute.amazonaws.com:3000/getAll";
     const options = {
         method: 'GET'
     }
-    fetch(url, options).then(function(response) {
+    fetch(url + "/getAll", options).then(function(response) {
         return response.json();
     }).then(function(data) {
         const element = data;
@@ -144,7 +141,7 @@ var updateUser = function() {
 
             pNome.innerHTML = resultUpdateCall[index].Nome;
             pCognome.innerHTML = resultUpdateCall[index].Cognome;
-            pEmail.innerHTML = resultUpdateCall[index].Email;
+            pEmail.value = resultUpdateCall[index].Email;
             pPassword.innerHTML = resultUpdateCall[index].Password;
             if (resultUpdateCall[index].ID_Ruolo == 1) {
                 pPermesso.innerHTML = "Amministratore";
@@ -191,7 +188,6 @@ var callUpdateApi = function(e) {
         "Cognome": cognome,
         "ID_Ruolo": permesso
     }
-    const url = "http://ec2-3-249-41-153.eu-west-1.compute.amazonaws.com:3000/updateUser";
     const options = {
         method: 'PUT',
         body: JSON.stringify(user),
@@ -199,7 +195,7 @@ var callUpdateApi = function(e) {
             'Content-Type': 'application/json'
         }
     }
-    fetch(url, options).then(function(response) {
+    fetch(url + "/updateUser", options).then(function(response) {
         return response.json();
     }).then(function(data) {
         if (data.msg == "Utente aggiornato") {
@@ -233,12 +229,11 @@ var callUpdateApi = function(e) {
 var clearSelectTxt = function(e) {
     txtNome.value = "";
     txtCognome.value = "";
-    txtEmail.value = "";
     selectUpdatePermesso.value = "";
     txtPassword.value = "";
     pCognome.innerHTML = "Cognome";
     pNome.innerHTML = "Nome";
-    pEmail.innerHTML = "Email";
+    pEmail.value = "";
     pPassword.innerHTML = "Password";
     pPermesso.innerHTML = "Permesso";
 
@@ -295,7 +290,6 @@ var insertUser = function(e) {
         "Cognome": txtCognomeInsert.value,
         "ID_Ruolo": selectInsert.value
     }
-    const url = "http://ec2-3-249-41-153.eu-west-1.compute.amazonaws.com:3000/insertNewUser";
     const options = {
         method: 'POST',
         body: JSON.stringify(user),
@@ -303,7 +297,7 @@ var insertUser = function(e) {
             'Content-Type': 'application/json'
         }
     }
-    fetch(url, options).then(function(response) {
+    fetch(url + "/insertNewUser", options).then(function(response) {
         return response.json();
     }).then(function(data) {
         console.log(data);

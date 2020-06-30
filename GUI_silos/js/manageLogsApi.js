@@ -1,3 +1,5 @@
+var url = "http://ec2-3-248-92-190.eu-west-1.compute.amazonaws.com:3000";
+
 function splitDateTable(data) {
     var split = data.split("T");
     var split2 = split[1].split(".");
@@ -5,11 +7,10 @@ function splitDateTable(data) {
     return time;
 }
 var callLogs = function(e) {
-    const url = "http://ec2-3-249-41-153.eu-west-1.compute.amazonaws.com:3000/getLog";
     const options = {
         method: 'GET'
     }
-    fetch(url, options).then(function(response) {
+    fetch(url + "/getLog", options).then(function(response) {
         return response.json();
     }).then(function(data) {
         const element = data;
@@ -47,11 +48,10 @@ var callLogs = function(e) {
     });
 }
 var callErrors = function(e) {
-    const url = "http://ec2-3-249-41-153.eu-west-1.compute.amazonaws.com:3000/getMalfunctions";
     const options = {
         method: 'GET'
     }
-    fetch(url, options).then(function(response) {
+    fetch(url + "/getMalfunctions", options).then(function(response) {
         return response.json();
     }).then(function(data) {
         const element = data;
@@ -63,12 +63,12 @@ var callErrors = function(e) {
             var td1 = document.createElement("td");
             var td2 = document.createElement("td");
             var td3 = document.createElement("td");
-
+            var d = splitDateTable(data[index].Data_Ora);
             th.classList.add("text-center");
             td1.classList.add("text-center");
             td2.classList.add("text-center");
             td3.classList.add("text-center");
-            th.innerHTML = (data[index].ID_Malfunzionamento);
+            th.innerHTML = (d);
             td1.innerHTML = (data[index].ID_Sensore);
             td2.innerHTML = (data[index].ID_Silos);
             td3.innerHTML = (data[index].Descrizione);

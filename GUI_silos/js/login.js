@@ -1,7 +1,7 @@
 var divContentModal = document.getElementById("container-modal");
 var btnLogin = document.getElementById("btn-login");
 
-var url = "http://ec2-3-249-41-153.eu-west-1.compute.amazonaws.com:3000";
+var url = "http://ec2-3-248-92-190.eu-west-1.compute.amazonaws.com:3000";
 //funzione che controlla se i dati inseriti sono corretti
 var checkLogin = function(e) {
     var username = document.getElementById("Username").value;
@@ -50,8 +50,10 @@ var checkLogin = function(e) {
             window.location.href = "../pages/dashboardAdmin.html";
         } else {
             console.log("FALSE");
-            btnLogin.setAttribute("data-toggle", "modal");
-            btnLogin.setAttribute("data-target", "#staticBackdrop");
+            $("#staticBackdrop").modal("show");
+            //btnDeleteUser.setAttribute("data-toggle", "modal");
+            //btnDeleteUser.setAttribute("data-target", "#modalResponce");
+
         }
     });
 }

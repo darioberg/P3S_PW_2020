@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/styleAdmin.css">
     <link rel="stylesheet" href="../css/styleAdminData.css">
-    <link rel="icon" type="image/png" href="../img/logov2.png">
+    <link rel="icon" type="image/png" href="../img/SiLevelLogo.png">
     <link rel="stylesheet" href="../fontaweson/css/all.css">
     <title>Dashboard</title>
 </head>
@@ -230,19 +230,11 @@
                                             <div class="row">
                                                 <div class="col">
                                                     <div class="row">
-                                                        <div class="offset-4"></div>
-                                                        <div class="col">
-                                                            <p id="p-email">Email</p>
-                                                        </div>
-                                                        <div class="offset-4"></div>
-                                                    </div>
-
-                                                    <div class="row">
                                                         <div class="input-group col mb-3">
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text space-span" id="inputEmailUpdate">Email</span>
                                                             </div>
-                                                            <input id="txt-update-email" type="text" class="form-control" aria-label="Default" aria-describedby="inputEmailUpdate">
+                                                            <input readonly id="p-email" type="text" class="form-control" aria-label="Default" aria-describedby="inputEmailUpdate">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -450,8 +442,7 @@
                                                 <div class="offset-3"></div>
                                                 <div class="col mb-3">
                                                     <div class="pt-2 text-right mt-1 mb-2 w-100">
-                                                        <button class="btn btn-outline-dark button-dimens" id="btn-insert-user" disabled>Register
-                                                            User</button>
+                                                        <button class="btn btn-outline-dark button-dimens" id="btn-insert-user" disabled>Registra Utente</button>
                                                     </div>
                                                 </div>
                                                 <div class="offset-3"></div>
@@ -640,7 +631,7 @@
                                             <th scope="col" class="text-center">Data e ora</th>
                                             <th scope="col" class="text-center">ID Silos</th>
                                             <th scope="col" class="text-center">ID Sensore</th>
-                                            <th scope="col" class="text-center">Liquido sensore</th>
+                                            <th scope="col" class="text-center">Livello Liquido</th>
                                             <th scope="col" class="text-center">Descrizione</th>
                                         </tr>
                                     </thead>
@@ -661,7 +652,7 @@
                                 <table class="table table-striped table-dark">
                                     <thead>
                                         <tr class="bg-dark text-white">
-                                            <th scope="col" class="text-center">Malfunzionamento</th>
+                                            <th scope="col" class="text-center">Data e Ora</th>
                                             <th scope="col" class="text-center">Sensore</th>
                                             <th scope="col" class="text-center">Silos</th>
                                             <th scope="col" class="text-center">Descrizione</th>
